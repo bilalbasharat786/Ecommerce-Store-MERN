@@ -23,8 +23,8 @@ const ProductItem = ({ id, image, name, price }) => {
       />
     )}
   </div>
-  <p className="pt-3 pb-1 text-sm">{name}</p>
-  <p className="text-sm font-medium">
+  <p className="pt-3 pb-1 text-lg font-semibold">{name}</p>
+  <p className="text-sm font-sm">
     {currency}
     {price}
   </p>
