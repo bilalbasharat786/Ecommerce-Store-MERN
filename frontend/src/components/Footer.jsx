@@ -27,7 +27,7 @@ const Footer = () => {
           <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
           <ul className="flex flex-col gap-1 text-gray-600">
             <li>+1-000-000-0000</li>
-            <li>devdiariesbyshozab@gmail.com</li>
+            <li>devdiariesbymuhammadbilal@gmail.com</li>
             <li className="cursor-pointer">Instagram</li>
           </ul>
         </div>
@@ -35,7 +35,7 @@ const Footer = () => {
       <div>
         <hr />
         <p className="py-5 text-sm text-center">
-          Copyright 2025@ ShozabAli06 - All Right Reserved.
+          Copyright 2025@ Muhammad Bilal - All Right Reserved.
         </p>
       </div>
     </div>
