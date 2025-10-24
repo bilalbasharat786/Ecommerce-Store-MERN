@@ -13,7 +13,8 @@ import { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
-export const currency = "$"
+export const currency = "PKR ";
+
 
 const App = () => {
   const [token, setToken] = useState(
