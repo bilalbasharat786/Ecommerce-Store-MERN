@@ -83,7 +83,7 @@ const Orders = () => {
               </div>
               <button
                 onClick={loadOrderData}
-                className="border px-4 py-2 text-sm font-medium rounded-sm"
+                className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500"
               >
                 Track Order
               </button>
