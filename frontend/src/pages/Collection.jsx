@@ -167,18 +167,21 @@ const Collection = () => {
       </div>
       {/* Right side */}
       <div className="flex-1">
-        <div className="flex justify-between text-base sm:text-2xl mb-4">
-          <Title text1={"ALL"} text2={"COLLECTIONS"} />
-          {/* Products Sorter */}
-          <select
-            onChange={(e) => setSortType(e.target.value)}
-            className="border-2 border-gray-300 text-sm px-2"
-          >
-            <option value="relevant">Sort by: Relevant</option>
-            <option value="low-high">Sort by: Low to High</option>
-            <option value="high-low">Sort by: High to Low</option>
-          </select>
-        </div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between text-sm sm:text-lg md:text-xl lg:text-2xl gap-2 sm:gap-0 mb-4 px-2">
+  {/* Title Component */}
+  <Title text1={"ALL"} text2={"COLLECTIONS"} />
+
+  {/* Products Sorter */}
+  <select
+    onChange={(e) => setSortType(e.target.value)}
+    className="border-2 border-gray-300 text-xs sm:text-sm md:text-base px-2 py-1 rounded-md"
+  >
+    <option value="relevant">Sort by: Relevant</option>
+    <option value="low-high">Sort by: Low to High</option>
+    <option value="high-low">Sort by: High to Low</option>
+  </select>
+</div>
+
         {/* Mapping Products */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
           {filterProducts.map((item, index) => (
