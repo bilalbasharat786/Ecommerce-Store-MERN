@@ -90,20 +90,31 @@ const removeProduct = async (req, res) => {
 
 
 // Update product price
-export const updateProductPrice = async (req, res) => {
+// Update product details (name, price, category, etc.)
+export const updateProduct = async (req, res) => {
   try {
-    const { id, price } = req.body;
+    const { id, name, price, category } = req.body;
+
+    // Optional fields ko filter karlo
+    const updatedData = {};
+    if (name) updatedData.name = name;
+    if (price) updatedData.price = price;
+    if (category) updatedData.category = category;
 
     const product = await productModel.findByIdAndUpdate(
       id,
-      { price },
+      updatedData,
       { new: true }
     );
 
     if (!product)
       return res.json({ success: false, message: "Product not found" });
 
-    res.json({ success: true, message: "Price updated successfully", product });
+    res.json({
+      success: true,
+      message: "Product updated successfully",
+      product,
+    });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });

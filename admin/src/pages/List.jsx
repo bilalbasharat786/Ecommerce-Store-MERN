@@ -9,7 +9,7 @@ const List = ({ token }) => {
   const fetchList = async () => {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
-
+      
       if (response.data.success) {
         setList(response.data.products);
       } else {
@@ -41,80 +41,112 @@ const List = ({ token }) => {
     }
   };
 
+  const updateProduct = async (item) => {
+    try {
+      const response = await axios.post(
+        backendUrl + "/api/product/update",
+        {
+          id: item._id,
+          name: item.name,
+          price: item.price,
+          category: item.category,
+        },
+        { headers: { token } }
+      );
+
+      if (response.data.success) {
+        toast.success("Product updated successfully!");
+        fetchList();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (err) {
+      toast.error("Error updating product");
+    }
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
 
   return (
     <>
-      <p className="mb-2">All Products List</p>
-      <div className="flex flex-col gap-2">
-        {/* List Table Title */}
-        <div className="hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 border bg-gray-100 text-sm">
+      <p className="mb-2 font-semibold text-lg">All Products List</p>
+      <div className="flex flex-col gap-2 overflow-x-auto">
+        {/* List Header */}
+        <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr_1fr] items-center py-2 px-3 border bg-gray-100 text-sm font-semibold">
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
           <b>Price</b>
           <b className="text-center">Action</b>
         </div>
-        {/* Product List */}
-{list.map((item, index) => (
-  <div
-    key={index}
-    className="grid grid-cols-[1fr_3fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center gap-2 py-1 px-2 border text-sm"
-  >
-    <img className="w-12" src={item.image[0]} alt="product-image" />
-    <p>{item.name}</p>
-    <p>{item.category}</p>
 
-    {/* Editable price input */}
-    <input
-      type="number"
-      className="border px-2 py-1 w-16 md:w-20 text-center rounded"
-      value={item.price}
-      onChange={(e) => {
-        const newList = [...list];
-        newList[index].price = e.target.value;
-        setList(newList);
-      }}
-    />
+        {/* Product Rows */}
+        {list.map((item, index) => (
+          <div
+            key={index}
+            className="grid grid-cols-[1fr_2fr_2fr_1fr_1fr] items-center gap-2 py-2 px-3 border text-sm"
+          >
+            <img className="w-12 h-12 object-cover rounded" src={item.image[0]} alt="product" />
 
-    {/* Save button */}
-    <button
-      onClick={async () => {
-        try {
-          const response = await axios.post(
-            backendUrl + "/api/product/update",
-            { id: item._id, price: item.price },
-            { headers: { token } }
-          );
-          if (response.data.success) {
-            toast.success("Price updated successfully!");
-            fetchList(); // refresh list
-          } else {
-            toast.error(response.data.message);
-          }
-        } catch (err) {
-          toast.error("Error updating price");
-        }
-      }}
-      className="text-sm bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700 transition"
-    >
-      Save
-    </button>
+            {/* Editable name */}
+            <input
+              type="text"
+              className="border px-2 py-1 rounded w-full"
+              value={item.name}
+              onChange={(e) => {
+                const newList = [...list];
+                newList[index].name = e.target.value;
+                setList(newList);
+              }}
+            />
 
-    <p
-      onClick={() => removeProduct(item._id)}
-      className="text-right md:text-center cursor-pointer text-lg text-red-500"
-    >
-      X
-    </p>
-  </div>
-))}
+            {/* Editable category */}
+            <input
+              type="text"
+              className="border px-2 py-1 rounded w-full"
+              value={item.category}
+              onChange={(e) => {
+                const newList = [...list];
+                newList[index].category = e.target.value;
+                setList(newList);
+              }}
+            />
 
+            {/* Editable price */}
+            <input
+              type="number"
+              className="border px-2 py-1 w-20 text-center rounded"
+              value={item.price}
+              onChange={(e) => {
+                const newList = [...list];
+                newList[index].price = e.target.value;
+                setList(newList);
+              }}
+            />
+
+            {/* Save + Delete buttons */}
+            <div className="flex items-center justify-end gap-2">
+              <button
+                onClick={() => updateProduct(item)}
+                className="bg-green-600 text-white px-2 py-1 rounded text-xs hover:bg-green-700 transition"
+              >
+                Save
+              </button>
+              <button
+                onClick={() => removeProduct(item._id)}
+                className="text-red-500 text-lg font-bold hover:text-red-700 transition"
+              >
+                ✕
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
 };
 
 export default List;
+
