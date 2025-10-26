@@ -23,7 +23,7 @@ productRouter.post(
 );
 productRouter.post("/remove", adminAuth, removeProduct);
 productRouter.post("/single", adminAuth, singleProduct);
-
+productRouter.post("/update", adminAuth, updateProductPrice);
 productRouter.get("/list", listProducts);
 
 export default productRouter;

@@ -89,6 +89,26 @@ const removeProduct = async (req, res) => {
 };
 
 
+// Update product price
+export const updateProductPrice = async (req, res) => {
+  try {
+    const { id, price } = req.body;
+
+    const product = await productModel.findByIdAndUpdate(
+      id,
+      { price },
+      { new: true }
+    );
+
+    if (!product)
+      return res.json({ success: false, message: "Product not found" });
+
+    res.json({ success: true, message: "Price updated successfully", product });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // function for getting single product info
 const singleProduct = async (req, res) => {
