@@ -58,60 +58,26 @@ const List = ({ token }) => {
           <b className="text-center">Action</b>
         </div>
         {/* Product List */}
-{list.map((item, index) => (
-  <div
-    key={index}
-    className="grid grid-cols-[1fr_3fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center gap-2 py-1 px-2 border text-sm"
-  >
-    <img className="w-12" src={item.image[0]} alt="product-image" />
-    <p>{item.name}</p>
-    <p>{item.category}</p>
-
-    {/* Editable price input */}
-    <input
-      type="number"
-      className="border px-2 py-1 w-16 md:w-20 text-center rounded"
-      value={item.price}
-      onChange={(e) => {
-        const newList = [...list];
-        newList[index].price = e.target.value;
-        setList(newList);
-      }}
-    />
-
-    {/* Save button */}
-    <button
-      onClick={async () => {
-        try {
-          const response = await axios.post(
-            backendUrl + "/api/product/update",
-            { id: item._id, price: item.price },
-            { headers: { token } }
-          );
-          if (response.data.success) {
-            toast.success("Price updated successfully!");
-            fetchList(); // refresh list
-          } else {
-            toast.error(response.data.message);
-          }
-        } catch (err) {
-          toast.error("Error updating price");
-        }
-      }}
-      className="text-sm bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700 transition"
-    >
-      Save
-    </button>
-
-    <p
-      onClick={() => removeProduct(item._id)}
-      className="text-right md:text-center cursor-pointer text-lg text-red-500"
-    >
-      X
-    </p>
-  </div>
-))}
-
+        {list.map((item, index) => (
+          <div
+            key={index}
+            className="grid grid-cols-[1fr_3fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center gap-2 py-1 px-2 border text-sm"
+          >
+            <img className="w-12" src={item.image[0]} alt="product-image" />
+            <p>{item.name}</p>
+            <p>{item.category}</p>
+            <p>
+              {currency}
+              {item.price}
+            </p>
+            <p
+              onClick={() => removeProduct(item._id)}
+              className="text-right md:text-center cursor-pointer text-lg"
+            >
+              X
+            </p>
+          </div>
+        ))}
       </div>
     </>
   );
