@@ -18,6 +18,7 @@ const Product = () => {
         setImage(item.image[0]);
         return null;
       }
+      return null;
     });
   };
 
@@ -26,53 +27,72 @@ const Product = () => {
   }, [productId, products]);
 
   return productData ? (
-    <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
+    <div className="border-t-2 pt-8 transition-opacity ease-in duration-500 opacity-100 px-4 sm:px-8 md:px-16">
       {/* Product Data */}
-      <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row gap-10 sm:gap-12">
         {/* Product Images */}
-        <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-row">
-          <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full">
+        <div className="flex-1 flex flex-col-reverse sm:flex-row gap-4 sm:gap-5">
+          {/* Thumbnail images */}
+          <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-auto justify-between sm:justify-start sm:w-[20%] w-full">
             {productData.image.map((item, index) => (
               <img
                 key={index}
-                className="w-[24%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer"
+                className="w-[22%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer rounded-md hover:opacity-80 transition-all duration-300"
                 src={item}
                 alt="product_image"
                 onClick={() => setImage(item)}
               />
             ))}
           </div>
+
+          {/* Main Image */}
           <div className="w-full sm:w-[80%]">
-            <img className="w-full h-auto" src={image} alt="" />
+            <img
+              className="w-full h-auto rounded-lg shadow-sm object-contain"
+              src={image}
+              alt={productData.name}
+            />
           </div>
         </div>
-        {/* Product info */}
-        <div className="flex-1">
-          <h1 className="font-medium text-2xl mt-2">{productData.name}</h1>
+
+        {/* Product Info */}
+        <div className="flex-1 text-gray-700">
+          <h1 className="font-semibold text-xl sm:text-2xl mt-2">
+            {productData.name}
+          </h1>
+
+          {/* Ratings */}
           <div className="flex items-center gap-1 mt-2">
-            <img className="w-3.5" src={assets.star_icon} alt="" />
-            <img className="w-3.5" src={assets.star_icon} alt="" />
-            <img className="w-3.5" src={assets.star_icon} alt="" />
-            <img className="w-3.5" src={assets.star_icon} alt="" />
-            <img className="w-3.5" src={assets.star_dull_icon} alt="" />
-            <p className="pl-2">122</p>
+            {[...Array(4)].map((_, i) => (
+              <img key={i} className="w-3.5" src={assets.star_icon} alt="star" />
+            ))}
+            <img className="w-3.5" src={assets.star_dull_icon} alt="star_dull" />
+            <p className="pl-2 text-sm">122 reviews</p>
           </div>
-          <p className="mt-5 text-3xl font-medium">
+
+          {/* Price */}
+          <p className="mt-4 text-2xl sm:text-3xl font-medium text-gray-900">
             {currency}
             {productData.price}
           </p>
-          <p className="mt-5 text-gray-500 md:w-4/5">
+
+          {/* Description */}
+          <p className="mt-4 text-gray-500 text-sm sm:text-base leading-relaxed md:w-4/5">
             {productData.description}
           </p>
-          <div className="flex flex-col gap-4 my-8">
-            <p>Select Size</p>
-            <div className="flex gap-2">
+
+          {/* Size Selector */}
+          <div className="flex flex-col gap-3 my-6">
+            <p className="font-medium text-sm sm:text-base">Select Size</p>
+            <div className="flex flex-wrap gap-2">
               {productData.sizes.map((item, index) => (
                 <button
                   onClick={() => setSize(item)}
                   key={index}
-                  className={`border py-2 px-4 bg-gray-100 ${
-                    item === size && "border-orange-500"
+                  className={`border py-2 px-4 rounded-md text-sm sm:text-base transition-all ${
+                    item === size
+                      ? "border-black bg-gray-200"
+                      : "border-gray-300 bg-gray-100 hover:bg-gray-200"
                   }`}
                 >
                   {item}
@@ -80,45 +100,53 @@ const Product = () => {
               ))}
             </div>
           </div>
+
+          {/* Add to Cart */}
           <button
             onClick={() => addToCart(productData._id, size)}
-            className="bg-black text-white px-8 py-3 text-sm border border-transparent hover:bg-white hover:text-black hover:border-black transition-all duration-1000"
+            className="bg-black text-white px-6 sm:px-8 py-3 text-sm sm:text-base border border-transparent hover:bg-white hover:text-black hover:border-black transition-all duration-500 rounded-md"
           >
             ADD TO CART
           </button>
+
+          {/* Extra Info */}
           <hr className="mt-8 sm:w-4/5" />
-          <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
-            <p>100% Original product.</p>
-            <p>Cash on delivery is available on this product.</p>
-            <p>Easy return and exchange policy within 7 days.</p>
+          <div className="text-xs sm:text-sm text-gray-500 mt-4 flex flex-col gap-1">
+            <p>✅ 100% Original product.</p>
+            <p>💵 Cash on delivery available.</p>
+            <p>↩️ Easy return and exchange within 7 days.</p>
           </div>
         </div>
       </div>
-      {/* Description and review section */}
-      <div className="mt-20">
-        <div className="flex">
-          <b className="border px-5 py-3 text-sm">Description</b>
-          <p className="border px-5 py-3 text-sm">Reviews (122)</p>
+
+      {/* Description & Review Section */}
+      <div className="mt-16 sm:mt-20">
+        <div className="flex flex-col sm:flex-row">
+          <b className="border px-5 py-3 text-sm sm:text-base bg-gray-100">
+            Description
+          </b>
+          <p className="border px-5 py-3 text-sm sm:text-base">
+            Reviews (122)
+          </p>
         </div>
-        <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
+
+        <div className="flex flex-col gap-4 border px-4 sm:px-6 py-6 text-sm sm:text-base text-gray-500 leading-relaxed">
           <p>
-            An e-commerce website is an online platform that facilitates the
-            buying and selling of products or services over the internet. It
-            serves as a virtual marketplace where businesses and individuals can
-            showcase their products, interact with customers, and conduct
-            transactions without the need for a physical presence. E-commerce
-            websites have gained immense popularity due to their convenience,
-            accessibility, and the global reach they offer.
+            Our online store offers a wide selection of premium-quality products
+            that combine functionality, style, and durability. Whether you’re
+            shopping for yourself or a loved one, every product is designed to
+            meet your lifestyle needs.
           </p>
           <p>
-            E-commerce websites typically display products or services along
-            with detailed descriptions, images, prices, and any available
-            variations (e.g., sizes, colors). Each product usually has its own
-            dedicated page with relevant information.
+            We’re committed to ensuring your satisfaction — from exploring our
+            catalog to enjoying your purchase at home. Shop confidently knowing
+            that every order is backed by our reliable service and quality
+            guarantee.
           </p>
         </div>
       </div>
-      {/* display related products */}
+
+      {/* Related Products */}
       <RelatedProducts
         category={productData.category}
         subCategory={productData.subCategory}

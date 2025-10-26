@@ -3,39 +3,48 @@ import { assets } from "../assets/frontend_assets/assets";
 
 const Footer = () => {
   return (
-    <div>
-      <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
+    <div className="px-6 sm:px-12 lg:px-24 text-gray-700">
+      {/* Main Footer Grid */}
+      <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-10 sm:gap-14 my-10 mt-24 text-sm sm:text-base">
+        {/* Logo + About */}
         <div>
-          <img src={assets.logo} className="mb-5 w-32" alt="" />
-          <p className="w-full md:w-2/3 text-gray-600">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+          <img src={assets.logo} className="mb-5 w-28 sm:w-36" alt="logo" />
+          <p className="w-full md:w-3/4 text-gray-600 text-xs sm:text-sm leading-relaxed">
+            Welcome to <span className="font-semibold text-black">Forever</span> —
+            your go-to destination for stylish fashion and premium quality.
+            We bring you the latest trends, crafted with care and delivered
+            with love, straight to your doorstep.
           </p>
         </div>
+
+        {/* Company Links */}
         <div>
-          <p className="text-xl font-medium mb-5">COMPANY</p>
-          <ul className="flex flex-col gap-1 text-gray-600">
-            <li>Home</li>
-            <li>About us</li>
-            <li>Delivery</li>
-            <li>Privacy policy</li>
+          <p className="text-lg sm:text-xl font-semibold mb-4">COMPANY</p>
+          <ul className="flex flex-col gap-2 text-gray-600 text-xs sm:text-sm">
+            <li className="cursor-pointer hover:text-black transition">Home</li>
+            <li className="cursor-pointer hover:text-black transition">About Us</li>
+            <li className="cursor-pointer hover:text-black transition">Delivery Info</li>
+            <li className="cursor-pointer hover:text-black transition">Privacy Policy</li>
           </ul>
         </div>
+
+        {/* Contact Info */}
         <div>
-          <p className="text-xl font-medium mb-5">GET IN TOUCH</p>
-          <ul className="flex flex-col gap-1 text-gray-600">
-            <li>+1-000-000-0000</li>
-            <li>devdiariesbymuhammadbilal@gmail.com</li>
-            <li className="cursor-pointer">Instagram</li>
+          <p className="text-lg sm:text-xl font-semibold mb-4">GET IN TOUCH</p>
+          <ul className="flex flex-col gap-2 text-gray-600 text-xs sm:text-sm">
+            <li> +92-3105087313</li>
+            <li> support@foreverstore.com</li>
+            <li className="cursor-pointer hover:text-black transition"> Instagram</li>
           </ul>
         </div>
       </div>
+
+      {/* Footer Bottom */}
       <div>
-        <hr />
-        <p className="py-5 text-sm text-center">
-          Copyright 2025@ Muhammad Bilal - All Right Reserved.
+        <hr className="border-gray-300" />
+        <p className="py-4 text-[10px] sm:text-sm text-center text-gray-500">
+          © {new Date().getFullYear()} Forever Store — Designed & Developed by Muhammad Bilal.  
+          All Rights Reserved.
         </p>
       </div>
     </div>
