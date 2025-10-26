@@ -40,26 +40,26 @@ const Hero = () => {
   ];
 
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full overflow-hidden relative z-0">
       <Slider {...settings}>
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="relative w-full h-[60vh] sm:h-[90vh] flex justify-center items-center bg-black"
+            className="relative w-full h-auto sm:h-[90vh] md:h-[85vh] lg:h-[90vh] flex justify-center items-center bg-black"
           >
             {/* Background Image */}
             <img
               src={slide.img}
               alt={slide.title}
-              className="w-full h-full object-cover opacity-90"
+              className="w-full h-auto sm:h-full object-contain sm:object-cover opacity-90"
             />
 
             {/* Overlay Text Section */}
-            <div className="absolute inset-0 flex flex-col justify-center text-white px-4 sm:px-20 bg-black/30">
+            <div className="absolute inset-0 flex flex-col justify-center text-white px-3 sm:px-10 md:px-20 py-4 sm:py-8 bg-black/30">
               <h3 className="text-xs sm:text-lg font-light mb-1 sm:mb-3">
                 {slide.subtitle}
               </h3>
-              <h1 className="text-lg sm:text-5xl font-semibold mb-2 sm:mb-6 max-w-[500px] leading-snug sm:leading-tight">
+              <h1 className="text-lg sm:text-5xl font-semibold mb-2 sm:mb-6 max-w-[90%] sm:max-w-[500px] leading-snug sm:leading-tight">
                 {slide.title}
               </h1>
               <button className="bg-white text-black px-3 py-1 sm:px-5 sm:py-2 text-xs sm:text-base font-medium w-fit hover:bg-black hover:text-white border transition-all">
