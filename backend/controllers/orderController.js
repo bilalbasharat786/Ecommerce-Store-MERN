@@ -178,11 +178,29 @@ const updateStatus = async (req, res) => {
     });
   }
 };
+// delete order by admin
+const deleteOrder = async (req, res) => {
+  try {
+    const { orderId } = req.body;
+    const deletedOrder = await orderModel.findByIdAndDelete(orderId);
+
+    if (!deletedOrder) {
+      return res.json({ success: false, message: "Order not found" });
+    }
+
+    res.json({ success: true, message: "Order deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
 
 export {
   placeOrder,
   placeOrderStripe,
   placeOrderRazorpay,
+  deleteOrder,
   allOrders,
   userOrders,
   updateStatus,

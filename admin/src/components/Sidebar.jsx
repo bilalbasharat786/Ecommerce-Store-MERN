@@ -1,35 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { assets } from "../assets/admin_assets/assets";
+import { Menu } from "lucide-react"; // for mobile toggle icon
 
 const Sidebar = () => {
+  const [open, setOpen] = useState(false); // for mobile menu toggle
+
   return (
-    <div className="w-[18%] min-h-screen border-r-2">
-      <div className="flex flex-col gap-4 pt-6 pl-[20%] text-[15px]">
-        <NavLink
-          className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l"
-          to={"/add"}
-        >
-          <img className="w-5 h-5" src={assets.add_icon} alt="add-icon" />
-          <p className="hidden md:block">Add Items</p>
-        </NavLink>
-        <NavLink
-          className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l"
-          to={"/list"}
-        >
-          <img className="w-5 h-5" src={assets.order_icon} alt="list-icon" />
-          <p className="hidden md:block">List Items</p>
-        </NavLink>
-        <NavLink
-          className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l"
-          to={"/orders"}
-        >
-          <img className="w-5 h-5" src={assets.order_icon} alt="order-icon" />
-          <p className="hidden md:block">Orders</p>
-        </NavLink>
+    <>
+      {/* Sidebar for large screens */}
+      <div className="hidden md:flex w-[18%] min-h-screen border-r-2 bg-white shadow-sm">
+        <div className="flex flex-col gap-4 pt-6 pl-[20%] text-[15px]">
+          <NavLink
+            className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100"
+            to="/add"
+          >
+            <img className="w-5 h-5" src={assets.add_icon} alt="add-icon" />
+            <p>Add Items</p>
+          </NavLink>
+          <NavLink
+            className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100"
+            to="/list"
+          >
+            <img className="w-5 h-5" src={assets.order_icon} alt="list-icon" />
+            <p>List Items</p>
+          </NavLink>
+          <NavLink
+            className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100"
+            to="/orders"
+          >
+            <img className="w-5 h-5" src={assets.order_icon} alt="order-icon" />
+            <p>Orders</p>
+          </NavLink>
+        </div>
       </div>
-    </div>
+
+      {/* Sidebar toggle button for mobile */}
+      <div className="md:hidden fixed top-4 left-1 z-50">
+        <button
+          onClick={() => setOpen(!open)}
+          className="bg-gray-800 text-white p-2 rounded-md"
+        >
+          <Menu size={16} />
+        </button>
+      </div>
+
+      {/* Sidebar for mobile (slide-in) */}
+      <div
+        className={`fixed top-0 left-0 h-full w-2/3 sm:w-1/2 bg-white border-r-2 shadow-lg transform ${
+          open ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out z-40`}
+      >
+        <div className="flex flex-col gap-4 pt-16 pl-6 text-[15px]">
+          <NavLink
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100"
+            to="/add"
+          >
+            <img className="w-5 h-5" src={assets.add_icon} alt="add-icon" />
+            <p>Add Items</p>
+          </NavLink>
+          <NavLink
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100"
+            to="/list"
+          >
+            <img className="w-5 h-5" src={assets.order_icon} alt="list-icon" />
+            <p>List Items</p>
+          </NavLink>
+          <NavLink
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100"
+            to="/orders"
+          >
+            <img className="w-5 h-5" src={assets.order_icon} alt="order-icon" />
+            <p>Orders</p>
+          </NavLink>
+        </div>
+      </div>
+
+      {/* Overlay when sidebar open */}
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="fixed inset-0 bg-black bg-opacity-40 z-30 md:hidden"
+        ></div>
+      )}
+    </>
   );
 };
 
 export default Sidebar;
+

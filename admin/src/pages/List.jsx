@@ -9,7 +9,6 @@ const List = ({ token }) => {
   const fetchList = async () => {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
-      
       if (response.data.success) {
         setList(response.data.products);
       } else {
@@ -71,10 +70,11 @@ const List = ({ token }) => {
 
   return (
     <>
-      <p className="mb-2 font-semibold text-lg">All Products List</p>
-      <div className="flex flex-col gap-2 overflow-x-auto">
+      <p className="mb-2 font-semibold text-lg text-center md:text-left">All Products List</p>
+
+      <div className="flex flex-col gap-3 overflow-y-auto max-h-[80vh] px-2">
         {/* List Header */}
-        <div className="hidden md:grid grid-cols-[1fr_2fr_2fr_1fr_1fr] items-center py-2 px-3 border bg-gray-100 text-sm font-semibold">
+        <div className="hidden sm:grid grid-cols-[1fr_2fr_2fr_1fr_1fr] items-center py-2 px-3 border bg-gray-100 text-xs sm:text-sm font-semibold min-w-[500px]">
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
@@ -84,11 +84,19 @@ const List = ({ token }) => {
 
         {/* Product Rows */}
         {list.map((item, index) => (
-          <div
-            key={index}
-            className="grid grid-cols-[1fr_2fr_2fr_1fr_1fr] items-center gap-2 py-2 px-3 border text-sm"
-          >
-            <img className="w-12 h-12 object-cover rounded" src={item.image[0]} alt="product" />
+        <div
+  key={index}
+  className="grid grid-cols-1 sm:grid-cols-[1fr_2fr_2fr_1fr_1fr] items-start gap-3 py-3 px-3 border rounded-md shadow-sm text-sm"
+>
+
+            {/* Image */}
+            <div className="flex items-center justify-center sm:justify-start">
+              <img
+                className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded"
+                src={item.image[0]}
+                alt="product"
+              />
+            </div>
 
             {/* Editable name */}
             <input
@@ -117,7 +125,7 @@ const List = ({ token }) => {
             {/* Editable price */}
             <input
               type="number"
-              className="border px-2 py-1 w-20 text-center rounded"
+              className="border px-2 py-1 w-16 sm:w-20 text-center rounded"
               value={item.price}
               onChange={(e) => {
                 const newList = [...list];
@@ -127,10 +135,11 @@ const List = ({ token }) => {
             />
 
             {/* Save + Delete buttons */}
-            <div className="flex items-center justify-end gap-2">
+            <div className="flex items-center justify-between sm:justify-end gap-3 mt-2">
+
               <button
                 onClick={() => updateProduct(item)}
-                className="bg-green-600 text-white px-2 py-1 rounded text-xs hover:bg-green-700 transition"
+                className="bg-green-600 text-white px-2 py-1 rounded text-[10px] sm:text-xs hover:bg-green-700 transition"
               >
                 Save
               </button>
@@ -149,4 +158,5 @@ const List = ({ token }) => {
 };
 
 export default List;
+
 
