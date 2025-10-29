@@ -5,7 +5,6 @@ import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
 import { useParams, useNavigate } from "react-router-dom";
 
-
 const Product = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
