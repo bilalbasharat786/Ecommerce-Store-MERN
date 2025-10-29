@@ -102,12 +102,16 @@ const Product = () => {
           </div>
 
           {/* Add to Cart */}
-          <button
-            onClick={() => addToCart(productData._id, size)}
-            className="bg-black text-white px-6 sm:px-8 py-3 text-sm sm:text-base border border-transparent hover:bg-white hover:text-black hover:border-black transition-all duration-500 rounded-md"
-          >
-            ADD TO CART
-          </button>
+         <button
+  onClick={() => {
+    addToCart(productData._id, size);
+    navigate("/cart");
+  }}
+  className="bg-black text-white px-6 sm:px-8 py-3 text-sm sm:text-base border border-transparent hover:bg-white hover:text-black hover:border-black transition-all duration-500 rounded-md"
+>
+  ADD TO CART
+</button>
+
 
           {/* Extra Info */}
           <hr className="mt-8 sm:w-4/5" />
