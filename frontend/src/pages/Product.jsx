@@ -60,7 +60,7 @@ const Product = () => {
           <h1 className="font-semibold text-xl sm:text-2xl mt-2">
             {productData.name}
           </h1>
-
+          
           {/* Ratings */}
           <div className="flex items-center gap-1 mt-2">
             {[...Array(4)].map((_, i) => (
