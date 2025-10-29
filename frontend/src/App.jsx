@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import Orders from "./pages/Orders";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsConditions from "./components/TermsConditions";
 
 import SearchBar from "./components/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsConditions />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/verify" element={<Verify />} />
       </Routes>

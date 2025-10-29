@@ -8,19 +8,19 @@ const PrivacyPolicy = () => {
       </h1>
 
       <p className="mb-4">
-        <strong>ShopGenie</strong> is dedicated to protecting your privacy. Our
+        <strong>BilalStore</strong> is dedicated to protecting your privacy. Our
         policy recognizes the importance of safeguarding your personal
         information, explaining what personal information constitutes, how we
         use it, who has access to your data, and your rights regarding your
-        personal information. Please note that <strong>ShopGenie</strong> is not
+        personal information. Please note that <strong>BilalStore</strong> is not
         responsible for any personal information you submit to third parties via
-        our website. Your use of <strong>shopgenie.com</strong> signifies
+        our website. Your use of <strong>BilalStore.com</strong> signifies
         agreement with our privacy policy and terms of use.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Use of Information</h2>
       <p className="mb-4">
-        ShopGenie.com collects personal information during account creation or
+        BilalStore.com collects personal information during account creation or
         order placement. By registering, you consent to the collection of your
         personal data. To fulfill orders, we require details such as your name,
         email, phone number, delivery addresses, and billing address(es) for
@@ -40,10 +40,10 @@ const PrivacyPolicy = () => {
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Information Collection</h2>
       <p className="mb-4">
-        ShopGenie may use your personal data for the following purposes:
+        BilalStore may use your personal data for the following purposes:
       </p>
       <ul className="list-disc list-inside mb-4 space-y-1">
-        <li>To create your personal account on shopgenie.com</li>
+        <li>To create your personal account on BilalStore.com</li>
         <li>To process and deliver your orders</li>
         <li>To provide order updates and delivery notifications</li>
         <li>To send marketing offers, newsletters, and catalogs</li>
@@ -57,7 +57,7 @@ const PrivacyPolicy = () => {
       <p className="mb-4">
         Your data is retained only as long as necessary to fulfill services or
         as required by law. After this, personal data is deleted unless a legal
-        requirement exists to retain it. ShopGenie does not sell your
+        requirement exists to retain it. BilalStore does not sell your
         information to third-party marketing companies.
       </p>
 
@@ -67,10 +67,10 @@ const PrivacyPolicy = () => {
         updates, and promotions. You can opt out of promotional messages anytime
         by clicking the "unsubscribe" link in our emails or contacting us at{" "}
         <a
-          href="mailto:support@shopgenie.com"
+          href="mailto:officialbilal707@gmail.com"
           className="text-blue-600 hover:underline"
         >
-          support@shopgenie.com
+          officialbilal707@gmail.com
         </a>
         .
       </p>
@@ -86,10 +86,10 @@ const PrivacyPolicy = () => {
         hold about you. If your data is incorrect or incomplete, you can request
         corrections or removal by contacting{" "}
         <a
-          href="mailto:support@shopgenie.com"
+          href="mailto:officialbilal707@gmail.com"
           className="text-blue-600 hover:underline"
         >
-          support@shopgenie.com
+          officialbilal707@gmail.com
         </a>
         .
       </p>
@@ -101,7 +101,7 @@ const PrivacyPolicy = () => {
         This privacy statement applies to the treatment of personally
         identifiable information submitted by, or obtained from, you in
         connection with the associated application. The application is provided
-        by ShopGenie Retail. By using the application, you accept the practices
+        by BilalStore Retail. By using the application, you accept the practices
         and policies outlined in this privacy statement.
       </p>
 
@@ -109,20 +109,20 @@ const PrivacyPolicy = () => {
         Changes to This Privacy Statement
       </h2>
       <p className="mb-4">
-        ShopGenie may amend this privacy statement periodically. Any changes
+        BilalStore may amend this privacy statement periodically. Any changes
         will be communicated via website announcements or email notifications.
         For any questions or concerns regarding privacy, contact us at{" "}
         <a
-          href="mailto:support@shopgenie.com"
+          href="mailto:officialbilal707@gmail.com"
           className="text-blue-600 hover:underline"
         >
-          support@shopgenie.com
+          officialbilal707@gmail.com
         </a>
         .
       </p>
 
       <p className="mt-10 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} ShopGenie. All rights reserved.
+        © {new Date().getFullYear()} BilalStore. All rights reserved.
       </p>
     </div>
   );

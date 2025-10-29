@@ -137,10 +137,16 @@ const ShopContextProvider = ({ children }) => {
     localStorage.setItem("token", token);
   }, [token]);
 
-  useEffect(() => {
-    getProductsData();
-    getUserCart(token);
-  }, []);
+ useEffect(() => {
+  const loadData = async () => {
+    await getProductsData();
+    if (token) {
+      await getUserCart(token);
+    }
+  };
+  loadData();
+}, [token]);
+
 
   const value = {
     products,

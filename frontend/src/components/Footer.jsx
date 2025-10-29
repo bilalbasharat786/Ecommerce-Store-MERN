@@ -12,7 +12,7 @@ const Footer = () => {
         <div>
           <img src={assets.logo} className="mb-5 w-28 sm:w-36" alt="logo" />
           <p className="w-full md:w-3/4 text-gray-600 text-xs sm:text-sm leading-relaxed">
-            Welcome to <span className="font-semibold text-black">Forever</span> —
+            Welcome to <span className="font-semibold text-black">Bilal Store</span> —
             your go-to destination for stylish fashion and premium quality.
             We bring you the latest trends, crafted with care and delivered
             with love, straight to your doorstep.
@@ -25,7 +25,10 @@ const Footer = () => {
           <ul className="flex flex-col gap-2 text-gray-600 text-xs sm:text-sm">
             <li className="cursor-pointer hover:text-black transition">Home</li>
             <li className="cursor-pointer hover:text-black transition">About Us</li>
-            <li className="cursor-pointer hover:text-black transition">Delivery Info</li>
+            <li className="cursor-pointer hover:text-black transition"><Link to="/terms-and-conditions" className="hover:underline">
+  Terms & Conditions
+</Link>
+</li>
             <li className="cursor-pointer hover:text-black transition"><Link to="/privacy-policy" className="hover:underline">
   Privacy Policy
 </Link>
@@ -38,7 +41,7 @@ const Footer = () => {
           <p className="text-lg sm:text-xl font-semibold mb-4">GET IN TOUCH</p>
           <ul className="flex flex-col gap-2 text-gray-600 text-xs sm:text-sm">
             <li> +92-3105087313</li>
-            <li> support@foreverstore.com</li>
+            <li> support@officialbilal707@gmail.com</li>
             <li className="cursor-pointer hover:text-black transition"> Instagram</li>
           </ul>
         </div>
@@ -48,7 +51,7 @@ const Footer = () => {
       <div>
         <hr className="border-gray-300" />
         <p className="py-4 text-[10px] sm:text-sm text-center text-gray-500">
-          © {new Date().getFullYear()} Forever Store — Designed & Developed by Muhammad Bilal.  
+          © {new Date().getFullYear()} Bilal Store Store — Designed & Developed by Muhammad Bilal.  
           All Rights Reserved.
         </p>
       </div>

@@ -39,6 +39,11 @@ const Cart = () => {
           const productData = products.find(
             (product) => product._id === item._id
           );
+          
+if (!productData) {
+  console.warn("Product not found for ID:", item._id);
+  return null; // skip undefined product
+}
           return (
             <div
               key={index}
