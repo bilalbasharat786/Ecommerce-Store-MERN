@@ -42,20 +42,19 @@ const finalPrice =
       <div className="pt-3 pb-1 text-center sm:text-left">
         <p className="text-sm sm:text-lg font-semibold truncate px-2">{name}</p>
         <div className="flex justify-center sm:justify-start gap-2 px-2 items-center">
-          {discountPrice && discountPrice < price ? (
-            <>
-              <p className="text-xs sm:text-sm font-medium text-gray-400 line-through">
-                {currency}{Number(price).toLocaleString()}
-              </p>
-              <p className="text-xs sm:text-sm font-semibold text-red-500">
-                {currency}{Number(discountPrice).toLocaleString()}
-              </p>
-            </>
-          ) : (
-            <p className="text-xs sm:text-sm font-medium text-gray-600">
-              {currency}{Number(price).toLocaleString()}
-            </p>
-          )}
+          {product.discountPrice && product.discountPrice > 0 ? (
+  <p>
+    <span className="line-through text-gray-500">
+      {currency}{product.price}
+    </span>{" "}
+    <span className="text-red-600 font-bold">
+      {currency}{product.discountPrice}
+    </span>
+  </p>
+) : (
+  <p>{currency}{product.price}</p>
+)}
+
         </div>
       </div>
 
