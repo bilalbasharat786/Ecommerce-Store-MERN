@@ -101,20 +101,29 @@ const ShopContextProvider = ({ children }) => {
     return totalAmount;
   };
 
-  const getProductsData = async () => {
-    try {
-      const response = await axios.get(backendUrl + "/api/product/list");
+const getProductsData = async () => {
+  try {
+    const response = await axios.get(backendUrl + "/api/product/list");
+    console.log("🛰️ API Raw Response:", response.data); // ✅ step 1
 
-      if (response.data.success) {
-        setProducts(response.data.products);
-      } else {
-        toast.error(response.data.message);
+    if (response.data.success) {
+      console.log("📦 Products fetched from backend:", response.data.products); // ✅ step 2
+      // ek example product print karo
+      if (response.data.products.length > 0) {
+        console.log("💸 Sample Product Discount Price:", response.data.products[0].discountPrice);
       }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+
+      setProducts(response.data.products);
+    } else {
+      toast.error(response.data.message);
     }
-  };
+  } catch (error) {
+    console.log("❌ getProductsData Error:", error);
+    toast.error(error.message);
+  }
+};
+
+
 
   const getUserCart = async (token) => {
     try {
@@ -143,11 +152,12 @@ const ShopContextProvider = ({ children }) => {
     if (token) {
       await getUserCart(token);
     }
+    console.log("🧠 Products in state after fetch:", products);
   };
   loadData();
 }, [token]);
 
-
+console.log("🧩 ShopContext final products value:", products);
   const value = {
     products,
     currency,
