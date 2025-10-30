@@ -14,6 +14,7 @@ const Add = ({ token }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [discountPrice, setDiscountPrice] = useState("");
   const [category, setCategory] = useState("Men");
   const [subCategory, setSubCategory] = useState("Topwear");
   const [bestseller, setBestseller] = useState(false);
@@ -28,6 +29,7 @@ const Add = ({ token }) => {
       formData.append("name", name);
       formData.append("description", description);
       formData.append("price", price);
+      formData.append("discountPrice", discountPrice);
       formData.append("category", category);
       formData.append("subCategory", subCategory);
       formData.append("bestseller", bestseller);
@@ -53,6 +55,7 @@ const Add = ({ token }) => {
         setImage3(false);
         setImage4(false);
         setPrice("");
+        setDiscountPrice("");
       } else {
         toast.error(response.data.message);
       }
@@ -183,6 +186,20 @@ const Add = ({ token }) => {
             required
           />
         </div>
+<div>
+  <label htmlFor="discountPrice" className="block text-sm font-medium mb-1">Discount Price</label>
+  <input
+    type="number"
+    id="discountPrice"
+    placeholder="Enter discount price (optional)"
+    value={discountPrice}
+    onChange={(e) => {
+      setDiscountPrice(e.target.value);
+      console.log("Admin Discount Price Input:", e.target.value); // ✅ Debug
+    }}
+    className="border rounded-md p-2 w-full"
+  />
+</div>
 
       </div>
       <div>

@@ -4,11 +4,13 @@ import productModel from "../models/productModel.js";
 // function for adding product
 const addProduct = async (req, res) => {
   try {
+    console.log("📩 Incoming product data:", req.body);
     const {
       name,
       description,
       price,
       category,
+      discountPrice,
       subCategory,
       bestseller,
       sizes,
@@ -32,11 +34,15 @@ const addProduct = async (req, res) => {
       })
     );
 
+    console.log("🖼 Uploaded Images:", images);
+    console.log("💰 Discount Price Received:", discountPrice);
+
     const productData = {
       name,
       description,
       category,
       price: Number(price),
+      discountPrice: discountPrice || 0,
       subCategory,
       bestseller: bestseller === "true" ? true : false,
       sizes: JSON.parse(sizes.replace(/'/g, '"')),
@@ -46,6 +52,7 @@ const addProduct = async (req, res) => {
 
     const product = new productModel(productData);
     await product.save();
+    console.log("✅ Product Added Successfully:", product);
 
     res.json({ success: true, message: "Product Added" });
   } catch (error) {
