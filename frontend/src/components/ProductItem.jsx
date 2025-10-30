@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 
 const ProductItem = ({ id, image, name, price, discountPrice }) => {
   const { currency } = useContext(ShopContext);
-if (!product) {
-  console.log("⚠️ Product data not loaded yet");
-  return null;
-}
+
 
 console.log("💸 Product Discount Price:", discountPrice ?? "❌ Missing");
 
