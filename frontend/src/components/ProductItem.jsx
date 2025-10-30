@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 
-const ProductItem = ({ id, image, name, price }) => {
+const ProductItem = ({ id, image, name, price, discountPrice }) => {
   const { currency } = useContext(ShopContext);
 
   return (
@@ -30,12 +30,26 @@ const ProductItem = ({ id, image, name, price }) => {
       </div>
 
       {/* Product Info */}
-      <div className="pt-3 pb-1 text-center sm:text-left">
+<div className="pt-3 pb-1 text-center sm:text-left">
         <p className="text-sm sm:text-lg font-semibold truncate px-2">{name}</p>
-        <p className="text-xs sm:text-sm font-medium text-gray-600 px-2">
-          {currency}
-          {price}
-        </p>
+
+        {/* ✅ price display with discount */}
+        <div className="flex justify-center sm:justify-start gap-2 px-2 items-center">
+          {discountPrice && discountPrice < price ? (
+            <>
+              <p className="text-xs sm:text-sm font-medium text-gray-400 line-through">
+                {currency}{price}
+              </p>
+              <p className="text-xs sm:text-sm font-semibold text-red-500">
+                {currency}{discountPrice}
+              </p>
+            </>
+          ) : (
+            <p className="text-xs sm:text-sm font-medium text-gray-600">
+              {currency}{price}
+            </p>
+          )}
+        </div>
       </div>
     </Link>
   );
