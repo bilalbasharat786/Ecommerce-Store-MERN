@@ -14,11 +14,12 @@ const Add = ({ token }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [discountPrice, setDiscountPrice] = useState("");
   const [category, setCategory] = useState("Men");
   const [subCategory, setSubCategory] = useState("Topwear");
   const [bestseller, setBestseller] = useState(false);
   const [sizes, setSizes] = useState([]);
-  const [discountPrice, setDiscountPrice] = useState("");
+ 
 
 
   const onSubmitHandler = async (e) => {
@@ -54,6 +55,7 @@ const Add = ({ token }) => {
         setImage3(false);
         setImage4(false);
         setPrice("");
+        setDiscountPrice("");
       } else {
         toast.error(response.data.message);
       }
