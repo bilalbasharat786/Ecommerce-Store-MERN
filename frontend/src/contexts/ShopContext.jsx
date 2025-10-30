@@ -10,6 +10,7 @@ const ShopContextProvider = ({ children }) => {
   const deliveryFee = 10;
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [search, setSearch] = useState("");
+  const [discountPrice, setDiscountPrice] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
@@ -161,6 +162,8 @@ console.log("🧩 ShopContext final products value:", products);
   const value = {
     products,
     currency,
+    discountPrice,
+    setDiscountPrice,
     deliveryFee,
     search,
     setSearch,
