@@ -13,6 +13,7 @@ const Product = () => {
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
 
+
   const fetchProductData = async () => {
     products.map((item) => {
       if (item._id === productId) {
@@ -76,6 +77,12 @@ const Product = () => {
           <p className="mt-4 text-2xl sm:text-3xl font-medium text-gray-900">
             {currency}
             {productData.price}
+            {productData.discountPrice && (
+              <span className="line-through text-gray-500 text-lg sm:text-xl ml-4">
+                {currency}
+                {productData.discountPrice}
+              </span>
+            )}
           </p>
 
           {/* Description */}
