@@ -29,7 +29,6 @@ We picked some items just for you
             image={item.image}
             name={item.name}
             price={item.price}
-            discountPrice={item.discountPrice}
           />
         ))}
       </div>

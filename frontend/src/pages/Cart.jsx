@@ -59,12 +59,6 @@ if (!productData) {
                     <p>
                       {currency}
                       {productData.price}
-                      {productData.discountPrice && (
-                        <span className="line-through text-gray-500 ml-2">
-                          {currency}
-                          {productData.discountPrice}
-                        </span>
-                      )}
                     </p>
                     <p className="px-2 sm:px-3 sm:py-1 border bg-slate-50">
                       {item.size}

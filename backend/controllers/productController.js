@@ -8,7 +8,6 @@ const addProduct = async (req, res) => {
       name,
       description,
       price,
-      discountPrice,
       category,
       subCategory,
       bestseller,
@@ -38,8 +37,6 @@ const addProduct = async (req, res) => {
       description,
       category,
       price: Number(price),
-      discountPrice: Number(discountPrice),
-
       subCategory,
       bestseller: bestseller === "true" ? true : false,
       sizes: JSON.parse(sizes.replace(/'/g, '"')),
