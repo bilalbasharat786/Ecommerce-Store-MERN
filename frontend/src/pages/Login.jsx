@@ -20,8 +20,8 @@ const Login = () => {
           password,
         });
         if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem("token", response.data.token);
+         toast.success("Account created successfully! Please login.");
+    setCurrentState("Login");
         } else {
           toast.error(response.data.message);
         }
