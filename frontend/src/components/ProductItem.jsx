@@ -39,14 +39,15 @@ const finalPrice =
       <div className="pt-3 pb-1 text-center sm:text-left">
         <p className="text-sm sm:text-lg font-semibold truncate px-2">{name}</p>
         <div className="flex justify-center sm:justify-start gap-2 px-2 items-center">
-   {discountPrice && discountPrice < price ? (
-    <>
-      <span className="text-red-600 font-bold">{`PKR ${discountPrice}`}</span>
-      <span className="line-through text-gray-500 text-lg ml-3">{`PKR ${price}`}</span>
-    </>
-  ) : (
-    <span>{`PKR ${price}`}</span>
-  )}
+{discountPrice > 0 && discountPrice < price ? (
+  <>
+    <span className="text-red-600 font-bold">{`PKR ${discountPrice}`}</span>
+    <span className="line-through text-gray-500 text-lg ml-3">{`PKR ${price}`}</span>
+  </>
+) : (
+  <span>{`PKR ${price}`}</span>
+)}
+
 
         </div>
       </div>

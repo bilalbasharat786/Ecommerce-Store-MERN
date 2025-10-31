@@ -42,7 +42,7 @@ const addProduct = async (req, res) => {
       description,
       category,
       price: Number(price),
-      discountPrice: Number(discountPrice),
+      discountPrice: discountPrice && discountPrice > 0 ? Number(discountPrice) : null,
       subCategory,
       bestseller: bestseller === "true" ? true : false,
       sizes: JSON.parse(sizes.replace(/'/g, '"')),
@@ -106,6 +106,7 @@ export const updateProduct = async (req, res) => {
     const updatedData = {};
     if (name) updatedData.name = name;
     if (price) updatedData.price = price;
+
     if (category) updatedData.category = category;
 
     const product = await productModel.findByIdAndUpdate(
