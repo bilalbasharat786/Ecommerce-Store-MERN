@@ -74,24 +74,23 @@ const Product = () => {
           </div>
 
           {/* Price */}
-   <p className="mt-4 text-2xl sm:text-3xl font-medium text-gray-900">
+<p className="mt-4 text-2xl sm:text-3xl font-medium text-gray-900">
   {currency}
- {(
-  parseFloat(
+  {(
     productData.discountPrice && productData.discountPrice < productData.price
       ? productData.discountPrice
       : productData.price
-  ) || 0
-).toLocaleString("en-PK")}
+  ).toLocaleString("en-PK")}
 
   {productData.discountPrice &&
     productData.discountPrice < productData.price && (
       <span className="line-through text-gray-500 text-lg sm:text-xl ml-4">
         {currency}
-        {Number(productData.price).toLocaleString("en-PK")}
+        {productData.price.toLocaleString("en-PK")}
       </span>
     )}
 </p>
+
 
 
 
