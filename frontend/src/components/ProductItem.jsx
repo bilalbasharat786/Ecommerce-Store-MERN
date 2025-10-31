@@ -28,7 +28,7 @@ const finalPrice =
 
           {/* ✅ Discount Badge */}
         {discountPercent && (
-          <div className="absolute top-2 left-2 bg-blue-600 text-white text-xs sm:text-sm font-semibold px-2 py-1 rounded-md shadow-md z-10">
+          <div className="absolute top-2 left-1 bg-black text-white text-xs sm:text-sm font-semibold px-2 py-1 rounded-md shadow-md z-10">
             -{discountPercent}%
           </div>
         )}
