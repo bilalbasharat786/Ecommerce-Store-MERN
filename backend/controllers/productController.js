@@ -42,7 +42,7 @@ const addProduct = async (req, res) => {
       description,
       category,
       price: Number(price),
-      discountPrice: Number(discountPrice) || 0,
+      discountPrice: Number(discountPrice),
       subCategory,
       bestseller: bestseller === "true" ? true : false,
       sizes: JSON.parse(sizes.replace(/'/g, '"')),
