@@ -65,16 +65,28 @@ const addProduct = async (req, res) => {
 };
 
 // function for listing product
-const listProducts = async (req, res) => {
+export const listProducts = async (req, res) => {
   try {
-    const products = await productModel.find({});
-    res.json({ success: true, products });
+    const products = await Product.find({});
+
+    // ✅ Ensure numeric values for frontend formatting
+    const normalizedProducts = products.map((p) => ({
+      ...p._doc,
+      price: Number(p.price) || 0,
+      discountPrice: Number(p.discountPrice) || 0,
+    }));
+
+    // 🔍 Debug log (optional)
+    console.log("🧩 Normalized product prices:", normalizedProducts.map(p => ({
+      name: p.name,
+      price: p.price,
+      discountPrice: p.discountPrice
+    })));
+
+    res.json({ success: true, products: normalizedProducts });
   } catch (error) {
-    console.log(error);
-    res.json({
-      success: false,
-      message: error.message,
-    });
+    console.error("❌ Error in listProducts:", error);
+    res.json({ success: false, message: error.message });
   }
 };
 
