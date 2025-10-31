@@ -11,6 +11,13 @@ console.log("💸 Product Discount Price:", discountPrice ?? "❌ Missing");
 
 const finalPrice =
     discountPrice && discountPrice < price ? discountPrice : price;
+
+    
+  // ✅ Calculate discount percentage (only if discountPrice is valid)
+  const discountPercent =
+    discountPrice > 0 && discountPrice < price
+      ? Math.round(((price - discountPrice) / price) * 100)
+      : null;
   return (
     <Link
       className="text-gray-700 cursor-pointer group w-full max-w-xs sm:max-w-sm mx-auto block"
@@ -18,14 +25,21 @@ const finalPrice =
     >
       {/* Image Container */}
       <div className="overflow-hidden relative rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
-        {/* First image */}
+
+          {/* ✅ Discount Badge */}
+        {discountPercent && (
+          <div className="absolute top-2 left-2 bg-blue-600 text-white text-xs sm:text-sm font-semibold px-2 py-1 rounded-md shadow-md z-10">
+            -{discountPercent}%
+          </div>
+        )}
+  {/* 🖼️ First image */}
         <img
           className="w-full h-48 sm:h-64 object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
           src={image[0]}
           alt={`${name} product`}
         />
 
-        {/* Second image (appears on hover) */}
+        {/* 🖼️ Second image (appears on hover) */}
         {image[1] && (
           <img
             className="w-full h-48 sm:h-64 object-cover absolute top-0 left-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
