@@ -24,7 +24,9 @@ const Footer = () => {
           <p className="text-lg sm:text-xl font-semibold mb-4">COMPANY</p>
           <ul className="flex flex-col gap-2 text-gray-600 text-xs sm:text-sm">
             <li className="cursor-pointer hover:text-black transition">Home</li>
-            <li className="cursor-pointer hover:text-black transition">About Us</li>
+            <li className="cursor-pointer hover:text-black transition"><Link to="/shipping-policy" className="hover:underline">
+  Shipping Policy
+</Link></li>
             <li className="cursor-pointer hover:text-black transition"><Link to="/terms-and-conditions" className="hover:underline">
   Terms & Conditions
 </Link>

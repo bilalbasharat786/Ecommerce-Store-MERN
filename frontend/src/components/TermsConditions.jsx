@@ -9,15 +9,15 @@ const TermsConditions = () => {
 
       <p className="mb-4">
         Welcome to <strong>Bilal Store</strong>. By accessing our website, social media pages,
-        or making a purchase, you agree to the terms and conditions outlined below. Please read
-        them carefully before proceeding.
+        or making a purchase, you agree to the terms and conditions outlined below.
+        Please read them carefully before proceeding.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">1. Introduction</h2>
       <p className="mb-4">
-        These Terms and Conditions govern your use of the official website and online store of{" "}
-        <strong>Bilal Store</strong>. By accessing or using our services, you agree to be
-        legally bound by these terms.
+        These Terms and Conditions govern your use of the official website and online
+        store of <strong>Bilal Store</strong>. By accessing or using our services,
+        you agree to be legally bound by these terms.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">2. General Terms</h2>
@@ -29,11 +29,26 @@ const TermsConditions = () => {
 
       <h2 className="text-xl font-semibold mt-6 mb-2">3. Orders and Payments</h2>
       <ul className="list-disc list-inside mb-4 space-y-1">
-        <li>Orders can be placed only through our official website or verified social media channels.</li>
-        <li>Payments must be completed in full at the time of order placement.</li>
         <li>
-          Accepted payment methods are mentioned on our website. We are not responsible for payment
-          failures due to technical errors or insufficient funds.
+          Orders can be placed only through our official website or verified social
+          media channels.
+        </li>
+        <li>
+          Payments must be completed in full at the time of order placement.
+        </li>
+        <li>
+          <strong>Payment Methods:</strong> We currently accept payments through
+          JazzCash, Cash on Delivery (COD), and other approved methods mentioned on
+          our website.
+        </li>
+        <li>
+          All online transactions are processed securely through JazzCash’s payment
+          gateway. <strong>Bilal Store</strong> does not store any banking or card
+          information on its servers.
+        </li>
+        <li>
+          We are not responsible for payment failures due to technical issues,
+          network errors, or insufficient funds.
         </li>
       </ul>
 
@@ -47,8 +62,8 @@ const TermsConditions = () => {
       <h2 className="text-xl font-semibold mt-6 mb-2">5. Return and Exchange Policy</h2>
       <ul className="list-disc list-inside mb-4 space-y-1">
         <li>
-          Returns and exchanges are accepted within <strong>7 days</strong> of delivery for unused,
-          unwashed, and original packaged items.
+          Returns and exchanges are accepted within <strong>7 days</strong> of delivery
+          for unused, unwashed, and original packaged items.
         </li>
         <li>Customized or sale items are not eligible for return or exchange.</li>
         <li>Customers must bear the return shipping costs unless the item is defective or incorrect.</li>
@@ -56,10 +71,10 @@ const TermsConditions = () => {
 
       <h2 className="text-xl font-semibold mt-6 mb-2">6. Intellectual Property</h2>
       <p className="mb-4">
-        All product designs, brand logos, images, and content on{" "}
-        <strong>officialbilal707@gmail.com</strong> are the exclusive intellectual property of{" "}
-        <strong>Bilal Store</strong> and may not be reproduced, distributed, or modified
-        without written permission.
+        All product designs, brand logos, images, and content on
+        <strong> officialbilal707@gmail.com </strong> are the exclusive intellectual
+        property of <strong>Bilal Store</strong> and may not be reproduced, distributed,
+        or modified without written permission.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">7. Privacy</h2>
@@ -71,14 +86,22 @@ const TermsConditions = () => {
         . Your data will not be shared with third parties without your consent.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">8. Changes to Terms and Conditions</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">8. Payment Security</h2>
       <p className="mb-4">
-        <strong>Bilal Store</strong> reserves the right to modify or update these Terms and
-        Conditions at any time without prior notice. Continued use of our website signifies
-        acceptance of the updated terms.
+        All payments are securely processed through JazzCash. Sensitive payment
+        details (like account numbers or card data) are encrypted and handled by
+        JazzCash according to their PCI-DSS compliant standards.
+        <strong> Bilal Store </strong> never saves your payment information.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-2">9. Contact Information</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-2">9. Changes to Terms and Conditions</h2>
+      <p className="mb-4">
+        <strong>Bilal Store</strong> reserves the right to modify or update these Terms
+        and Conditions at any time without prior notice. Continued use of our website
+        signifies acceptance of the updated terms.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-2">10. Contact Information</h2>
       <p className="mb-4">
         For any questions, feedback, or concerns, please contact our support team:
       </p>
@@ -86,21 +109,22 @@ const TermsConditions = () => {
         <li>
           📧 Email:{" "}
           <a
-            href="mailto:support@officialbilal707@gmail.com"
+            href="mailto:officialbilal707@gmail.com"
             className="text-blue-600 hover:underline"
           >
-            support@officialbilal707@gmail.com
+            officialbilal707@gmail.com
           </a>
         </li>
         <li>📞 Phone: 03105087313</li>
       </ul>
 
       <p className="mt-8 text-sm text-center text-gray-600">
-        By purchasing from <strong>Bilal Store</strong>, you acknowledge that you have read,
-        understood, and agreed to these Terms & Conditions.
+        By purchasing from <strong>Bilal Store</strong>, you acknowledge that you have
+        read, understood, and agreed to these Terms & Conditions.
       </p>
     </div>
   );
 };
 
 export default TermsConditions;
+

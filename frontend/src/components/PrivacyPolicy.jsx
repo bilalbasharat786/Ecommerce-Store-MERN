@@ -29,6 +29,7 @@ const PrivacyPolicy = () => {
         authentication or identity checks, including your telephone number,
         which may be shared with our courier for delivery services.
       </p>
+
       <p className="mb-4">
         Your privacy is a priority, and your personal information is secured
         with SSL encryption to ensure secure transmission through an encrypted
@@ -59,6 +60,34 @@ const PrivacyPolicy = () => {
         as required by law. After this, personal data is deleted unless a legal
         requirement exists to retain it. BilalStore does not sell your
         information to third-party marketing companies.
+      </p>
+
+      {/* ✅ NEW SECTION for JazzCash Compliance */}
+      <h2 className="text-xl font-semibold mt-6 mb-3">Payment Information Security</h2>
+      <p className="mb-4">
+        All online payments made on <strong>BilalStore.com</strong> are processed
+        through secure and trusted third-party payment gateways such as{" "}
+        <strong>JazzCash</strong>. We do not store, process, or have access to
+        your credit/debit card details on our servers. All payment data is
+        handled using encrypted and secure connections provided by JazzCash’s
+        PCI-DSS compliant system.
+      </p>
+      <p className="mb-4">
+        Transactions are protected using Secure Socket Layer (SSL) technology,
+        ensuring that all payment and personal information remains private and
+        confidential during online transmission. Any misuse or fraudulent
+        activity related to your payment card will be handled according to the
+        bank and JazzCash dispute resolution policies.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-3">Third-Party Payment Processor</h2>
+      <p className="mb-4">
+        For your convenience, <strong>BilalStore</strong> integrates with{" "}
+        <strong>JazzCash</strong> for processing payments. When you make a
+        purchase, some of your data (such as transaction amount, order ID, and
+        contact information) may be securely shared with JazzCash to complete
+        the payment. JazzCash follows strict security and privacy standards to
+        ensure your information remains protected.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Marketing Updates</h2>
@@ -129,3 +158,4 @@ const PrivacyPolicy = () => {
 };
 
 export default PrivacyPolicy;
+
