@@ -13,7 +13,8 @@ import Orders from "./pages/Orders";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsConditions from "./components/TermsConditions";
-
+import ShippingPolicy from "./components/Shippingpolicy";
+import ReturnRefundPolicy from "./components/ReturnRefundPolicy";
 import SearchBar from "./components/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
@@ -34,6 +35,8 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/place-order" element={<PlaceOrder />} />
+        <Route path="/shipping-policy" element={<ShippingPolicy />} />
+        <Route path="/return-refund-policy" element={<ReturnRefundPolicy />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsConditions />} />
         <Route path="/orders" element={<Orders />} />
