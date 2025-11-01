@@ -23,8 +23,7 @@ const Footer = () => {
         <div>
           <p className="text-lg sm:text-xl font-semibold mb-4">COMPANY</p>
           <ul className="flex flex-col gap-2 text-gray-600 text-xs sm:text-sm">
-            <li className="cursor-pointer hover:text-black transition">"<Link to="/return-refund-policy" className="hover:underline">
-  Return Refund Policy
+            <li className="cursor-pointer hover:text-black transition"><Link to="/return-refund-policy" className="hover:underline">Return Refund Policy
 </Link></li>
             <li className="cursor-pointer hover:text-black transition"><Link to="/shipping-policy" className="hover:underline">
   Shipping Policy
