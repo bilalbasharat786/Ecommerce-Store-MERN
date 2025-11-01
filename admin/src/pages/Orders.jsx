@@ -68,9 +68,23 @@ const Orders = ({ token }) => {
 };
 
 
-  useEffect(() => {
-    fetchAllOrders();
-  }, []);
+useEffect(() => {
+  const markAllAsRead = async () => {
+    try {
+      await axios.put(
+        backendUrl + "/api/order/mark-all-read",
+        {},
+        { headers: { token } }
+      );
+    } catch (error) {
+      console.error("Error marking orders as read:", error);
+    }
+  };
+
+  fetchAllOrders();
+  markAllAsRead();
+}, []);
+
 
   return (
     <div>

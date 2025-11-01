@@ -2,9 +2,30 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { assets } from "../assets/admin_assets/assets";
 import { Menu } from "lucide-react"; // for mobile toggle icon
+import { useEffect, useState } from "react";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false); // for mobile menu toggle
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  useEffect(() => {
+    const fetchUnread = async () => {
+      try {
+        const res = await fetch("/api/orders/unread-count", {
+          headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` },
+        });
+        const data = await res.json();
+        if (data.success) setUnreadCount(data.count);
+      } catch (error) {
+        console.error("Error fetching unread orders:", error);
+      }
+    };
+
+    fetchUnread();
+    const interval = setInterval(fetchUnread, 15000); // refresh every 15s
+    return () => clearInterval(interval);
+  }, []);
+
 
   return (
     <>
@@ -25,13 +46,21 @@ const Sidebar = () => {
             <img className="w-5 h-5" src={assets.order_icon} alt="list-icon" />
             <p>List Items</p>
           </NavLink>
-          <NavLink
-            className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100"
-            to="/orders"
-          >
-            <img className="w-5 h-5" src={assets.order_icon} alt="order-icon" />
-            <p>Orders</p>
-          </NavLink>
+         <NavLink
+  className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100 relative"
+  to="/orders"
+>
+  <img className="w-5 h-5" src={assets.order_icon} alt="order-icon" />
+  <p>Orders</p>
+
+  {/* 🔴 Unread count badge */}
+  {unreadCount > 0 && (
+    <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
+      {unreadCount}
+    </span>
+  )}
+</NavLink>
+
         </div>
       </div>
 

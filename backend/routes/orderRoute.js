@@ -8,6 +8,8 @@ import {
   deleteOrder,
   updateStatus,
   verifyStripe,
+  getUnreadOrdersCount,
+  markOrderAsRead
 } from "../controllers/orderController.js";
 import adminAuth from "../middlewares/adminAuth.js";
 import authUser from "../middlewares/auth.js";
@@ -18,6 +20,10 @@ const orderRouter = express.Router();
 orderRouter.post("/list", adminAuth, allOrders);
 orderRouter.post("/status", adminAuth, updateStatus);
 orderRouter.post("/delete", adminAuth, deleteOrder);
+// 🟢 Notification-related routes
+orderRouter.get("/unread-count", adminAuth, getUnreadOrdersCount);
+orderRouter.put("/mark-read/:orderId", adminAuth, markOrderAsRead);
+
 
 // Payment features
 orderRouter.post("/place", authUser, placeOrder);

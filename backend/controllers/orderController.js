@@ -21,6 +21,7 @@ const placeOrder = async (req, res) => {
       address,
       paymentMethod: "COD",
       payment: false,
+      isRead: false,
       date: Date.now(),
     };
 
@@ -54,6 +55,8 @@ const placeOrderStripe = async (req, res) => {
       address,
       paymentMethod: "Stripe",
       payment: false,
+      isRead: false,
+
       date: Date.now(),
     };
 
@@ -194,6 +197,28 @@ const deleteOrder = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+// 🟢 Get Unread Orders Count
+export const getUnreadOrdersCount = async (req, res) => {
+  try {
+    const count = await Order.countDocuments({ isRead: false });
+    res.json({ success: true, count });
+  } catch (error) {
+    console.error("Error getting unread orders count:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+// 🟢 Mark Order as Read
+export const markOrderAsRead = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    await Order.findByIdAndUpdate(orderId, { isRead: true });
+    res.json({ success: true, message: "Order marked as read" });
+  } catch (error) {
+    console.error("Error marking order as read:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
 
 
 export {
@@ -205,4 +230,7 @@ export {
   userOrders,
   updateStatus,
   verifyStripe,
+  getUnreadOrdersCount,
+  markOrderAsRead
 };
+
