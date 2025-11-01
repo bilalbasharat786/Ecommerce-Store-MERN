@@ -231,6 +231,5 @@ export {
   updateStatus,
   verifyStripe,
   getUnreadOrdersCount,
-  markOrderAsRead
 };
 
