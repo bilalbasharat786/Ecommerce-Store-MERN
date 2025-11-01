@@ -230,6 +230,5 @@ export {
   userOrders,
   updateStatus,
   verifyStripe,
-  getUnreadOrdersCount,
 };
 
