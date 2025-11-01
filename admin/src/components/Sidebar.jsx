@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { assets } from "../assets/admin_assets/assets";
 import { Menu } from "lucide-react"; // for mobile toggle icon
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false); // for mobile menu toggle
