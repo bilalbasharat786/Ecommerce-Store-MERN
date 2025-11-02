@@ -9,7 +9,9 @@ import {
   updateStatus,
   verifyStripe,
   getUnreadOrdersCount,
-  markOrderAsRead
+  markOrderAsRead,
+  markAllOrdersAsRead,
+
 } from "../controllers/orderController.js";
 import adminAuth from "../middlewares/adminAuth.js";
 import authUser from "../middlewares/auth.js";
@@ -23,6 +25,7 @@ orderRouter.post("/delete", adminAuth, deleteOrder);
 // 🟢 Notification-related routes
 orderRouter.get("/unread-count", adminAuth, getUnreadOrdersCount);
 orderRouter.put("/mark-read/:orderId", adminAuth, markOrderAsRead);
+orderRouter.put("/mark-all-read", adminAuth, markAllOrdersAsRead);
 
 
 // Payment features

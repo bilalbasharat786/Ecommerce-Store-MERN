@@ -200,7 +200,7 @@ const deleteOrder = async (req, res) => {
 // 🟢 Get Unread Orders Count
 export const getUnreadOrdersCount = async (req, res) => {
   try {
-    const count = await Order.countDocuments({ isRead: false });
+    const count = await orderModel.countDocuments({ isRead: false });
     res.json({ success: true, count });
   } catch (error) {
     console.error("Error getting unread orders count:", error);
@@ -212,10 +212,20 @@ export const getUnreadOrdersCount = async (req, res) => {
 export const markOrderAsRead = async (req, res) => {
   try {
     const { orderId } = req.params;
-    await Order.findByIdAndUpdate(orderId, { isRead: true });
+    await orderModel.findByIdAndUpdate(orderId, { isRead: true });
     res.json({ success: true, message: "Order marked as read" });
   } catch (error) {
     console.error("Error marking order as read:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+// Mark all orders as read
+export const markAllOrdersAsRead = async (req, res) => {
+  try {
+    await orderModel.updateMany({ isRead: false }, { isRead: true });
+    res.json({ success: true, message: "All orders marked as read" });
+  } catch (error) {
+    console.error("Error marking all orders as read:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
