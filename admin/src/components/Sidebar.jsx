@@ -11,8 +11,8 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchUnread = async () => {
       try {
-        const res = await fetch("/api/orders/unread-count", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("adminToken")}` },
+        const res = await fetch("/api/order/unread-count", {
+          headers: { token: localStorage.getItem("adminToken") },
         });
         const data = await res.json();
         if (data.success) setUnreadCount(data.count);
