@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { assets } from "../assets/admin_assets/assets";
 import { Menu } from "lucide-react"; // for mobile toggle icon
 import { useEffect } from "react";
+import { backendUrl } from "../App";
+
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false); // for mobile menu toggle
@@ -11,7 +13,7 @@ const Sidebar = () => {
   useEffect(() => {
     const fetchUnread = async () => {
       try {
-        const res = await fetch("/api/order/unread-count", {
+        const res = await fetch(backendUrl + "/api/order/unread-count", {
           headers: { token: localStorage.getItem("adminToken") },
         });
         const data = await res.json();
