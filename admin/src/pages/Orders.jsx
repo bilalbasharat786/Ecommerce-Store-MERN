@@ -4,7 +4,7 @@ import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/admin_assets/assets";
 
-const Orders = ({ token }) => {
+const Orders = ({ token, setRefreshUnread }) => {
   const [orders, setOrders] = useState([]);
 
   const fetchAllOrders = async () => {
@@ -76,6 +76,8 @@ useEffect(() => {
         {},
         { headers: { token } }
       );
+        
+    setRefreshUnread(true);
     } catch (error) {
       console.error("Error marking orders as read:", error);
     }

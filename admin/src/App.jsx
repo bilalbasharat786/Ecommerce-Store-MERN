@@ -1,25 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Add from "./pages/Add";
 import List from "./pages/List";
 import Orders from "./pages/Orders";
-import { useState } from "react";
 import Login from "./components/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
-import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 export const currency = "PKR ";
-
 
 const App = () => {
   const [token, setToken] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
+
+  // 🔄 naya state unread refresh ke liye
+  const [refreshUnread, setRefreshUnread] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("token", token);
@@ -35,13 +34,19 @@ const App = () => {
           <Navbar setToken={setToken} />
           <hr />
           <div className="flex w-full">
-            <Sidebar />
+            {/* 🟢 refreshUnread pass karo */}
+            <Sidebar refreshUnread={refreshUnread}  setRefreshUnread={setRefreshUnread}/>
+
             <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
               <Routes>
                 <Route path="/" element={<Navigate to="/add" replace />} />
                 <Route path="/add" element={<Add token={token} />} />
                 <Route path="/list" element={<List token={token} />} />
-                <Route path="/orders" element={<Orders token={token} />} />
+                {/* 🟢 setRefreshUnread pass karo */}
+                <Route
+                  path="/orders"
+                  element={<Orders token={token} setRefreshUnread={setRefreshUnread} />}
+                />
               </Routes>
             </div>
           </div>
@@ -52,3 +57,4 @@ const App = () => {
 };
 
 export default App;
+

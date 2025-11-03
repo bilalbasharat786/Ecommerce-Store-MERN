@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { backendUrl } from "../App";
 
 
-const Sidebar = () => {
+const Sidebar = ({ refreshUnread, setRefreshUnread }) => {
   const [open, setOpen] = useState(false); // for mobile menu toggle
   const [unreadCount, setUnreadCount] = useState(0);
 
@@ -27,6 +27,25 @@ const Sidebar = () => {
     const interval = setInterval(fetchUnread, 15000); // refresh every 15s
     return () => clearInterval(interval);
   }, []);
+
+useEffect(() => {
+  if (refreshUnread) {
+    const fetchUnread = async () => {
+      try {
+        const res = await fetch(backendUrl + "/api/order/unread-count", {
+          headers: { token: localStorage.getItem("token") },
+        });
+        const data = await res.json();
+        if (data.success) setUnreadCount(data.count);
+      } catch (error) {
+        console.error("Error refreshing unread count:", error);
+      } finally {
+        setRefreshUnread(false);
+      }
+    };
+    fetchUnread();
+  }
+}, [refreshUnread]);
 
 
   return (
