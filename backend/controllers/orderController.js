@@ -234,7 +234,8 @@ export const markAllOrdersAsRead = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
-console.log("📧 sendOrderEmail() called, preparing to send...");
+console.log("KEY:", process.env.SMTP_API_KEY ? "FOUND" : "MISSING");
+
 
 // 🟢 Email sending helper using Brevo
 const sendOrderEmail = async (order) => {
