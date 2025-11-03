@@ -30,9 +30,7 @@ const placeOrder = async (req, res) => {
     const newOrder = new orderModel(orderData);
     await newOrder.save();
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
-    const order = await orderModel.findById(orderId);
-    await sendOrderEmail(order);
-
+    await sendOrderEmail(newOrder);
     res.json({
       success: true,
       message: "Order Placed",
