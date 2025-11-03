@@ -30,7 +30,9 @@ const placeOrder = async (req, res) => {
     const newOrder = new orderModel(orderData);
     await newOrder.save();
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
-    await sendOrderEmail(newOrder);
+    const order = await orderModel.findById(orderId);
+    await sendOrderEmail(order);
+
     res.json({
       success: true,
       message: "Order Placed",
@@ -112,7 +114,9 @@ const verifyStripe = async (req, res) => {
     if (success === "true") {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
       await userModel.findByIdAndUpdate(userId, { cartdata: {} });
-      await sendOrderEmail(newOrder);
+      const order = await orderModel.findById(orderId);
+      await sendOrderEmail(order);
+
       res.json({
         success: true,
       });
