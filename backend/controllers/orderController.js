@@ -234,6 +234,7 @@ export const markAllOrdersAsRead = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+console.log("📧 sendOrderEmail() called, preparing to send...");
 
 // 🟢 Email sending helper using Brevo
 const sendOrderEmail = async (order) => {
@@ -284,6 +285,9 @@ const sendOrderEmail = async (order) => {
     console.error("❌ Error sending order email:", error);
   }
 };
+
+console.log("✅ sendOrderEmail() completed successfully!");
+
 
 export {
   placeOrder,
