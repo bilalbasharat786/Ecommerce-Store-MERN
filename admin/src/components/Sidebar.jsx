@@ -128,7 +128,7 @@ useEffect(() => {
   <p>Orders</p>
 
   {unreadCount > 0 && (
-    <span className="absolute -top-2 -right-4 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
+    <span className="absolute -top-5 -right-4 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
       {unreadCount}
     </span>
   )}
