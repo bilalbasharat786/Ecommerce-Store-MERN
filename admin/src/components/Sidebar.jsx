@@ -14,7 +14,7 @@ const Sidebar = () => {
     const fetchUnread = async () => {
       try {
         const res = await fetch(backendUrl + "/api/order/unread-count", {
-          headers: { token: localStorage.getItem("adminToken") },
+          headers: { token: localStorage.getItem("token") },
         });
         const data = await res.json();
         if (data.success) setUnreadCount(data.count);
