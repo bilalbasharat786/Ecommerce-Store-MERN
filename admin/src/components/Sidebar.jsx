@@ -67,20 +67,19 @@ useEffect(() => {
             <img className="w-5 h-5" src={assets.order_icon} alt="list-icon" />
             <p>List Items</p>
           </NavLink>
-  <NavLink
-  onClick={() => setOpen(false)}
-  className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100 relative"
-  to="/orders"
->
-  <img className="w-5 h-5" src={assets.order_icon} alt="order-icon" />
-  <p>Orders</p>
+          <NavLink
+            className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100 relative"
+            to="/orders"
+          >
+            <img className="w-5 h-5" src={assets.order_icon} alt="order-icon" />
+            <p>Orders</p>
 
-  {unreadCount > 0 && (
-    <span className="absolute -top-1 -right-2 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
-      {unreadCount}
-    </span>
-  )}
-</NavLink>
+            {unreadCount > 0 && (
+              <span className="absolute -top-2 -right-4 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
+                {unreadCount}
+              </span>
+            )}
+          </NavLink>
 
 
 
