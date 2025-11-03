@@ -76,11 +76,12 @@ useEffect(() => {
   <p>Orders</p>
 
   {unreadCount > 0 && (
-    <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
+    <span className="absolute -top-1 -right-2 bg-red-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">
       {unreadCount}
     </span>
   )}
 </NavLink>
+
 
 
         </div>
