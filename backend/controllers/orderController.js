@@ -1,6 +1,8 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
+import SibApiV3Sdk from "sib-api-v3-sdk";
+
 
 // Global variables
 const currency = "usd";
@@ -28,7 +30,7 @@ const placeOrder = async (req, res) => {
     const newOrder = new orderModel(orderData);
     await newOrder.save();
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
-
+    await sendOrderEmail(newOrder);
     res.json({
       success: true,
       message: "Order Placed",
@@ -110,6 +112,7 @@ const verifyStripe = async (req, res) => {
     if (success === "true") {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
       await userModel.findByIdAndUpdate(userId, { cartdata: {} });
+      await sendOrderEmail(newOrder);
       res.json({
         success: true,
       });
@@ -230,6 +233,55 @@ export const markAllOrdersAsRead = async (req, res) => {
   }
 };
 
+// 🟢 Email sending helper using Brevo
+const sendOrderEmail = async (order) => {
+  try {
+    const defaultClient = SibApiV3Sdk.ApiClient.instance;
+    const apiKey = defaultClient.authentications["api-key"];
+    apiKey.apiKey = process.env.SMTP_API_KEY;
+
+    const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
+
+    const emailHTML = `
+      <h2>🛍️ New Order Received</h2>
+      <p><strong>Items:</strong></p>
+      <ul>
+        ${order.items
+          .map(
+            (item) =>
+              `<li>${item.name} x ${item.quantity} ${
+                item.size ? `(${item.size})` : ""
+              }</li>`
+          )
+          .join("")}
+      </ul>
+      <p><strong>Customer:</strong> ${
+        order.address.firstName || ""
+      } ${order.address.lastName || ""}</p>
+      <p><strong>Address:</strong> ${order.address.street}, ${
+      order.address.city
+    }, ${order.address.zipCode}, ${order.address.country}</p>
+      <p><strong>Phone:</strong> ${order.address.phone}</p>
+      <p><strong>Items Count:</strong> ${order.items.length}</p>
+      <p><strong>Method:</strong> ${order.paymentMethod}</p>
+      <p><strong>Payment:</strong> ${order.payment ? "Paid" : "Pending"}</p>
+      <p><strong>Date:</strong> ${new Date(order.date).toLocaleString()}</p>
+      <p><strong>Total:</strong> PKR ${order.amount}</p>
+    `;
+
+    const sendSmtpEmail = {
+      sender: { email: process.env.ADMIN_EMAIL, name: "Bilal Store" },
+      to: [{ email: process.env.ADMIN_EMAIL, name: "Admin" }],
+      subject: `🛒 New Order Received - Bilal Store`,
+      htmlContent: emailHTML,
+    };
+
+    await apiInstance.sendTransacEmail(sendSmtpEmail);
+    console.log("✅ Order email sent successfully to admin!");
+  } catch (error) {
+    console.error("❌ Error sending order email:", error);
+  }
+};
 
 export {
   placeOrder,
