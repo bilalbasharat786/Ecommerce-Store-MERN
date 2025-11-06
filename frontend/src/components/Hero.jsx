@@ -19,23 +19,23 @@ const Hero = () => {
     {
       id: 1,
       img: assets.hero_img,
-      title: "Latest Arrivals",
-      subtitle: "Our Best Collection for You",
-      btnText: "Shop Now",
+      // title: "Latest Arrivals",
+      // subtitle: "Our Best Collection for You",
+      // btnText: "Shop Now",
     },
     {
       id: 2,
       img: assets.hero_img2,
-      title: "New Fashion Trends",
-      subtitle: "Discover Modern Styles",
-      btnText: "Explore",
+      // title: "New Fashion Trends",
+      // subtitle: "Discover Modern Styles",
+      // btnText: "Explore",
     },
     {
       id: 3,
       img: assets.hero_img3,
-      title: "Fresh Looks Every Day",
-      subtitle: "Step into Style",
-      btnText: "View Collection",
+      // title: "Fresh Looks Every Day",
+      // subtitle: "Step into Style",
+      // btnText: "View Collection",
     },
   ];
 
