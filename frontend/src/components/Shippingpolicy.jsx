@@ -6,15 +6,15 @@ const ShippingPolicy = () => {
       <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">Shipping Policy</h1>
 
       <p className="mb-4">
-        This Shipping Policy describes Bilal Store’s practices and procedures for shipping
+        This Shipping Policy describes Jamal Collection’s practices and procedures for shipping
         and delivering orders purchased through our website. Please read this policy carefully
-        before placing an order. By placing an order on Bilal Store you agree to the terms set
+        before placing an order. By placing an order on Jamal Collection you agree to the terms set
         out below.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">1. Scope</h2>
       <p className="mb-4">
-        This policy applies to items purchased on BilalStore.com. It covers domestic shipments
+        This policy applies to items purchased on JamalCollection.com. It covers domestic shipments
         within Pakistan and any international shipment options explicitly offered at checkout.
         Shipping options, rates and delivery times may vary by product, seller, and delivery
         destination.
@@ -31,7 +31,7 @@ const ShippingPolicy = () => {
 
       <h2 className="text-xl font-semibold mt-6 mb-3">3. Shipping Methods & Carriers</h2>
       <p className="mb-4">
-        Bilal Store partners with trusted courier and logistics providers. Available carriers
+        Jamal Collection partners with trusted courier and logistics providers. Available carriers
         and delivery options will appear at checkout. Carrier selection depends on the
         destination, parcel size, service availability and any service level selected by you.
       </p>
@@ -76,7 +76,7 @@ const ShippingPolicy = () => {
       <h2 className="text-xl font-semibold mt-6 mb-3">8. Customs, Duties & Taxes (International)</h2>
       <p className="mb-4">
         For international shipments, customs duties, import taxes or fees may apply on delivery
-        and are the responsibility of the recipient unless stated otherwise. Bilal Store is not
+        and are the responsibility of the recipient unless stated otherwise. Jamal Collection is not
         responsible for delays caused by customs clearance or for additional fees charged by
         customs authorities.
       </p>
@@ -127,7 +127,7 @@ const ShippingPolicy = () => {
       <h2 className="text-xl font-semibold mt-6 mb-3">14. COVID-19 (or other health-related) Disruptions</h2>
       <p className="mb-4">
         During public health events or unexpected crises, delivery timelines may be extended.
-        Bilal Store will communicate delays and work with carriers to minimize disruption.
+        Jamal Collection will communicate delays and work with carriers to minimize disruption.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">15. Contact & Support</h2>
@@ -140,7 +140,7 @@ const ShippingPolicy = () => {
       </ul>
 
       <p className="mt-8 text-sm text-center text-gray-600">
-        These shipping terms are part of the Bilal Store Terms & Conditions. Bilal Store reserves
+        These shipping terms are part of the Jamal Collection Terms & Conditions. Jamal Collection reserves
         the right to update this Shipping Policy; changes will be effective upon publishing on
         our website.
       </p>

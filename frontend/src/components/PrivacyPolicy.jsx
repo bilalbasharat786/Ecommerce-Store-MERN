@@ -8,19 +8,19 @@ const PrivacyPolicy = () => {
       </h1>
 
       <p className="mb-4">
-        <strong>BilalStore</strong> is dedicated to protecting your privacy. Our
+        <strong>JamalCollection</strong> is dedicated to protecting your privacy. Our
         policy recognizes the importance of safeguarding your personal
         information, explaining what personal information constitutes, how we
         use it, who has access to your data, and your rights regarding your
-        personal information. Please note that <strong>BilalStore</strong> is not
+        personal information. Please note that <strong>JamalCollection</strong> is not
         responsible for any personal information you submit to third parties via
-        our website. Your use of <strong>BilalStore.com</strong> signifies
+        our website. Your use of <strong>JamalCollection.com</strong> signifies
         agreement with our privacy policy and terms of use.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Use of Information</h2>
       <p className="mb-4">
-        BilalStore.com collects personal information during account creation or
+        JamalCollection.com collects personal information during account creation or
         order placement. By registering, you consent to the collection of your
         personal data. To fulfill orders, we require details such as your name,
         email, phone number, delivery addresses, and billing address(es) for
@@ -41,10 +41,10 @@ const PrivacyPolicy = () => {
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Information Collection</h2>
       <p className="mb-4">
-        BilalStore may use your personal data for the following purposes:
+        JamalCollection may use your personal data for the following purposes:
       </p>
       <ul className="list-disc list-inside mb-4 space-y-1">
-        <li>To create your personal account on BilalStore.com</li>
+        <li>To create your personal account on JamalCollection.com</li>
         <li>To process and deliver your orders</li>
         <li>To provide order updates and delivery notifications</li>
         <li>To send marketing offers, newsletters, and catalogs</li>
@@ -58,14 +58,14 @@ const PrivacyPolicy = () => {
       <p className="mb-4">
         Your data is retained only as long as necessary to fulfill services or
         as required by law. After this, personal data is deleted unless a legal
-        requirement exists to retain it. BilalStore does not sell your
+        requirement exists to retain it. JamalCollection does not sell your
         information to third-party marketing companies.
       </p>
 
       {/* ✅ NEW SECTION for JazzCash Compliance */}
       <h2 className="text-xl font-semibold mt-6 mb-3">Payment Information Security</h2>
       <p className="mb-4">
-        All online payments made on <strong>BilalStore.com</strong> are processed
+        All online payments made on <strong>JamalCollection.com</strong> are processed
         through secure and trusted third-party payment gateways such as{" "}
         <strong>JazzCash</strong>. We do not store, process, or have access to
         your credit/debit card details on our servers. All payment data is
@@ -82,7 +82,7 @@ const PrivacyPolicy = () => {
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Third-Party Payment Processor</h2>
       <p className="mb-4">
-        For your convenience, <strong>BilalStore</strong> integrates with{" "}
+        For your convenience, <strong>JamalCollection</strong> integrates with{" "}
         <strong>JazzCash</strong> for processing payments. When you make a
         purchase, some of your data (such as transaction amount, order ID, and
         contact information) may be securely shared with JazzCash to complete
@@ -130,7 +130,7 @@ const PrivacyPolicy = () => {
         This privacy statement applies to the treatment of personally
         identifiable information submitted by, or obtained from, you in
         connection with the associated application. The application is provided
-        by BilalStore Retail. By using the application, you accept the practices
+        by JamalCollection Retail. By using the application, you accept the practices
         and policies outlined in this privacy statement.
       </p>
 
@@ -138,7 +138,7 @@ const PrivacyPolicy = () => {
         Changes to This Privacy Statement
       </h2>
       <p className="mb-4">
-        BilalStore may amend this privacy statement periodically. Any changes
+        JamalCollection may amend this privacy statement periodically. Any changes
         will be communicated via website announcements or email notifications.
         For any questions or concerns regarding privacy, contact us at{" "}
         <a
@@ -151,7 +151,7 @@ const PrivacyPolicy = () => {
       </p>
 
       <p className="mt-10 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} BilalStore. All rights reserved.
+        © {new Date().getFullYear()} JamalCollection. All rights reserved.
       </p>
     </div>
   );

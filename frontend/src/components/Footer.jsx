@@ -12,7 +12,7 @@ const Footer = () => {
         <div>
           <img src={assets.logo} className="mb-5 w-28 sm:w-36" alt="logo" />
           <p className="w-full md:w-3/4 text-gray-600 text-xs sm:text-sm leading-relaxed">
-            Welcome to <span className="font-semibold text-black">Bilal Store</span> —
+            Welcome to <span className="font-semibold text-black">Jamal Collection</span> —
             your go-to destination for stylish fashion and premium quality.
             We bring you the latest trends, crafted with care and delivered
             with love, straight to your doorstep.
@@ -54,7 +54,7 @@ const Footer = () => {
       <div>
         <hr className="border-gray-300" />
         <p className="py-4 text-[10px] sm:text-sm text-center text-gray-500">
-          © {new Date().getFullYear()} Bilal Store Store — Designed & Developed by Muhammad Bilal.  
+          © {new Date().getFullYear()} Jamal Collection Store — Designed & Developed by Muhammad Bilal.  
           All Rights Reserved.
         </p>
       </div>

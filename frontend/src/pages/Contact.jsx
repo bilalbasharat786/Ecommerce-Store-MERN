@@ -31,14 +31,14 @@ const Contact = () => {
             </p>
 
             <p className="text-sm sm:text-base">
-              Tel: (415) 555-0132 <br /> Email: admin@Bilal Store.com
+              Tel: (415) 555-0132 <br /> Email: admin@Jamal Collection.com
             </p>
           </div>
 
           {/* Careers Section */}
           <div className="flex flex-col gap-3 text-gray-600">
             <p className="font-semibold text-lg sm:text-xl text-gray-800">
-              Careers at Bilal Store
+              Careers at Jamal Collection
             </p>
             <p className="text-sm sm:text-base">
               Learn more about our teams and job openings.

@@ -7,7 +7,7 @@ const ReturnRefundPolicy = () => {
 
       <p className="mb-4">
         This Return & Refund Policy sets out the rules and procedures for returns, exchanges,
-        and refunds at Bilal Store. We aim to make returns straightforward while protecting both
+        and refunds at Jamal Collection. We aim to make returns straightforward while protecting both
         customers and our business from misuse. By placing an order, you agree to the following
         policies and processes.
       </p>
@@ -43,7 +43,7 @@ const ReturnRefundPolicy = () => {
         <li>We shipped the wrong product.</li>
       </ul>
       <p className="mb-4">
-        For eligible defective or incorrect items, Bilal Store will reimburse return shipping
+        For eligible defective or incorrect items, Jamal Collection will reimburse return shipping
         charges upon successful verification.
       </p>
 
@@ -104,7 +104,7 @@ const ReturnRefundPolicy = () => {
       </ul>
 
       <p className="mt-8 text-sm text-center text-gray-600">
-        Bilal Store processes returns and refunds in accordance with these terms. We may
+        Jamal Collection processes returns and refunds in accordance with these terms. We may
         update this policy periodically; significant changes will be communicated on our website.
       </p>
     </div>

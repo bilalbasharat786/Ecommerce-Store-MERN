@@ -8,7 +8,7 @@ const TermsConditions = () => {
       </h1>
 
       <p className="mb-4">
-        Welcome to <strong>Bilal Store</strong>. By accessing our website, social media pages,
+        Welcome to <strong>Jamal Collection</strong>. By accessing our website, social media pages,
         or making a purchase, you agree to the terms and conditions outlined below.
         Please read them carefully before proceeding.
       </p>
@@ -16,7 +16,7 @@ const TermsConditions = () => {
       <h2 className="text-xl font-semibold mt-6 mb-2">1. Introduction</h2>
       <p className="mb-4">
         These Terms and Conditions govern your use of the official website and online
-        store of <strong>Bilal Store</strong>. By accessing or using our services,
+        store of <strong>Jamal Collection</strong>. By accessing or using our services,
         you agree to be legally bound by these terms.
       </p>
 
@@ -43,7 +43,7 @@ const TermsConditions = () => {
         </li>
         <li>
           All online transactions are processed securely through JazzCash’s payment
-          gateway. <strong>Bilal Store</strong> does not store any banking or card
+          gateway. <strong>Jamal Collection</strong> does not store any banking or card
           information on its servers.
         </li>
         <li>
@@ -73,7 +73,7 @@ const TermsConditions = () => {
       <p className="mb-4">
         All product designs, brand logos, images, and content on
         <strong> officialbilal707@gmail.com </strong> are the exclusive intellectual
-        property of <strong>Bilal Store</strong> and may not be reproduced, distributed,
+        property of <strong>Jamal Collection</strong> and may not be reproduced, distributed,
         or modified without written permission.
       </p>
 
@@ -91,12 +91,12 @@ const TermsConditions = () => {
         All payments are securely processed through JazzCash. Sensitive payment
         details (like account numbers or card data) are encrypted and handled by
         JazzCash according to their PCI-DSS compliant standards.
-        <strong> Bilal Store </strong> never saves your payment information.
+        <strong> Jamal Collection </strong> never saves your payment information.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-2">9. Changes to Terms and Conditions</h2>
       <p className="mb-4">
-        <strong>Bilal Store</strong> reserves the right to modify or update these Terms
+        <strong>Jamal Collection</strong> reserves the right to modify or update these Terms
         and Conditions at any time without prior notice. Continued use of our website
         signifies acceptance of the updated terms.
       </p>
@@ -119,7 +119,7 @@ const TermsConditions = () => {
       </ul>
 
       <p className="mt-8 text-sm text-center text-gray-600">
-        By purchasing from <strong>Bilal Store</strong>, you acknowledge that you have
+        By purchasing from <strong>Jamal Collection</strong>, you acknowledge that you have
         read, understood, and agreed to these Terms & Conditions.
       </p>
     </div>

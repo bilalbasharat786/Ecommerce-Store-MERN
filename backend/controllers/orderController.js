@@ -274,9 +274,9 @@ const sendOrderEmail = async (order) => {
     `;
 
     const sendSmtpEmail = {
-      sender: { email: process.env.STORE_ADMIN_EMAIL, name: "Bilal Store" },
+      sender: { email: process.env.STORE_ADMIN_EMAIL, name: "Jamal Collection" },
       to: [{ email: process.env.STORE_ADMIN_EMAIL, name: "Admin" }],
-      subject: `🛒 New Order Received - Bilal Store`,
+      subject: `🛒 New Order Received - Jamal Collection`,
       htmlContent: emailHTML,
     };
 
