@@ -27,11 +27,11 @@ const Contact = () => {
               Our Store
             </p>
             <p className="text-sm sm:text-base">
-              54709 Willms Station <br /> Suite 350, Washington, USA
+              
             </p>
 
             <p className="text-sm sm:text-base">
-              Tel: (415) 555-0132 <br /> Email: admin@Jamal Collection.com
+              Tel: +923105087313 <br /> Email: officialbilal707@gmail.com
             </p>
           </div>
 
