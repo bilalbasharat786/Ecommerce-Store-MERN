@@ -4,6 +4,7 @@ import Sidebar from "./components/Sidebar";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Add from "./pages/Add";
 import List from "./pages/List";
+import AdminSlider from "./pages/AdminSlider";
 import Orders from "./pages/Orders";
 import Login from "./components/Login";
 import { ToastContainer } from "react-toastify";
@@ -42,6 +43,7 @@ const App = () => {
                 <Route path="/" element={<Navigate to="/add" replace />} />
                 <Route path="/add" element={<Add token={token} />} />
                 <Route path="/list" element={<List token={token} />} />
+                <Route path="/admin-slider" element={<AdminSlider token={token} />} />
                 {/* 🟢 setRefreshUnread pass karo */}
                 <Route
                   path="/orders"

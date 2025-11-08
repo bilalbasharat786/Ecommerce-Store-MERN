@@ -68,6 +68,14 @@ useEffect(() => {
             <p>List Items</p>
           </NavLink>
           <NavLink
+  className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100"
+  to="/admin-slider"
+>
+  <img className="w-5 h-5" src={assets.slider_icon || assets.order_icon} alt="slider-icon" />
+  <p>Admin Slider</p>
+</NavLink>
+
+          <NavLink
             className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100 relative"
             to="/orders"
           >
@@ -120,6 +128,14 @@ useEffect(() => {
             <p>List Items</p>
           </NavLink>
           <NavLink
+  className="flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l hover:bg-gray-100"
+  to="/admin-slider"
+>
+  <img className="w-5 h-5" src={assets.slider_icon || assets.order_icon} alt="slider-icon" />
+  <p>Admin Slider</p>
+</NavLink>
+
+          <NavLink
   onClick={() => setOpen(false)}
   className="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100 relative"
   to="/orders"
@@ -133,6 +149,7 @@ useEffect(() => {
     </span>
   )}
 </NavLink>
+
 
         </div>
       </div>
