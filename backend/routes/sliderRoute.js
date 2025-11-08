@@ -1,6 +1,6 @@
 import express from "express";
 import { addSliderImage, getSliderImages, deleteSliderImage } from "../controllers/sliderController.js";
-import upload from "../middleware/multer.js"; // same as product upload
+import upload from "../middlewares/multer.js"; // same as product upload
 import adminAuth from "../middlewares/adminAuth.js";
 
 const sliderRouter = express.Router();

@@ -1,11 +1,31 @@
 import multer from "multer";
+import path from "path";
 
+// Upload storage config
 const storage = multer.diskStorage({
-  filename: function (req, file, callback) {
-    callback(null, file.originalname);
+  destination: (req, file, cb) => {
+    cb(null, "uploads/"); // uploads folder (root me hona chahiye)
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      `${Date.now()}-${file.fieldname}${path.extname(file.originalname)}`
+    );
   },
 });
 
-const upload = multer({ storage });
+// File filter (optional safety)
+const fileFilter = (req, file, cb) => {
+  const allowed = /jpeg|jpg|png|webp/;
+  const ext = path.extname(file.originalname).toLowerCase();
+  if (allowed.test(ext)) cb(null, true);
+  else cb(new Error("Only image files are allowed"));
+};
+
+const upload = multer({
+  storage,
+  fileFilter,
+});
 
 export default upload;
+
