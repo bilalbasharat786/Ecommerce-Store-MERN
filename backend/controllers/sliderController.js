@@ -19,3 +19,5 @@ export const addSlider = async (req, res) => {
   }
 };
 
+
+connectCloudinary();
