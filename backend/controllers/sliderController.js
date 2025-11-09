@@ -1,4 +1,4 @@
-import cloudinary, { connectCloudinary } from "../config/cloudinary.js";
+import cloudinary, { connectCloudinary } from "../configs/cloudinary.js";
 import Slider from "../models/sliderModel.js";
 
 export const addSlider = async (req, res) => {
