@@ -66,9 +66,9 @@ const Hero = () => {
               <h1 className="text-lg sm:text-5xl font-bold mb-2 sm:mb-6 max-w-[90%] sm:max-w-[500px] leading-snug sm:leading-tight">
                 {slide.title}
               </h1>
-              <button className="bg-white text-black px-3 py-1 sm:px-5 sm:py-2 text-xs sm:text-base font-medium w-fit hover:bg-black hover:text-white border transition-all">
+              {/* <button className="bg-white text-black px-3 py-1 sm:px-5 sm:py-2 text-xs sm:text-base font-medium w-fit hover:bg-black hover:text-white border transition-all">
                 {slide.btnText}
-              </button>
+              </button> */}
             </div>
           </div>
         ))}
