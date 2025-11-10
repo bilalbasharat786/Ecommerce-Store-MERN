@@ -1,14 +1,11 @@
-import { v2 as cloundinary } from "cloudinary";
-import Slider from "../models/sliderModel.js";
+import { v2 as cloudinary } from "cloudinary";
 
-const connectCloudinary = async () => {
-  cloundinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-  });
-};
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
+export default cloudinary;
 
 
-export default connectCloudinary;
