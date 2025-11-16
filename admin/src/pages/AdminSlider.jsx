@@ -20,7 +20,9 @@ const handleUpload = async () => {
   formData.append("image", image);
 
   const { data } = await axios.post(`${backendUrl}/api/slider/add`, formData, {
-    headers: { "Content-Type": "multipart/form-data" },
+    headers: { "Content-Type": "multipart/form-data",
+      token: token, 
+     },
   });
 
   if (data.success) {
