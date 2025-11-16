@@ -20,6 +20,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import Verify from "./pages/Verify";
 
+
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const App = () => {
   return (
     <div className="px-2 sm:px-[4vw] md:px-[6vw] lg:px-[8vw]">
