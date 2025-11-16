@@ -40,9 +40,23 @@ const handleUpload = async () => {
 
 const handleDelete = async (id) => {
   if (!window.confirm("Delete this image?")) return;
-  await axios.delete(`${backendUrl}/api/slider/delete/${id}`);
-  fetchImages();
+
+  const { data } = await axios.delete(
+    `${backendUrl}/api/slider/delete/${id}`,
+    {
+      headers: {
+        token: token, // 🔥 required for adminAuth
+      },
+    }
+  );
+
+  if (data.message === "Image deleted") {
+    fetchImages();
+  } else {
+    alert(data.message);
+  }
 };
+
 
 
   useEffect(() => {
