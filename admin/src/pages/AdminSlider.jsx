@@ -1,33 +1,40 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { backendUrl } from "../App";
+
+
 
 const AdminSlider = () => {
   const [image, setImage] = useState(null);
   const [sliderImages, setSliderImages] = useState([]);
 
-  const fetchImages = async () => {
-    const { data } = await axios.get("/api/slider/list");
-    if (data.success) setSliderImages(data.images);
-  };
+const fetchImages = async () => {
+  const { data } = await axios.get(`${backendUrl}/api/slider/list`);
+  if (data.success) setSliderImages(data.images);
+};
 
-  const handleUpload = async () => {
-    if (!image) return alert("Select an image first");
-    const formData = new FormData();
-    formData.append("image", image);
-    const { data } = await axios.post("/api/slider/add", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    if (data.success) {
-      alert("Image added!");
-      fetchImages();
-    }
-  };
+const handleUpload = async () => {
+  if (!image) return alert("Select an image first");
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Delete this image?")) return;
-    await axios.delete(`/api/slider/delete/${id}`);
+  const formData = new FormData();
+  formData.append("image", image);
+
+  const { data } = await axios.post(`${backendUrl}/api/slider/add`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+  if (data.success) {
+    alert("Image added!");
     fetchImages();
-  };
+  }
+};
+
+const handleDelete = async (id) => {
+  if (!window.confirm("Delete this image?")) return;
+  await axios.delete(`${backendUrl}/api/slider/delete/${id}`);
+  fetchImages();
+};
+
 
   useEffect(() => {
     fetchImages();
