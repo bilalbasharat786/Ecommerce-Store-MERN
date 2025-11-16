@@ -4,14 +4,15 @@ import { backendUrl } from "../App";
 
 
 
-const AdminSlider = () => {
+const AdminSlider = ({ token }) => {
   const [image, setImage] = useState(null);
   const [sliderImages, setSliderImages] = useState([]);
 
 const fetchImages = async () => {
   const { data } = await axios.get(`${backendUrl}/api/slider/list`);
-  if (data.success) setSliderImages(data.images);
+  setSliderImages(data);
 };
+
 
 const handleUpload = async () => {
   if (!image) return alert("Select an image first");
@@ -19,17 +20,23 @@ const handleUpload = async () => {
   const formData = new FormData();
   formData.append("image", image);
 
-  const { data } = await axios.post(`${backendUrl}/api/slider/add`, formData, {
-    headers: { "Content-Type": "multipart/form-data",
-      token: token, 
-     },
-  });
+  const { data } = await axios.post(
+    `${backendUrl}/api/slider/add`,
+    formData,
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        token: token, // ← NOW token exists
+      },
+    }
+  );
 
-  if (data.success) {
+  if (data.message === "Image uploaded successfully") {
     alert("Image added!");
     fetchImages();
   }
 };
+
 
 const handleDelete = async (id) => {
   if (!window.confirm("Delete this image?")) return;
