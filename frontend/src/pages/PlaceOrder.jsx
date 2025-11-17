@@ -1,10 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect} from "react";
 import Title from "../components/Title";
 import CartTotal from "../components/CartTotal";
 import { assets } from "../assets/frontend_assets/assets";
 import { ShopContext } from "../contexts/ShopContext";
 import axios from "axios";
 import { toast } from "react-toastify";
+
+
+
+useEffect(() => {
+  if (!token) {
+    navigate("/login");
+  }
+}, [token]);
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
@@ -37,9 +45,14 @@ const PlaceOrder = () => {
     setFormData((data) => ({ ...data, [name]: value }));
   };
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
-    console.log("Hi");
+ const onSubmitHandler = async (e) => {
+  e.preventDefault();
+
+  // 🔥 ADD THIS
+  if (!token) {
+    navigate("/login");
+    return;
+  }
 
     try {
       let orderItems = [];
