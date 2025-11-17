@@ -8,16 +8,11 @@ import { toast } from "react-toastify";
 
 
 
-useEffect(() => {
-  if (!token) {
-    navigate("/login");
-  }
-}, [token]);
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
-  const { token } = useContext(ShopContext);
   const {
+    token,
     navigate,
     backendUrl,
     cartItems,
@@ -26,6 +21,12 @@ const PlaceOrder = () => {
     deliveryFee,
     products,
   } = useContext(ShopContext);
+
+    useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [token]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
