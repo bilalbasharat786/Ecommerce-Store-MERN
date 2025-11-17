@@ -97,7 +97,7 @@ const ShippingPolicy = () => {
       <ol className="list-decimal list-inside mb-4">
         <li>Do not accept the package if damage is severe and note the damage on the carrier’s delivery receipt.</li>
         <li>Take clear photos of the packaging and damaged items immediately.</li>
-        <li>Contact our support at <a href="mailto:officialbilal707@gmail.com" className="text-blue-600 hover:underline">officialbilal707@gmail.com</a> with order ID, photos and details within 48 hours of delivery.</li>
+        <li>Contact our support at <a href="mailto:officialjamalcollection@gmail.com" className="text-blue-600 hover:underline">officialjamalcollection@gmail.com</a> with order ID, photos and details within 48 hours of delivery.</li>
       </ol>
       <p className="mb-4">
         For lost shipments, contact our support and the carrier. We will initiate an investigation
@@ -135,7 +135,7 @@ const ShippingPolicy = () => {
         For shipping queries, tracking help, or to report damaged/lost parcels, contact:
       </p>
       <ul className="list-none space-y-1 mb-6">
-        <li>📧 <a href="mailto:officialbilal707@gmail.com" className="text-blue-600 hover:underline">officialbilal707@gmail.com</a></li>
+        <li>📧 <a href="mailto:officialjamalcollection@gmail.com" className="text-blue-600 hover:underline">officialjamalcollection@gmail.com</a></li>
         <li>📞 Phone: 03105087313</li>
       </ul>
 

@@ -72,7 +72,7 @@ const TermsConditions = () => {
       <h2 className="text-xl font-semibold mt-6 mb-2">6. Intellectual Property</h2>
       <p className="mb-4">
         All product designs, brand logos, images, and content on
-        <strong> officialbilal707@gmail.com </strong> are the exclusive intellectual
+        <strong> officialjamalcollection@gmail.com </strong> are the exclusive intellectual
         property of <strong>Jamal Collection</strong> and may not be reproduced, distributed,
         or modified without written permission.
       </p>
@@ -109,10 +109,10 @@ const TermsConditions = () => {
         <li>
           📧 Email:{" "}
           <a
-            href="mailto:officialbilal707@gmail.com"
+            href="mailto:officialjamalcollection@gmail.com"
             className="text-blue-600 hover:underline"
           >
-            officialbilal707@gmail.com
+            officialjamalcollection@gmail.com
           </a>
         </li>
         <li>📞 Phone: 03105087313</li>

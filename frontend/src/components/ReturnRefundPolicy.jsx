@@ -28,7 +28,7 @@ const ReturnRefundPolicy = () => {
 
       <h2 className="text-xl font-semibold mt-6 mb-3">2. Return Process</h2>
       <ol className="list-decimal list-inside mb-4 space-y-2">
-        <li>Contact our support team at <a href="mailto:officialbilal707@gmail.com" className="text-blue-600 hover:underline">officialbilal707@gmail.com</a> or call 03105087313 to initiate a return.</li>
+        <li>Contact our support team at <a href="mailto:officialjamalcollection@gmail.com" className="text-blue-600 hover:underline">officialjamalcollection@gmail.com</a> or call 03105087313 to initiate a return.</li>
         <li>Provide your order ID, reason for return, product details (size, color), and photos if the item is damaged or incorrect.</li>
         <li>Our team will verify your eligibility and provide return instructions and RMA (return authorization) if applicable.</li>
         <li>Ship the item back using a tracked courier. Keep the tracking number until the return is complete.</li>
@@ -99,7 +99,7 @@ const ReturnRefundPolicy = () => {
         To request a return, start an exchange or report a damaged product, contact:
       </p>
       <ul className="list-none space-y-1 mb-6">
-        <li>📧 <a href="mailto:officialbilal707@gmail.com" className="text-blue-600 hover:underline">officialbilal707@gmail.com</a></li>
+        <li>📧 <a href="mailto:officialjamalcollection@gmail.com" className="text-blue-600 hover:underline">officialjamalcollection@gmail.com</a></li>
         <li>📞 Phone: 03105087313</li>
       </ul>
 

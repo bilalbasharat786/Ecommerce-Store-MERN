@@ -31,7 +31,7 @@ const Contact = () => {
             </p>
 
             <p className="text-sm sm:text-base">
-              Tel: +923105087313 <br /> Email: officialbilal707@gmail.com
+              Tel: +923105087313 <br /> Email: officialjamalcollection@gmail.com
             </p>
           </div>
 

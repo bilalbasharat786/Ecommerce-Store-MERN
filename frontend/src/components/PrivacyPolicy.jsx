@@ -96,10 +96,10 @@ const PrivacyPolicy = () => {
         updates, and promotions. You can opt out of promotional messages anytime
         by clicking the "unsubscribe" link in our emails or contacting us at{" "}
         <a
-          href="mailto:officialbilal707@gmail.com"
+          href="mailto:officialjamalcollection@gmail.com"
           className="text-blue-600 hover:underline"
         >
-          officialbilal707@gmail.com
+          officialjamalcollection@gmail.com
         </a>
         .
       </p>
@@ -115,10 +115,10 @@ const PrivacyPolicy = () => {
         hold about you. If your data is incorrect or incomplete, you can request
         corrections or removal by contacting{" "}
         <a
-          href="mailto:officialbilal707@gmail.com"
+          href="mailto:officialjamalcollection@gmail.com"
           className="text-blue-600 hover:underline"
         >
-          officialbilal707@gmail.com
+          officialjamalcollection@gmail.com
         </a>
         .
       </p>
@@ -142,10 +142,10 @@ const PrivacyPolicy = () => {
         will be communicated via website announcements or email notifications.
         For any questions or concerns regarding privacy, contact us at{" "}
         <a
-          href="mailto:officialbilal707@gmail.com"
+          href="mailto:officialjamalcollection@gmail.com"
           className="text-blue-600 hover:underline"
         >
-          officialbilal707@gmail.com
+          officialjamalcollection@gmail.com
         </a>
         .
       </p>
