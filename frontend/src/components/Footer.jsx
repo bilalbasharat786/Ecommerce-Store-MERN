@@ -45,7 +45,16 @@ const Footer = () => {
           <ul className="flex flex-col gap-2 text-gray-600 text-xs sm:text-sm">
             <li> +92-3105087313</li>
             <li> @officialjamalcollection@gmail.com</li>
-            <li className="cursor-pointer hover:text-black transition"> Instagram</li>
+                <li>
+      <a
+        href="https://www.facebook.com/profile.php?id=61583732707640"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="cursor-pointer hover:text-black transition"
+      >
+        Facebook
+      </a>
+    </li>
           </ul>
         </div>
       </div>
