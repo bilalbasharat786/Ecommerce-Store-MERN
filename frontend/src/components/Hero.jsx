@@ -34,9 +34,10 @@ const Hero = () => {
 
     appendDots: (dots) => (
       <div className="absolute bottom-4 w-full flex justify-center z-20">
-        <ul className="flex gap-2 bg-black/40 px-4 py-2 rounded-full">{dots}</ul>
+        <ul className="flex gap-2 /40 px-4 py-2 rounded-full">{dots}</ul>
       </div>
     ),
+
   };
 
   return (
@@ -45,15 +46,14 @@ const Hero = () => {
         {slides.map((slide) => (
           <div
             key={slide._id}
-            className="relative w-full h-[90vh] sm:h-[80vh] md:h-[90vh] flex justify-center items-center"
-            style={{
-              backgroundImage: `url(${slide.image})`,
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              backgroundSize: "contain",  
-              // backgroundColor: "#fff",     // black ki jaga white background
-            }}
-          ></div>
+            className="relative w-full h-[90vh] sm:h-[85vh] md:h-[90vh]  flex justify-center items-center"
+          >
+            <img
+              src={slide.image}
+              alt="slider"
+              className="w-full h-full object-contain" 
+            />
+          </div>
         ))}
       </Slider>
     </div>
@@ -61,7 +61,6 @@ const Hero = () => {
 };
 
 export default Hero;
-
 
 
 
