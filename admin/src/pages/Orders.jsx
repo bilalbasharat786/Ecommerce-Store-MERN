@@ -104,13 +104,21 @@ useEffect(() => {
                   if (index === order.items.length - 1) {
                     return (
                       <p className="py-0.5" key={index}>
-                        {item.name} x {item.quantity} <span>{item.size}</span>
+                        {item.name} x {item.quantity} <span>{item.size} {/* ⭐ Show Color Dot */}
+{item.color && (
+  <span
+    style={{ backgroundColor: item.color }}
+    className="inline-block w-4 h-4 ml-2 rounded-full border"
+  ></span>
+)}
+                        </span>
                       </p>
+                      
                     );
                   } else {
                     return (
                       <p className="py-0.5" key={index}>
-                        {item.name} x {item.quantity} <span>{item.size}</span>,
+                        {item.name} x {item.quantity} <span>{item.size} </span>,
                       </p>
                     );
                   }

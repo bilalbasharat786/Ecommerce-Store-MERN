@@ -16,9 +16,31 @@ const placeOrder = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
 
+    // ⭐ FIX FOR COLOR SUPPORT
+    let processedItems = items.map((item) => {
+      let realSize = item.size;
+      let color = null;
+
+      if (item.size && item.size.includes("-")) {
+        const parts = item.size.split("-");
+        realSize = parts[0];
+        color = parts[1];
+      }
+
+      console.log("📦 Incoming Size:", item.size);
+      console.log("🎨 Extracted Color:", color);
+      console.log("📏 Extracted Size:", realSize);
+
+      return {
+        ...item,
+        size: realSize,
+        color: color,
+      };
+    });
+
     const orderData = {
       userId,
-      items,
+      items: processedItems, // ⭐ Updated
       amount,
       address,
       paymentMethod: "COD",
@@ -31,6 +53,7 @@ const placeOrder = async (req, res) => {
     await newOrder.save();
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
     await sendOrderEmail(newOrder);
+
     res.json({
       success: true,
       message: "Order Placed",
@@ -43,6 +66,7 @@ const placeOrder = async (req, res) => {
     });
   }
 };
+
 
 // Placing order using Stripe
 const placeOrderStripe = async (req, res) => {
