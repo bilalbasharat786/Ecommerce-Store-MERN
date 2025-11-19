@@ -19,12 +19,14 @@ const Add = ({ token }) => {
   const [subCategory, setSubCategory] = useState("Topwear");
   const [bestseller, setBestseller] = useState(false);
   const [sizes, setSizes] = useState([]);
- 
+  const [colors, setColors] = useState([]);
 
 
   const onSubmitHandler = async (e) => {
     try {
       e.preventDefault();
+
+      console.log("📌 SUBMIT STARTED");
       const formData = new FormData();
       formData.append("name", name);
       formData.append("description", description);
@@ -35,16 +37,25 @@ const Add = ({ token }) => {
       formData.append("bestseller", bestseller);
       formData.append("sizes", JSON.stringify(sizes));
 
+        // ⭐ DEBUG colors
+      console.log("🎨 Colors sent from Admin:", colors);
+
+      // ⭐ ADDING COLORS INTO FORMDATA
+      formData.append("colors", JSON.stringify(colors));
+
       image1 && formData.append("image1", image1);
       image2 && formData.append("image2", image2);
       image3 && formData.append("image3", image3);
       image4 && formData.append("image4", image4);
+
+        console.log("🚀 Sending FormData to backend...");
 
       const response = await axios.post(
         backendUrl + "/api/product/add",
         formData,
         { headers: { token } }
       );
+        console.log("📩 Response from backend:", response.data);
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -56,6 +67,7 @@ const Add = ({ token }) => {
         setImage4(false);
         setPrice("");
         setDiscountPrice("");
+        setColors([]);
       } else {
         toast.error(response.data.message);
       }
@@ -202,6 +214,25 @@ const Add = ({ token }) => {
   />
 </div>
 
+  {/* ★ NEW: COLOR INPUT FIELD */}
+      <div className="w-full">
+        <p className="mb-2">Product Colors</p>
+
+        <input
+          className="w-full max-w-[500px] px-3 py-2"
+          type="text"
+          placeholder="e.g. #000000,#ffffff,#d4c49a"
+          onChange={(e) => {
+            const arr = e.target.value.split(",");
+            setColors(arr);
+            console.log("🎨 Live Colors:", arr); // DEBUG
+          }}
+        />
+
+        <p className="text-xs mt-1 text-gray-500">
+          Write comma separated colors (hex codes). Example: #000,#fff,#b39e6a
+        </p>
+      </div>
       </div>
       <div>
         <p className="mb-2">Product Sizes</p>

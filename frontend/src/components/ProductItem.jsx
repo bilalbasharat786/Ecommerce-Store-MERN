@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 
-const ProductItem = ({ id, image, name, price, discountPrice }) => {
+const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
   const { currency } = useContext(ShopContext);
 
 
@@ -62,6 +62,18 @@ const finalPrice =
   <span>{`PKR ${price}`}</span>
 )}
 
+{/* ⭐ Color Options */}
+{colors && colors.length > 0 && (
+  <div className="flex justify-center sm:justify-start gap-2 px-2 mt-2">
+    {colors.map((clr, index) => (
+      <span
+        key={index}
+        style={{ backgroundColor: clr }}
+        className="w-4 h-4 rounded-full border border-gray-300"
+      ></span>
+    ))}
+  </div>
+)}
 
         </div>
       </div>

@@ -5,6 +5,7 @@ import productModel from "../models/productModel.js";
 const addProduct = async (req, res) => {
   try {
     console.log("📩 Incoming product data:", req.body);
+
     const {
       name,
       description,
@@ -16,6 +17,18 @@ const addProduct = async (req, res) => {
       sizes,
     } = req.body;
 
+    // ⭐ NEW — COLORS PARSE
+    let colors = [];
+    if (req.body.colors) {
+      try {
+        colors = JSON.parse(req.body.colors);
+        console.log("🎨 Colors received:", colors);
+      } catch (err) {
+        console.log("❌ Colors JSON parse error:", err);
+      }
+    }
+
+    // IMAGES
     const image1 = req.files.image1 && req.files.image1[0];
     const image2 = req.files.image2 && req.files.image2[0];
     const image3 = req.files.image3 && req.files.image3[0];
@@ -34,24 +47,28 @@ const addProduct = async (req, res) => {
       })
     );
 
-    console.log("🖼 Uploaded Images:", images);
+    console.log("🖼 Uploaded Images:", imagesUrl);
     console.log("💰 Discount Price Received:", discountPrice);
 
+    // SAVE TO DATABASE
     const productData = {
       name,
       description,
       category,
       price: Number(price),
-      discountPrice: discountPrice && discountPrice > 0 ? Number(discountPrice) : null,
+      discountPrice:
+        discountPrice && discountPrice > 0 ? Number(discountPrice) : null,
       subCategory,
       bestseller: bestseller === "true" ? true : false,
       sizes: JSON.parse(sizes.replace(/'/g, '"')),
+      colors: colors,                 // ⭐ NEW FIELD
       image: imagesUrl,
       date: Date.now(),
     };
 
     const product = new productModel(productData);
     await product.save();
+
     console.log("✅ Product Added Successfully:", product);
 
     res.json({ success: true, message: "Product Added" });

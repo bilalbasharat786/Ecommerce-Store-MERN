@@ -11,6 +11,21 @@ const productSchema = new mongoose.Schema({
   sizes: { type: Array, required: true },
   bestSeller: { type: Boolean },
   date: { type: Number, required: true },
+    // ⭐ NEW FIELDS (Color Variants System)
+  colors: {
+    type: [String], // ["Black", "White", "Red"]
+    default: [],
+  },
+
+  imagesByColor: {
+    type: Object,
+    default: {}, 
+    // Example:
+    // {
+    //   Black: ["black1.jpg", "black2.jpg"],
+    //   Red: ["red1.jpg", "red2.jpg"]
+    // }
+  },
 });
 
 const productModel =

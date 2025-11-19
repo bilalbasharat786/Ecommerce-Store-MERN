@@ -12,6 +12,9 @@ const Product = () => {
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+
+
 
 
   const fetchProductData = async () => {
@@ -90,15 +93,29 @@ const Product = () => {
   )}
 </p>
 
-
-
-
-
-
           {/* Description */}
           <p className="mt-4 text-gray-500 text-sm sm:text-base leading-relaxed md:w-4/5">
             {productData.description}
           </p>
+{/* ⭐ Color Selector */}
+{productData.colors && productData.colors.length > 0 && (
+  <div className="flex flex-col gap-3 my-6">
+    <p className="font-medium text-sm sm:text-base">Select Color</p>
+
+    <div className="flex flex-wrap gap-2">
+      {productData.colors.map((clr, index) => (
+        <button
+          key={index}
+          onClick={() => setColor(clr)}
+          style={{ backgroundColor: clr }}
+          className={`w-6 h-6 rounded-full border-2 ${
+            color === clr ? "border-black scale-110" : "border-gray-300"
+          } transition-all`}
+        ></button>
+      ))}
+    </div>
+  </div>
+)}
 
           {/* Size Selector */}
           <div className="flex flex-col gap-3 my-6">
@@ -123,8 +140,11 @@ const Product = () => {
           {/* Add to Cart */}
          <button
   onClick={() => {
-    addToCart(productData._id, size);
-    navigate("/cart");
+    if (!size) return alert("Please select size");
+if (!color) return alert("Please select color");
+
+addToCart(productData._id, size + "-" + color);  // ⭐ size + color
+navigate("/cart");
   }}
   className="bg-black text-white px-6 sm:px-8 py-3 text-sm sm:text-base border border-transparent hover:bg-white hover:text-black hover:border-black transition-all duration-500 rounded-md"
 >

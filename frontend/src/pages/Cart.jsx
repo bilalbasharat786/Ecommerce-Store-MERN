@@ -18,8 +18,9 @@ const Cart = () => {
           if (cartItems[items][item] > 0) {
             tempData.push({
               _id: items,
-              size: item,
+              size: item.split("-")[0],
               quantity: cartItems[items][item],
+              color: item.split("-")[1],
             });
           }
         }
@@ -63,6 +64,10 @@ if (!productData) {
                     <p className="px-2 sm:px-3 sm:py-1 border bg-slate-50">
                       {item.size}
                     </p>
+                    <div
+                      className="w-5 h-5 rounded-full border border-gray-300"
+                      style={{ backgroundColor: item.color }}
+                    ></div>
                   </div>
                 </div>
               </div>

@@ -30,6 +30,7 @@ We picked some items just for you
             name={item.name}
             price={item.price}
             discountPrice={item.discountPrice}
+            colors={item.colors} 
           />
         ))}
       </div>

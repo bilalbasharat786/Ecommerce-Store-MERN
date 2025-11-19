@@ -31,6 +31,7 @@ const BestSeller = () => {
             name={item.name}
             price={item.price}
             discountPrice={item.discountPrice}
+            colors={item.colors} 
           />
         ))}
       </div>

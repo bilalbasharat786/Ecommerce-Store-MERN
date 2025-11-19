@@ -201,6 +201,7 @@ const Collection = () => {
               price={item.price}
               discountPrice={item.discountPrice}
               image={item.image}
+              colors={item.colors} 
             />
           ))}
         </div>
