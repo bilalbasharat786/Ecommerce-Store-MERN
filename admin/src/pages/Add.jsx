@@ -214,25 +214,53 @@ const Add = ({ token }) => {
   />
 </div>
 
-  {/* ★ NEW: COLOR INPUT FIELD */}
-      <div className="w-full">
-        <p className="mb-2">Product Colors</p>
+  <div className="w-full">
+  <p className="mb-2 font-medium">Product Colors</p>
 
-        <input
-          className="w-full max-w-[500px] px-3 py-2"
-          type="text"
-          placeholder="e.g. #000000,#ffffff,#d4c49a"
-          onChange={(e) => {
-            const arr = e.target.value.split(",");
-            setColors(arr);
-            console.log("🎨 Live Colors:", arr); // DEBUG
-          }}
-        />
+  <select
+    multiple
+    className="w-full max-w-[500px] px-3 py-2 border rounded"
+    value={colors}
+    onChange={(e) => {
+      const selected = Array.from(e.target.selectedOptions).map(opt => opt.value);
+      setColors(selected);
+      console.log("🎨 Selected Colors:", selected);
+    }}
+  >
+    <option value="Black">Black</option>
+    <option value="White">White</option>
+    <option value="Red">Red</option>
+    <option value="Blue">Blue</option>
+    <option value="Green">Green</option>
+    <option value="Yellow">Yellow</option>
+    <option value="Pink">Pink</option>
+    <option value="Purple">Purple</option>
+    <option value="Brown">Brown</option>
+    <option value="Beige">Beige</option>
+    <option value="Gold">Gold</option>
+    <option value="Silver">Silver</option>
+    <option value="Gray">Gray</option>
+    <option value="Orange">Orange</option>
+    <option value="Maroon">Maroon</option>
+    <option value="Navy">Navy</option>
+    <option value="Sky Blue">Sky Blue</option>
+    <option value="Olive">Olive</option>
+    <option value="Teal">Teal</option>
+    <option value="Lavender">Lavender</option>
+    <option value="Mint">Mint</option>
+    <option value="Cream">Cream</option>
+    <option value="Khaki">Khaki</option>
+    <option value="Mustard">Mustard</option>
+    <option value="Rose Gold">Rose Gold</option>
+    <option value="Charcoal">Charcoal</option>
+    <option value="Off White">Off White</option>
+  </select>
 
-        <p className="text-xs mt-1 text-gray-500">
-          Write comma separated colors (hex codes). Example: #000,#fff,#b39e6a
-        </p>
-      </div>
+  <p className="text-xs text-gray-500 mt-1">
+    You can select multiple colors (Ctrl + Click)
+  </p>
+</div>
+
       </div>
       <div>
         <p className="mb-2">Product Sizes</p>
