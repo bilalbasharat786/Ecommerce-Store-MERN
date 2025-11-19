@@ -49,6 +49,8 @@ const List = ({ token }) => {
           name: item.name,
           price: item.price,
           category: item.category,
+          discountPrice: item.discountPrice,
+          colors: JSON.stringify(item.colors),
         },
         { headers: { token } }
       );
@@ -79,6 +81,7 @@ const List = ({ token }) => {
           <b>Name</b>
           <b>Category</b>
           <b>Price</b>
+          <b>Discount</b>
           <b className="text-center">Action</b>
         </div>
 
@@ -133,6 +136,17 @@ const List = ({ token }) => {
                 setList(newList);
               }}
             />
+             {/* Editable Discount Price */}
+<input
+  type="number"
+  className="border px-2 py-1 w-16 sm:w-20 text-center rounded"
+  value={item.discountPrice}
+  onChange={(e) => {
+    const newList = [...list];
+    newList[index].discountPrice = e.target.value;
+    setList(newList);
+  }}
+/>
 
             {/* Save + Delete buttons */}
             <div className="flex items-center justify-between sm:justify-end gap-3 mt-2">

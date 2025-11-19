@@ -117,13 +117,13 @@ const removeProduct = async (req, res) => {
 // Update product details (name, price, category, etc.)
 export const updateProduct = async (req, res) => {
   try {
-    const { id, name, price, category } = req.body;
+    const { id, name, price, category, discountPrice, colors } = req.body;
 
     // Optional fields ko filter karlo
     const updatedData = {};
     if (name) updatedData.name = name;
     if (price) updatedData.price = price;
-
+    if (discountPrice) updatedData.discountPrice = discountPrice;
     if (category) updatedData.category = category;
 
     const product = await productModel.findByIdAndUpdate(
