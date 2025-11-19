@@ -51,7 +51,7 @@ const Hero = () => {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "contain",  
-              backgroundColor: "#fff",     // black ki jaga white background
+              // backgroundColor: "#fff",     // black ki jaga white background
             }}
           ></div>
         ))}
