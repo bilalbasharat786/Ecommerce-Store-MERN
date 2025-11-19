@@ -32,11 +32,7 @@ const Hero = () => {
     pauseOnHover: true,
     arrows: true,
 
-    appendDots: (dots) => (
-      <div className="absolute bottom-3 w-full flex justify-center z-20">
-        <ul className="flex gap-2 bg-black/40 px-4 py-2 rounded-full">{dots}</ul>
-      </div>
-    ),
+    
   };
 
   return (
