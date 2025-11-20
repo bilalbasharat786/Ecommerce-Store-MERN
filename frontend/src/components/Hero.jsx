@@ -5,6 +5,31 @@ import { backendUrl } from "../App.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+// ===========================
+// Custom White Round Arrows
+// ===========================
+const NextArrow = ({ onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="absolute right-5 top-1/2 -translate-y-1/2 bg-white shadow-xl w-10 h-10 rounded-full flex items-center justify-center cursor-pointer z-10"
+    >
+      <span className="text-black text-xl">{">"}</span>
+    </div>
+  );
+};
+
+const PrevArrow = ({ onClick }) => {
+  return (
+    <div
+      onClick={onClick}
+      className="absolute left-5 top-1/2 -translate-y-1/2 bg-white shadow-xl w-10 h-10 rounded-full flex items-center justify-center cursor-pointer z-10"
+    >
+      <span className="text-black text-xl">{"<"}</span>
+    </div>
+  );
+};
+
 const Hero = () => {
   const [slides, setSlides] = useState([]);
 
@@ -21,6 +46,9 @@ const Hero = () => {
     fetchSliderImages();
   }, []);
 
+  // ===========================
+  // Slick Slider Settings
+  // ===========================
   const settings = {
     dots: true,
     infinite: true,
@@ -31,10 +59,29 @@ const Hero = () => {
     autoplaySpeed: 2000,
     pauseOnHover: true,
     arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    dotsClass: "slick-dots custom-dots", // custom class
   };
 
   return (
     <div className="w-full overflow-hidden relative z-0">
+
+      {/* Custom dots styling */}
+      <style>
+        {`
+          .custom-dots li button:before {
+            font-size: 12px;
+            color: white !important;
+            opacity: 0.7;
+          }
+          .custom-dots li.slick-active button:before {
+            color: white !important;
+            opacity: 1;
+          }
+        `}
+      </style>
+
       <Slider {...settings}>
         {slides.map((slide) => (
           <div
@@ -54,6 +101,7 @@ const Hero = () => {
 };
 
 export default Hero;
+
 
 
 
