@@ -1,1 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
 
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+a.active hr {
+  display: block;
+}
+
+* {
+  font-family: Outfit;
+}
+
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  a.active {
+    background-color: black;
+    color: white;
+  }
+}
+/* 📱 Global Responsive Scaling */
+@media (max-width: 768px) {
+  html {
+    font-size: 85%; /* sab text, buttons, icons 15% chhote ho jayenge */
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 75%; /* chhote phones ke liye aur thoda small */
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 100%; /* desktop ke liye normal size */
+  }
+}
