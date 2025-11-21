@@ -79,9 +79,9 @@ const Hero = () => {
             color: black !important;
             opacity: 0.7;
           }
-          .custom-dots li.slick-active button:before {
+          .custom-dots li button:before {
             color: black !important;
-            opacity: 1;
+            opacity: 0.7;
           }
         `}
       </style>
