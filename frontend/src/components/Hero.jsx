@@ -6,13 +6,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // ===========================
-// Custom White Round Arrows
+// Custom White Round Arrows (Show on Hover)
 // ===========================
 const NextArrow = ({ onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="absolute right-5 top-1/2 -translate-y-1/2 bg-white shadow-xl w-10 h-10 rounded-full flex items-center justify-center cursor-pointer z-10"
+      className="absolute hidden group-hover:flex right-5 top-1/2 -translate-y-1/2
+      bg-white shadow-xl w-10 h-10 rounded-full items-center justify-center
+      cursor-pointer z-10 transition-opacity duration-300"
     >
       <span className="text-black text-xl">{">"}</span>
     </div>
@@ -23,7 +25,9 @@ const PrevArrow = ({ onClick }) => {
   return (
     <div
       onClick={onClick}
-      className="absolute left-5 top-1/2 -translate-y-1/2 bg-white shadow-xl w-10 h-10 rounded-full flex items-center justify-center cursor-pointer z-10"
+      className="absolute hidden group-hover:flex left-5 top-1/2 -translate-y-1/2
+      bg-white shadow-xl w-10 h-10 rounded-full items-center justify-center
+      cursor-pointer z-10 transition-opacity duration-300"
     >
       <span className="text-black text-xl">{"<"}</span>
     </div>
@@ -61,11 +65,11 @@ const Hero = () => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    dotsClass: "slick-dots custom-dots", // custom class
+    dotsClass: "slick-dots custom-dots",
   };
 
   return (
-    <div className="w-full overflow-hidden relative z-0">
+    <div className="w-full overflow-hidden relative z-0 pb-10 group">
 
       {/* Custom dots styling */}
       <style>
@@ -101,6 +105,7 @@ const Hero = () => {
 };
 
 export default Hero;
+
 
 
 
