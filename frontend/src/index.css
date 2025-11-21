@@ -41,7 +41,7 @@ a.active hr {
 
 @media (max-width: 480px) {
   html {
-    font-size: 75%; /* chhote phones ke liye aur thoda small */
+    font-size: 85%; /* chhote phones ke liye aur thoda small */
   }
 }
 
