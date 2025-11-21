@@ -76,11 +76,11 @@ const Hero = () => {
         {`
           .custom-dots li button:before {
             font-size: 12px;
-            color: white !important;
+            color: black !important;
             opacity: 0.7;
           }
           .custom-dots li.slick-active button:before {
-            color: white !important;
+            color: black !important;
             opacity: 1;
           }
         `}
