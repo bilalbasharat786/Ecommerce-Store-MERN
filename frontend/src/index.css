@@ -39,11 +39,7 @@ a.active hr {
   }
 }
 
-@media (max-width: 480px) {
-  html {
-    font-size: 85%; /* chhote phones ke liye aur thoda small */
-  }
-}
+
 
 @media (min-width: 1024px) {
   html {
