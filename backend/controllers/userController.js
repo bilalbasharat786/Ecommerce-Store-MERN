@@ -2,12 +2,60 @@ import userModel from "../models/userModel.js";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { OAuth2Client } from "google-auth-library";   // ⭐ NEW
 
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
 
-// Route for user login
+// 🚀 GOOGLE CLIENT
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
+// ⭐⭐⭐⭐⭐ GOOGLE LOGIN CONTROLLER (NEW)
+const googleLogin = async (req, res) => {
+  try {
+    const { token } = req.body;
+
+    // Verify Google Login Token
+    const ticket = await googleClient.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+
+    const payload = ticket.getPayload();
+    const email = payload.email;
+    const name = payload.name;
+
+    // Check User Exists
+    let user = await userModel.findOne({ email });
+
+    // If New User → Auto Create Account
+    if (!user) {
+      user = await userModel.create({
+        name,
+        email,
+        password: "", // Google users need no password
+      });
+    }
+
+    // Create JWT Token
+    const myToken = createToken(user._id);
+
+    return res.json({
+      success: true,
+      token: myToken,
+      user,
+    });
+
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Google Login Failed" });
+  }
+};
+
+// ⭐ YOUR ORIGINAL FUNCTIONS BELOW (UNTouched)
+
+// Login
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -41,22 +89,21 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Route for userRegistration
+// Register
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // checking if user already exists or not
     const exist = await userModel.findOne({ email });
 
     if (exist) {
       return res.json({ success: false, message: "User already exists" });
     }
 
-    // validating email format and strong password
     if (!validator.isEmail(email)) {
       return res.json({ success: false, message: "Enter a valid email" });
     }
+
     if (password.length < 8) {
       return res.json({
         success: false,
@@ -64,15 +111,12 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // hashing user password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    // creating user
     const newUser = new userModel({ name, email, password: hashedPassword });
     const user = await newUser.save();
 
-    // generating token
     const token = createToken(user._id);
 
     res.json({
@@ -88,7 +132,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-// Route for admin login
+// Admin Login
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -115,4 +159,5 @@ const adminLogin = async (req, res) => {
   }
 };
 
-export { loginUser, registerUser, adminLogin };
+export { loginUser, registerUser, adminLogin, googleLogin };
+

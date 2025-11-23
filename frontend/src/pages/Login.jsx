@@ -10,6 +10,44 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  // ---------------- GOOGLE LOGIN CALLBACK ----------------
+  const handleGoogleLogin = async (response) => {
+    try {
+      const res = await axios.post(backendUrl + "/api/user/google-login", {
+        token: response.credential,
+      });
+
+      if (res.data.success) {
+        setToken(res.data.token);
+        localStorage.setItem("token", res.data.token);
+        toast.success("Login Successful");
+        navigate("/");
+      } else {
+        toast.error("Google Login Failed");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("Google Authentication Error");
+    }
+  };
+
+  // ---------------- GOOGLE BUTTON RENDER ----------------
+  useEffect(() => {
+    /* global google */
+    if (window.google) {
+      google.accounts.id.initialize({
+        client_id: "YOUR_GOOGLE_CLIENT_ID", // <-- replace this only
+        callback: handleGoogleLogin,
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("googleSignInBtn"),
+        { theme: "outline", size: "large", width: "350" }
+      );
+    }
+  }, []);
+
+  // ---------------- NORMAL LOGIN / SIGNUP ----------------
   const onSumbitHandler = async (e) => {
     try {
       e.preventDefault();
@@ -20,8 +58,8 @@ const Login = () => {
           password,
         });
         if (response.data.success) {
-         toast.success("Account created successfully! Please login.");
-    setCurrentState("Login");
+          toast.success("Account created successfully! Please login.");
+          setCurrentState("Login");
         } else {
           toast.error(response.data.message);
         }
@@ -32,7 +70,7 @@ const Login = () => {
         });
         if (response.data.success) {
           setToken(response.data.token);
-          localStorage.setItem("token", token);
+          localStorage.setItem("token", response.data.token);
           navigate("/");
         } else {
           toast.error(response.data.message);
@@ -59,16 +97,18 @@ const Login = () => {
         <p className="prata-regular text-3xl">{currentState}</p>
         <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
       </div>
+
       {currentState === "Sign Up" && (
         <input
           className="w-full px-3 py-2 border border-gray-800"
-          type=" requiredxt"
+          type="text"
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
           value={name}
           required
         />
       )}
+
       <input
         className="w-full px-3 py-2 border border-gray-800"
         type="text"
@@ -77,21 +117,20 @@ const Login = () => {
         value={email}
         required
       />
+
       <input
         className="w-full px-3 py-2 border border-gray-800"
-        type="Password"
+        type="password"
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         required
       />
+
       <div className="w-full flex justify-between text-sm mt-[-8px]">
         <p className="cursor-pointer">Forgot Password?</p>
         {currentState === "Sign Up" ? (
-          <p
-            onClick={() => setCurrentState("Login")}
-            className="cursor-pointer"
-          >
+          <p onClick={() => setCurrentState("Login")} className="cursor-pointer">
             Login Here
           </p>
         ) : (
@@ -103,11 +142,18 @@ const Login = () => {
           </p>
         )}
       </div>
+
       <button className="bg-black text-white font-light px-8 py-2 mt-4 border border-transparent hover:bg-white hover:text-black hover:border-black transition-all duration-1000">
         {currentState}
       </button>
+
+      {/* ---------------- GOOGLE SIGN IN BUTTON ---------------- */}
+      <div className="mt-4 w-full flex justify-center">
+        <div id="googleSignInBtn"></div>
+      </div>
     </form>
   );
 };
 
 export default Login;
+
