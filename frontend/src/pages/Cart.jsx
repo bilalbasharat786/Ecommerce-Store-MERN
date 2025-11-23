@@ -30,11 +30,6 @@ const Cart = () => {
     }
   }, [cartItems, products]);
 
-  const handleQuantityChange = (item, newQuantity) => {
-    if (newQuantity < 1) return;
-    updateQuantity(item._id, item.size, newQuantity);
-  };
-
   return (
     <div className="border-t pt-14">
       <div className="text-2xl mb-3">
@@ -45,16 +40,15 @@ const Cart = () => {
           const productData = products.find(
             (product) => product._id === item._id
           );
-
-          if (!productData) {
-            console.warn("Product not found for ID:", item._id);
-            return null; // skip undefined product
-          }
-
+          
+if (!productData) {
+  console.warn("Product not found for ID:", item._id);
+  return null; // skip undefined product
+}
           return (
             <div
               key={index}
-              className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_1fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
+              className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
             >
               <div className=" flex items-start gap-6">
                 <img className="w-16 sm:w-20" src={productData.image[0]} />
@@ -77,29 +71,21 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  className="px-2 py-1 border bg-gray-200 hover:bg-gray-300"
-                  onClick={() => handleQuantityChange(item, item.quantity - 1)}
-                >
-                  -
-                </button>
-                <input
-                  className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1 text-center"
-                  type="number"
-                  min={1}
-                  value={item.quantity}
-                  onChange={(e) =>
-                    handleQuantityChange(item, Number(e.target.value))
-                  }
-                />
-                <button
-                  className="px-2 py-1 border bg-gray-200 hover:bg-gray-300"
-                  onClick={() => handleQuantityChange(item, item.quantity + 1)}
-                >
-                  +
-                </button>
-              </div>
+              <input
+                className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
+                type="number"
+                min={1}
+                defaultValue={item.quantity}
+                onChange={(e) =>
+                  e.target.value === "" || e.target.value === 0
+                    ? null
+                    : updateQuantity(
+                        item._id,
+                        item.size,
+                        Number(e.target.value)
+                      )
+                }
+              />
               <img
                 className="w-4 mr-4 sm:w-5 cursor-pointer"
                 src={assets.bin_icon}
