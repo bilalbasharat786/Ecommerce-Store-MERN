@@ -36,7 +36,7 @@ const Login = () => {
     /* global google */
     if (window.google) {
       google.accounts.id.initialize({
-        client_id: "YOUR_GOOGLE_CLIENT_ID", // <-- replace this only
+        client_id: "614223157880-3iv0ualg0plvd69q1e4e5lk6saqbvck1.apps.googleusercontent.com", // <-- replace this only
         callback: handleGoogleLogin,
       });
 
