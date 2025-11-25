@@ -81,7 +81,7 @@ if (!productData) {
                     ? null
                     : updateQuantity(
                         item._id,
-                        item.size,
+                      `${item.size}-${item.color}`,
                         Number(e.target.value)
                       )
                 }
@@ -90,7 +90,7 @@ if (!productData) {
                 className="w-4 mr-4 sm:w-5 cursor-pointer"
                 src={assets.bin_icon}
                 alt="bin_icon"
-                onClick={() => updateQuantity(item._id, item.size, 0)}
+                onClick={() => updateQuantity(item._id, `${item.size}-${item.color}`, 0)}
               />
             </div>
           );

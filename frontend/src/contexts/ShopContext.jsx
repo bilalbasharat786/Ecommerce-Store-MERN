@@ -70,7 +70,17 @@ const ShopContextProvider = ({ children }) => {
 
   const updateQuantity = async (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
+    
+  if (quantity === 0) {
+    delete cartData[itemId][size];
+
+    // product ke ander koi size nahi bacha
+    if (Object.keys(cartData[itemId]).length === 0) {
+      delete cartData[itemId];
+    }
+  } else {
     cartData[itemId][size] = quantity;
+  }
     setCartItems(cartData);
 
     if (token) {
