@@ -33,19 +33,27 @@ const finalPrice =
           </div>
         )}
   {/* 🖼️ First image */}
-        <img
-          className="w-full h-48 sm:h-64 object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-          src={image[0]}
-          alt={`${name} product`}
-        />
+      <img
+  src={image[0]}
+  width={300}
+  height={300}
+  loading="lazy"
+  className="w-full h-48 sm:h-64 object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+  alt={`${name} product`}
+/>
+
 
         {/* 🖼️ Second image (appears on hover) */}
         {image[1] && (
           <img
-            className="w-full h-48 sm:h-64 object-cover absolute top-0 left-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
-            src={image[1]}
-            alt={`${name} hover`}
-          />
+  src={image[1]}
+  width={300}
+  height={300}
+  loading="lazy"
+  className="w-full h-48 sm:h-64 object-cover absolute top-0 left-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+  alt={`${name} hover`}
+/>
+
         )}
       </div>
 

@@ -51,7 +51,14 @@ if (!productData) {
               className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
             >
               <div className=" flex items-start gap-6">
-                <img className="w-16 sm:w-20" src={productData.image[0]} />
+                <img
+  src={productData.image[0]}
+  width={80}
+  height={80}
+  loading="lazy"
+  className="w-20 h-20 object-cover"
+/>
+
                 <div>
                   <p className="text-xs sm:text-lg font-medium">
                     {productData.name}
