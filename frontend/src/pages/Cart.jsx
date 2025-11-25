@@ -71,21 +71,38 @@ if (!productData) {
                   </div>
                 </div>
               </div>
-              <input
-                className="border max-w-10 sm:max-w-20 px-1 sm:px-2 py-1"
-                type="number"
-                min={1}
-                defaultValue={item.quantity}
-                onChange={(e) =>
-                  e.target.value === "" || e.target.value === 0
-                    ? null
-                    : updateQuantity(
-                        item._id,
-                      `${item.size}-${item.color}`,
-                        Number(e.target.value)
-                      )
-                }
-              />
+              <div className="flex items-center gap-2">
+  <button
+    className="px-2 py-1 border rounded"
+    onClick={() =>
+      updateQuantity(
+        item._id,
+        `${item.size}-${item.color}`,
+        item.quantity > 1 ? item.quantity - 1 : 1
+      )
+    }
+  >
+    -
+  </button>
+
+  <span className="px-3 py-1 border rounded">
+    {item.quantity}
+  </span>
+
+  <button
+    className="px-2 py-1 border rounded"
+    onClick={() =>
+      updateQuantity(
+        item._id,
+        `${item.size}-${item.color}`,
+        item.quantity + 1
+      )
+    }
+  >
+    +
+  </button>
+</div>
+
               <img
                 className="w-4 mr-4 sm:w-5 cursor-pointer"
                 src={assets.bin_icon}
