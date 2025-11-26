@@ -2,7 +2,6 @@ import React from "react";
 import Title from "../components/Title";
 import { assets } from "../assets/frontend_assets/assets";
 import NewsLetter from "../components/NewsLetter";
-import LazyImage from "../components/LazyImage";
 
 const About = () => {
   return (
@@ -14,11 +13,9 @@ const About = () => {
 
       {/* ABOUT SECTION */}
       <div className="my-10 flex flex-col md:flex-row gap-10 md:gap-16 items-center">
-       <LazyImage
+       <img
   src={assets.about_img}
   alt="about_img"
-  w={450}  // max width jo image occupy karegi
-  h={300}  // approximate height
   className="w-full max-w-[350px] sm:max-w-[400px] md:max-w-[450px] rounded-xl shadow-sm"
 />
 
