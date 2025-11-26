@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { assets } from "../assets/frontend_assets/assets";
 import { NavLink, Link } from "react-router-dom";
 import { ShopContext } from "../contexts/ShopContext";
+import LazyImage from "./LazyImage";
+
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
