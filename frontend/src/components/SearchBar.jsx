@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import { useLocation } from "react-router-dom";
+import LazyImage from "../components/LazyImage";
 
 const SearchBar = () => {
   const { search, showSearch, setSearch, setShowSearch } =
@@ -27,9 +28,10 @@ const SearchBar = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <img className="w-4" src={assets.search_icon} alt="search_icon" />
+       <LazyImage src={assets.search_icon} alt="search_icon" w={16} h={16} className="w-4" />
       </div>
-      <img
+      <LazyImage
+       w={12} h={12}
         className="inline w-3 cursor-pointer"
         onClick={() => setShowSearch(false)}
         src={assets.cross_icon}

@@ -22,14 +22,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex items-center justify-between py-3 sm:py-5 px-3 sm:px-0 font-medium text-xs sm:text-sm md:text-base">
+    <div className="flex items-center justify-between py-3 sm:py-5 px-3 sm:px-0 font-medium text-xs sm:text-sm md:text-base  min-h-[60px]">
       {/* Logo */}
       <Link to="/">
-        <img
-          src={assets.logo}
-          className="w-24 sm:w-36 md:w-40"
-          alt="forver_logo"
-        />
+       <LazyImage src={assets.logo} alt="forever_logo" w={160} h={40} className="w-24 sm:w-36 md:w-40" />
       </Link>
 
       {/* Desktop Menu */}
@@ -61,7 +57,8 @@ const Navbar = () => {
       {/* Right Section (Icons) */}
       <div className="flex items-center gap-3 sm:gap-6">
         {/* Search */}
-        <img
+        <LazyImage
+          w={16} h={16}
           onClick={() => setShowSearch(true)}
           src={assets.search_icon}
           className="w-4 sm:w-5 cursor-pointer"
@@ -70,7 +67,8 @@ const Navbar = () => {
 
         {/* Profile */}
         <div className="group relative">
-          <img
+          <LazyImage
+            w={20} h={20}
             onClick={() => (token ? null : navigate("/login"))}
             src={assets.profile_icon}
             className="w-4 sm:w-5 cursor-pointer"
@@ -100,7 +98,8 @@ const Navbar = () => {
 
         {/* Cart */}
         <Link to="/cart" className="relative">
-          <img
+          <LazyImage
+          w={20} h={20}
             src={assets.cart_icon}
             className="w-4 sm:w-5 min-w-4 sm:min-w-5"
             alt="cart_icon"
@@ -111,7 +110,8 @@ const Navbar = () => {
         </Link>
 
         {/* Menu Icon (Mobile) */}
-        <img
+        <LazyImage
+          w={20} h={20}
           onClick={() => setVisible(true)}
           src={assets.menu_icon}
           className="w-4 sm:w-5 cursor-pointer sm:hidden"
@@ -130,7 +130,8 @@ const Navbar = () => {
             onClick={() => setVisible(false)}
             className="flex items-center gap-3 sm:gap-4 p-3 cursor-pointer"
           >
-            <img
+            <LazyImage
+              w={20} h={20}
               src={assets.dropdown_icon}
               className="h-3 sm:h-4 rotate-180"
               alt="dropdown_icon"

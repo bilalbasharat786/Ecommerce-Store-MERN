@@ -4,6 +4,7 @@ import { ShopContext } from "../contexts/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
 import { useNavigate } from "react-router-dom";
+import LazyImage from "../components/LazyImage"
 
 const Product = () => {
   const { productId } = useParams();
@@ -40,24 +41,29 @@ const Product = () => {
         <div className="flex-1 flex flex-col-reverse sm:flex-row gap-4 sm:gap-5">
           {/* Thumbnail images */}
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-auto justify-between sm:justify-start sm:w-[20%] w-full">
-            {productData.image.map((item, index) => (
-              <img
-                key={index}
-                className="w-[22%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer rounded-md hover:opacity-80 transition-all duration-300"
-                src={item}
-                alt="product_image"
-                onClick={() => setImage(item)}
-              />
-            ))}
+         {productData.image.map((item, index) => (
+  <LazyImage
+    key={index}
+    src={item}
+    alt={`Thumbnail ${index}`}
+    w={200}     // thumbnail width
+    h={200}     // thumbnail height
+    className="w-[22%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer rounded-md hover:opacity-80 transition-all duration-300"
+    onClick={() => setImage(item)}
+  />
+))}
+
           </div>
 
           {/* Main Image */}
           <div className="w-full sm:w-[80%]">
-            <img
-              className="w-full h-auto rounded-lg shadow-sm object-contain"
-              src={image}
-              alt={productData.name}
-            />
+          <LazyImage
+  src={image}
+  alt={productData.name}
+  w={800}        // actual image width ke hisaab se
+  h={800}        // actual image height ke hisaab se
+  className="w-full h-auto rounded-lg shadow-sm"
+/>
           </div>
         </div>
 

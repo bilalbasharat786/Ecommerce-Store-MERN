@@ -52,7 +52,7 @@ if (!productData) {
               key={index}
               className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
             >
-              <div className=" flex items-start gap-6">
+              <div className="flex items-start gap-6 min-h-[80px]">
                 <LazyImage
   src={productData.image[0]}
   w={80}
@@ -112,12 +112,13 @@ if (!productData) {
   </button>
 </div>
 
-              <img
-                className="w-4 mr-4 sm:w-5 cursor-pointer"
-                src={assets.bin_icon}
-                alt="bin_icon"
-                onClick={() => updateQuantity(item._id, `${item.size}-${item.color}`, 0)}
-              />
+             <img
+  className="w-4 mr-4 sm:w-5 cursor-pointer min-w-[20px]"
+  src={assets.bin_icon}
+  alt="bin_icon"
+  onClick={() => updateQuantity(item._id, `${item.size}-${item.color}`, 0)}
+/>
+
             </div>
           );
         })}

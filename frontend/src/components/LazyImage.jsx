@@ -1,6 +1,6 @@
 import React from "react";
 
-const LazyImage = ({ src, alt = "", w = 80, h = 80, className = "" }) => {
+const LazyImage = ({ src, alt = "", w = 80, h = 80, className = "", onClick = () => {} }) => {
   return (
     <img
       src={src}

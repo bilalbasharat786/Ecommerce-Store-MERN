@@ -1,6 +1,7 @@
 import React from "react";
 import { assets } from "../assets/frontend_assets/assets";
 import { Link } from "react-router-dom";
+import LazyImage from "./LazyImage";
 
 
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-10 sm:gap-14 my-10 mt-24 text-sm sm:text-base">
         {/* Logo + About */}
         <div>
-          <img src={assets.logo} className="mb-5 w-28 sm:w-36" alt="logo" />
+          <LazyImage src={assets.logo} className="mb-5 w-28 sm:w-36" alt="logo" />
           <p className="w-full md:w-3/4 text-gray-600 text-xs sm:text-sm leading-relaxed">
             Welcome to <span className="font-semibold text-black">Jamal Collection</span> —
             your go-to destination for stylish fashion and premium quality.

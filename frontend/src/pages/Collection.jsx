@@ -3,6 +3,7 @@ import { ShopContext } from "../contexts/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
+import LazyImage from "../components/LazyImage";
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -84,7 +85,8 @@ const Collection = () => {
           className="my-2 text-xl flex items-center cursor-pointer gap-2"
         >
           FILTERS
-          <img
+          <LazyImage
+            w={20} h={20}
             className={`h-3 sm:hidden ${showFilter ? "rotate-90" : ""}`}
             src={assets.dropdown_icon}
             alt="dropdown_icon"
