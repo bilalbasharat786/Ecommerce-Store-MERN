@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
+import LazyImage from "../components/LazyImage";
+
 
 const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
   const { currency } = useContext(ShopContext);
@@ -33,26 +35,26 @@ const finalPrice =
           </div>
         )}
   {/* 🖼️ First image */}
-      <img
+    <LazyImage
   src={image[0]}
-  width={300}
-  height={300}
-  loading="lazy"
-  className="w-full h-48 sm:h-64 object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+  w={300}
+  h={300}
+  className="w-full h-48 sm:h-64 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
   alt={`${name} product`}
 />
 
 
+
         {/* 🖼️ Second image (appears on hover) */}
         {image[1] && (
-          <img
+   <LazyImage
   src={image[1]}
-  width={300}
-  height={300}
-  loading="lazy"
-  className="w-full h-48 sm:h-64 object-cover absolute top-0 left-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+  w={300}
+  h={300}
+  className="w-full h-48 sm:h-64 absolute top-0 left-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
   alt={`${name} hover`}
 />
+
 
         )}
       </div>

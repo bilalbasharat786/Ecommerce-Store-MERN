@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "../components/Title";
 import { assets } from "../assets/frontend_assets/assets";
+import LazyImage from "../components/LazyImage";
 
 const Contact = () => {
   return (
@@ -13,11 +14,14 @@ const Contact = () => {
       {/* Contact Section */}
       <div className="my-10 flex flex-col md:flex-row justify-center items-center gap-10 mb-28">
         {/* Left Image */}
-        <img
-          className="w-full max-w-[500px] rounded-lg shadow-md object-cover"
-          src={assets.contact_img}
-          alt="contact_img"
-        />
+      <LazyImage
+  src={assets.contact_img}
+  width={500}
+  height={500}
+  className="w-full max-w-[500px] rounded-lg shadow-md object-cover"
+  alt="contact_img"
+/>
+
 
         {/* Right Content */}
         <div className="flex flex-col justify-center items-start gap-6 text-center md:text-left">
@@ -26,9 +30,7 @@ const Contact = () => {
             <p className="font-semibold text-lg sm:text-xl text-gray-800">
               Our Store
             </p>
-            <p className="text-sm sm:text-base">
-              
-            </p>
+          
 
             <p className="text-sm sm:text-base">
               Tel: +923105087313 <br /> Email: officialjamalcollection@gmail.com

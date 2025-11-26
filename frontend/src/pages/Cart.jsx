@@ -3,6 +3,8 @@ import { ShopContext } from "../contexts/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/frontend_assets/assets";
 import CartTotal from "../components/CartTotal";
+import LazyImage from "../components/LazyImage";
+
 
 const Cart = () => {
   const { products, currency, cartItems, updateQuantity, navigate } =
@@ -51,13 +53,13 @@ if (!productData) {
               className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
             >
               <div className=" flex items-start gap-6">
-                <img
+                <LazyImage
   src={productData.image[0]}
-  width={80}
-  height={80}
-  loading="lazy"
-  className="w-20 h-20 object-cover"
+  w={80}
+  h={80}
+  className="w-20 h-20"
 />
+
 
                 <div>
                   <p className="text-xs sm:text-lg font-medium">

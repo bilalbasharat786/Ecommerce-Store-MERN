@@ -4,6 +4,8 @@ import axios from "axios";
 import { backendUrl } from "../App.jsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LazyImage from "../components/LazyImage";
+
 
 // ===========================
 // Custom White Round Arrows (Show on Hover)
@@ -90,13 +92,16 @@ const Hero = () => {
         {slides.map((slide) => (
           <div
             key={slide._id}
-            className="relative w-full flex justify-center items-center"
+            className="relative w-full flex justify-center items-center min-h-[300px] sm:min-h-[450px]"
           >
-            <img
-              src={slide.image}
-              alt="slider"
-              className="w-full h-auto max-h-[100vh] object-cover"
-            />
+            <LazyImage
+  src={slide.image}
+  w={1500}
+  h={625}
+  className="w-full h-auto max-h-[100vh] object-cover"
+  alt="slider"
+/>
+
           </div>
         ))}
       </Slider>
