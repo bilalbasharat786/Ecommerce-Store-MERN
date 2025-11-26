@@ -41,14 +41,14 @@ const Product = () => {
         <div className="flex-1 flex flex-col-reverse sm:flex-row gap-4 sm:gap-5">
           {/* Thumbnail images */}
           <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-auto justify-between sm:justify-start sm:w-[20%] w-full">
-         {productData.image.map((item, index) => (
+     {productData.image.map((item, index) => (
   <LazyImage
     key={index}
     src={item}
-    alt={`Thumbnail ${index}`}
-    w={200}     // thumbnail width
-    h={200}     // thumbnail height
+    w={80}
+    h={80}
     className="w-[22%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer rounded-md hover:opacity-80 transition-all duration-300"
+    lazy={true}
     onClick={() => setImage(item)}
   />
 ))}
@@ -57,13 +57,14 @@ const Product = () => {
 
           {/* Main Image */}
           <div className="w-full sm:w-[80%]">
-          <LazyImage
+   <LazyImage
   src={image}
-  alt={productData.name}
-  w={800}        // actual image width ke hisaab se
-  h={800}        // actual image height ke hisaab se
-  className="w-full h-auto rounded-lg shadow-sm"
-/>
+  w={600} // approximate width
+  h={600} // approximate height
+  className="w-full h-auto rounded-lg shadow-sm object-contain"
+  lazy={false} // eager load hero image
+  onClick={() => {}}
+          />
           </div>
         </div>
 

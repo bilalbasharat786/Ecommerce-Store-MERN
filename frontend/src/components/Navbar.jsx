@@ -27,7 +27,13 @@ const Navbar = () => {
     <div className="flex items-center justify-between py-3 sm:py-5 px-3 sm:px-0 font-medium text-xs sm:text-sm md:text-base  min-h-[60px]">
       {/* Logo */}
       <Link to="/">
-       <LazyImage src={assets.logo} alt="forever_logo" w={160} h={40} className="w-24 sm:w-36 md:w-40" />
+       <img
+  src={assets.logo}
+  className="w-24 sm:w-36 md:w-40"
+  alt="forver_logo"
+  loading="eager"
+/>
+
       </Link>
 
       {/* Desktop Menu */}
