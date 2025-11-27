@@ -8,7 +8,7 @@ import WishlistContextProvider from "./contexts/WishlistContext.jsx";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
    <ShopContextProvider>
-  <WishlistContextProvider backendUrl={backendUrl} token={token}>
+  <WishlistContextProvider>
     <App />
   </WishlistContextProvider>
 </ShopContextProvider>
