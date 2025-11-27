@@ -52,7 +52,7 @@ const { backendUrl, token } = useContext(ShopContext);
   // 🟡 Get Wishlist (Auto Load on Login)
   const getWishlist = async () => {
     try {
-      const response = await axios.get(backendUrl + "/api/wishlist/get", {
+      const response = await axios.get(backendUrl + "/user/wishlist/get", {
         headers: { token },
       });
 
