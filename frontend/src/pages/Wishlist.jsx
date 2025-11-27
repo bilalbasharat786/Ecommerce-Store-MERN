@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 import { FaTrash, FaCartPlus } from "react-icons/fa";
+import { backendUrl } from "../contexts/ShopContext";
+
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
@@ -12,7 +14,7 @@ const Wishlist = () => {
   // 🟦 Fetch Wishlist from Backend
   const fetchWishlist = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/wishlist", {
+      const response = await fetch(`${backendUrl}/api/wishlist`, {
         credentials: "include",
       });
 
@@ -29,7 +31,7 @@ const Wishlist = () => {
   const removeItem = async (productId) => {
     try {
       const response = await fetch(
-        `http://localhost:4000/api/wishlist/remove/${productId}`,
+        `${backendUrl}/api/wishlist/remove/${productId}`,
         {
           method: "DELETE",
           credentials: "include",
