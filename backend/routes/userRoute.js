@@ -5,7 +5,7 @@ import { loginUser, registerUser, adminLogin, googleLogin } from "../controllers
 import { getWishlist, addToWishlist, removeFromWishlist } from "../controllers/wishlistController.js";
 
 // ⭐ Auth middleware (name aapka hoga authUser ya verifyUser)
-import authUser from "../middleware/auth.js";
+import authUser from "../middlewares/auth.js";
 
 const userRouter = express.Router();
 
