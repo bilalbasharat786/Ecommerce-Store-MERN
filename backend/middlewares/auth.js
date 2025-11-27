@@ -12,7 +12,13 @@ const authUser = async (req, res, next) => {
 
   try {
     const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
-    req.body.userId = tokenDecode.id;
+
+    // ⭐ OLD
+    // req.body.userId = tokenDecode.id;
+
+    // ⭐ NEW
+    req.user = { id: tokenDecode.id };
+
     next();
   } catch (error) {
     console.log(error);
@@ -24,3 +30,4 @@ const authUser = async (req, res, next) => {
 };
 
 export default authUser;
+
