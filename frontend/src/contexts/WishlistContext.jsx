@@ -15,7 +15,7 @@ const { backendUrl, token } = useContext(ShopContext);
   const addToWishlist = async (productId) => {
     try {
       const response = await axios.post(
-        backendUrl + "/api/wishlist/add",
+        backendUrl + "/user/wishlist/add",
         { productId },
         { headers: { token } }
       );
@@ -34,7 +34,7 @@ const { backendUrl, token } = useContext(ShopContext);
   const removeFromWishlist = async (productId) => {
     try {
       const response = await axios.post(
-        backendUrl + "/api/wishlist/remove",
+        backendUrl + "/user/wishlist/remove",
         { productId },
         { headers: { token } }
       );
