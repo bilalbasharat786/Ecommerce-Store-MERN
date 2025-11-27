@@ -2,19 +2,18 @@ import React, { useEffect, useState, useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 import { FaTrash, FaCartPlus } from "react-icons/fa";
-import { backendUrl } from "../contexts/ShopContext";
-
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { addToCart } = useContext(ShopContext);
+  // 🎯 Get backendUrl + addToCart from ShopContext
+  const { backendUrl, addToCart } = useContext(ShopContext);
 
   // 🟦 Fetch Wishlist from Backend
   const fetchWishlist = async () => {
     try {
-      const response = await fetch(`${backendUrl}/api/wishlist`, {
+      const response = await fetch(`${backendUrl}/api/wishlist/get`, {
         credentials: "include",
       });
 
@@ -142,3 +141,4 @@ const Wishlist = () => {
 };
 
 export default Wishlist;
+

@@ -8,7 +8,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = ({ children }) => {
   const currency = "PKR ";
   const deliveryFee = 100;
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [search, setSearch] = useState("");
   const [discountPrice, setDiscountPrice] = useState(0);
   const [showSearch, setShowSearch] = useState(false);
