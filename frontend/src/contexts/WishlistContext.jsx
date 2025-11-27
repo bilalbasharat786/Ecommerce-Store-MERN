@@ -1,11 +1,15 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { backendUrl, ShopContext } from "./ShopContext";
+
 
 export const WishlistContext = createContext();
 
-const WishlistContextProvider = ({ children, backendUrl, token }) => {
+const WishlistContextProvider = ({ children }) => {
   const [wishlist, setWishlist] = useState([]);
+const { token } = useContext(ShopContext);
+
 
   // 🟢 Add Item to Wishlist
   const addToWishlist = async (productId) => {
