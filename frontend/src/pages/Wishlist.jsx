@@ -3,6 +3,7 @@ import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 import { FaTrash, FaCartPlus } from "react-icons/fa";
 
+
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
   const [loading, setLoading] = useState(true);

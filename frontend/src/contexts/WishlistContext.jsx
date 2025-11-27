@@ -6,9 +6,9 @@ import { ShopContext } from "./ShopContext";
 
 export const WishlistContext = createContext();
 
-const WishlistContextProvider = ({ children }) => {
+const WishlistContextProvider = ({ children, }) => {
   const [wishlist, setWishlist] = useState([]);
-const { token } = useContext(ShopContext);
+const { backendUrl, token } = useContext(ShopContext);
 
 
   // 🟢 Add Item to Wishlist
