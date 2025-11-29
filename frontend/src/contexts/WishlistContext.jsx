@@ -12,57 +12,58 @@ const { backendUrl, token } = useContext(ShopContext);
 
 
   // 🟢 Add Item to Wishlist
-  const addToWishlist = async (productId) => {
-    try {
-      const response = await axios.post(
-        backendUrl + "/user/wishlist/add",
-        { productId },
-        { headers: { token } }
-      );
+const addToWishlist = async (productId) => {
+  try {
+    const response = await axios.post(
+      backendUrl + "/user/wishlist",
+      { productId },
+      { headers: { token } }
+    );
 
-      if (response.data.success) {
-        setWishlist(response.data.wishlist);
-        toast.success("Added to wishlist");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+    if (response.data.success) {
+      setWishlist(response.data.wishlist);
+      toast.success("Added to wishlist");
     }
-  };
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+};
 
-  // 🔴 Remove Item
-  const removeFromWishlist = async (productId) => {
-    try {
-      const response = await axios.post(
-        backendUrl + "/user/wishlist/remove",
-        { productId },
-        { headers: { token } }
-      );
 
-      if (response.data.success) {
-        setWishlist(response.data.wishlist);
-        toast.info("Removed from wishlist");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+const removeFromWishlist = async (productId) => {
+  try {
+    const response = await axios.delete(
+      backendUrl + "/user/wishlist/" + productId,
+      { headers: { token } }
+    );
+
+    if (response.data.success) {
+      setWishlist(response.data.wishlist);
+      toast.info("Removed from wishlist");
     }
-  };
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  }
+};
 
-  // 🟡 Get Wishlist (Auto Load on Login)
+
   const getWishlist = async () => {
-    try {
-      const response = await axios.get(backendUrl + "/user/wishlist/get", {
-        headers: { token },
-      });
+  try {
+    const response = await axios.get(
+      backendUrl + "/user/wishlist",
+      { headers: { token } }
+    );
 
-      if (response.data.success) {
-        setWishlist(response.data.wishlist);
-      }
-    } catch (error) {
-      console.log(error);
+    if (response.data.success) {
+      setWishlist(response.data.wishlist);
     }
-  };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
   useEffect(() => {
     if (token) getWishlist();
