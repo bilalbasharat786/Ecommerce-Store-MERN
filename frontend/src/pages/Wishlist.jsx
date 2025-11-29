@@ -1,68 +1,15 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
+import { WishlistContext } from "../contexts/WishlistContext";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 import { FaTrash, FaCartPlus } from "react-icons/fa";
 
-
 const Wishlist = () => {
-  const [wishlist, setWishlist] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // 🎯 Get backendUrl + addToCart from ShopContext
-  const { backendUrl, addToCart } = useContext(ShopContext);
-
-  // 🟦 Fetch Wishlist from Backend
-  const fetchWishlist = async () => {
-    try {
-      const response = await fetch(`${backendUrl}/api/wishlist/get`, {
-        credentials: "include",
-      });
-
-      const data = await response.json();
-      setWishlist(data.wishlist || []);
-      setLoading(false);
-    } catch (err) {
-      console.log("Wishlist fetch error:", err);
-      setLoading(false);
-    }
-  };
-
-  // 🟥 Remove Item
-  const removeItem = async (productId) => {
-    try {
-      const response = await fetch(
-        `${backendUrl}/api/wishlist/remove/${productId}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        }
-      );
-
-      const data = await response.json();
-
-      if (data.success) {
-        setWishlist((prev) => prev.filter((item) => item.id !== productId));
-      }
-    } catch (err) {
-      console.log("Remove error:", err);
-    }
-  };
-
-  useEffect(() => {
-    fetchWishlist();
-  }, []);
-
-  // 🟡 Loading Screen
-  if (loading) {
-    return (
-      <div className="py-20 text-center text-gray-500 text-xl">
-        Loading your wishlist...
-      </div>
-    );
-  }
+  const { wishlist, removeFromWishlist } = useContext(WishlistContext);
+  const { addToCart } = useContext(ShopContext);
 
   // 🔴 Empty Wishlist
-  if (wishlist.length === 0) {
+  if (!wishlist || wishlist.length === 0) {
     return (
       <div className="py-20 text-center flex flex-col items-center gap-4">
         <img
@@ -92,14 +39,14 @@ const Wishlist = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
         {wishlist.map((item) => (
           <div
-            key={item.id}
+            key={item.product._id}
             className="bg-white shadow-md rounded-xl overflow-hidden group hover:shadow-lg transition-all"
           >
             {/* Product Image */}
-            <Link to={`/product/${item.id}`}>
+            <Link to={`/product/${item.product._id}`}>
               <img
-                src={item.image?.[0]}
-                alt={item.title}
+                src={item.product.image[0]}
+                alt={item.product.title}
                 className="w-full h-44 object-cover group-hover:scale-105 transition"
               />
             </Link>
@@ -107,18 +54,18 @@ const Wishlist = () => {
             {/* Product Details */}
             <div className="p-4">
               <h3 className="text-sm sm:text-lg font-semibold truncate">
-                {item.title}
+                {item.product.title}
               </h3>
 
               <p className="text-gray-600 mt-1">
-                PKR <span className="font-bold">{item.price}</span>
+                PKR <span className="font-bold">{item.product.price}</span>
               </p>
 
               {/* Buttons */}
               <div className="flex justify-between items-center mt-4">
                 {/* Add to Cart */}
                 <button
-                  onClick={() => addToCart(item.id)}
+                  onClick={() => addToCart(item.product._id)}
                   className="flex items-center gap-1 bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-900 transition text-sm"
                 >
                   <FaCartPlus /> Add
@@ -126,7 +73,7 @@ const Wishlist = () => {
 
                 {/* Delete */}
                 <button
-                  onClick={() => removeItem(item.id)}
+                  onClick={() => removeFromWishlist(item.product._id)}
                   className="text-red-600 hover:text-red-800 text-xl"
                   title="Remove"
                 >
@@ -142,4 +89,5 @@ const Wishlist = () => {
 };
 
 export default Wishlist;
+
 
