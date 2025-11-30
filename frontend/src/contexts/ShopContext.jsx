@@ -114,14 +114,12 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const getProductsData = async () => {
   try {
-    const response = await axios.get(backendUrl + "/api/product/list");
-    console.log("🛰️ API Raw Response:", response.data); // ✅ step 1
+    const response = await axios.get(backendUrl + "/api/product/list");// ✅ step 1
 
-    if (response.data.success) {
-      console.log("📦 Products fetched from backend:", response.data.products); // ✅ step 2
+    if (response.data.success) {// ✅ step 2
       // ek example product print karo
       if (response.data.products.length > 0) {
-        console.log("💸 Sample Product Discount Price:", response.data.products[0].discountPrice);
+        console.log("", response.data.products[0].discountPrice);
       }
 
       setProducts(response.data.products);
@@ -163,12 +161,11 @@ const getProductsData = async () => {
     if (token) {
       await getUserCart(token);
     }
-    console.log("🧠 Products in state after fetch:", products);
+    console.log("", products);
   };
   loadData();
 }, [token]);
 
-console.log("🧩 ShopContext final products value:", products);
   const value = {
     products,
     currency,

@@ -8,7 +8,7 @@ const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
   const { currency } = useContext(ShopContext);
 
 
-console.log("💸 Product Discount Price:", discountPrice ?? "❌ Missing");
+console.log("", discountPrice ?? "❌ Missing");
 
 
 const finalPrice =

@@ -5,6 +5,9 @@ import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
 import { useNavigate } from "react-router-dom";
 import LazyImage from "../components/LazyImage"
+import axios from "axios";
+import { backendUrl } from "../App";
+
 
 
 const Product = () => {
@@ -18,6 +21,29 @@ const Product = () => {
 
 
 
+const addToWishlist = async () => {
+  console.log("📌 Adding to wishlist... Product:", productData._id);
+
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(
+      `${backendUrl}/api/wishlist/add`,
+      { productId: productData._id },
+      { headers: { token } }
+    );
+
+    console.log("📌 Wishlist Add Response:", response.data);
+
+    if (response.data.success) {
+      alert("Added to Wishlist ❤️");
+    } else {
+      alert(response.data.message);
+    }
+  } catch (error) {
+    console.log("❌ Wishlist Add Error:", error);
+  }
+};
 
   const fetchProductData = async () => {
     products.map((item) => {
@@ -140,6 +166,12 @@ const Product = () => {
               ))}
             </div>
           </div>
+<button
+  onClick={addToWishlist}
+  className="mt-3 bg-red-500 text-white px-6 sm:px-8 py-3 text-sm sm:text-base border border-transparent hover:bg-white hover:text-red-500 hover:border-red-500 transition-all duration-500 rounded-md"
+>
+  ❤️ ADD TO WISHLIST
+</button>
 
           {/* Add to Cart */}
          <button

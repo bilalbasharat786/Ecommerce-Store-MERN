@@ -96,6 +96,15 @@ const Navbar = () => {
             </div>
           )}
         </div>
+{/* Wishlist */}
+<Link to="/wishlist">
+  <img
+    onClick={() => console.log("Wishlist icon clicked")}
+    src={assets.wishlist_icon ? assets.wishlist_icon : assets.favorite_icon}
+    className="w-4 sm:w-5 cursor-pointer"
+    alt="wishlist_icon"
+  />
+</Link>
 
         {/* Cart */}
         <Link to="/cart" className="relative">
@@ -165,6 +174,14 @@ const Navbar = () => {
           >
             CONTACT
           </NavLink>
+          <NavLink
+  onClick={() => setVisible(false)}
+  className="py-2 pl-4 sm:pl-6 border text-xs sm:text-sm"
+  to="/wishlist"
+>
+  WISHLIST ❤️
+</NavLink>
+
         </div>
       </div>
     </div>
