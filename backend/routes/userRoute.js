@@ -16,7 +16,10 @@ userRouter.post("/admin", adminLogin);
 // ⭐ NEW: Google Login Route
 userRouter.post("/google-login", googleLogin);
 
-
+// ⭐ WISHLIST ROUTES
+userRouter.get("/wishlist", authUser, getWishlist);
+userRouter.post("/wishlist", authUser, addToWishlist);
+userRouter.delete("/wishlist/:productId", authUser, removeFromWishlist);
 
 export default userRouter;
 
