@@ -5,14 +5,12 @@ import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
 import { useNavigate } from "react-router-dom";
 import LazyImage from "../components/LazyImage"
-import { WishlistContext } from "../contexts/WishlistContext";
 
 
 const Product = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { products, currency, addToCart } = useContext(ShopContext);
-  const { addToWishlist, wishlist } = useContext(WishlistContext);
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
