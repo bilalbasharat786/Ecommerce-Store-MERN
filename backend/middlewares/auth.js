@@ -23,7 +23,8 @@ const authUser = async (req, res, next) => {
     console.log("✅ [authUser] Token Decoded:", tokenDecode);
 
     // ⭐ Your structure:
-    req.user = { id: tokenDecode.id };
+    req.userId = tokenDecode.id; // instead of req.user = { id: tokenDecode.id }
+
 
     console.log("👤 [authUser] User attached to req:", req.user);
 
