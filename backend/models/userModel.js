@@ -10,17 +10,7 @@ const userSchema = new mongoose.Schema(
 
     cartData: { type: Object, default: {} },
 
-    // ⭐ WISHLIST FIELD (NEW)
-    wishlist: {
-      type: [
-        {
-          product: { type: mongoose.Schema.Types.ObjectId, ref: "product" },
-          size: { type: String }, // optional
-          addedAt: { type: Date, default: Date.now }
-        }
-      ],
-      default: []
-    }
+   
   },
   { minimize: false }
 );

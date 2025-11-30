@@ -110,20 +110,6 @@ const Navbar = () => {
             {getCartCount()}
           </p>
         </Link>
-        {/* Wishlist */}
-{/* Wishlist */}
-<Link to="/wishlist" className="relative">
-  <img
-    src={assets.wishlist_icon}
-    className="w-4 sm:w-5 min-w-4 sm:min-w-5"
-    alt="wishlist_icon"
-  />
-  {wishlist.length > 0 && (
-    <p className="absolute right-[-4px] bottom-[-4px] w-3 sm:w-4 text-center leading-3 sm:leading-4 bg-black text-white aspect-square rounded-full text-[7px] sm:text-[8px]">
-      {wishlist.length}
-    </p>
-  )}
-</Link>
 
 
         {/* Menu Icon (Mobile) */}

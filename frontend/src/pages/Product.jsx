@@ -142,18 +142,6 @@ const Product = () => {
               ))}
             </div>
           </div>
-              {/* Wishlist Button */}
-<button
-  onClick={() => addToWishlist(productData._id)}
-  className="mt-3 flex items-center gap-2 text-gray-700 hover:text-red-500 transition-all"
->
-  <img 
-    src={assets.wishlist_icon}
-    alt="wishlist"
-    className="w-5"
-  />
-  <span className="text-sm">Add to Wishlist</span>
-</button>
 
           {/* Add to Cart */}
          <button
