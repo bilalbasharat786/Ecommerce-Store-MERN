@@ -10,7 +10,6 @@ import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Navbar from "./components/Navbar";
 import Orders from "./pages/Orders";
-import Wishlist from "./pages/Wishlist";
 import Footer from "./components/Footer";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import TermsConditions from "./components/TermsConditions";
@@ -38,7 +37,6 @@ const App = () => {
         <Route path="/product/:productId" element={<Product />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/place-order" element={<PlaceOrder />} />
         <Route path="/shipping-policy" element={<ShippingPolicy />} />
         <Route path="/return-refund-policy" element={<ReturnRefundPolicy />} />
