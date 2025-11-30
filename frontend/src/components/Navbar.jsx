@@ -3,12 +3,10 @@ import { assets } from "../assets/frontend_assets/assets";
 import { NavLink, Link } from "react-router-dom";
 import { ShopContext } from "../contexts/ShopContext";
 import LazyImage from "./LazyImage";
-import { WishlistContext } from "../contexts/WishlistContext";
 
 
 
 const Navbar = () => {
-  const { wishlist } = useContext(WishlistContext);
   const [visible, setVisible] = useState(false);
   const {
     setShowSearch,
