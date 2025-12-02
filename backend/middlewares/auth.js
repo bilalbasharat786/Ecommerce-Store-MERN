@@ -6,11 +6,14 @@ const authUser = async (req, res, next) => {
   console.log("➡️ [authUser] Checking token in headers...");
   console.log("📨 Headers Received:", req.headers);
 
-  const { token } = req.headers;
+  const token =
+    req.headers.token ||
+    req.headers.authorization?.replace("Bearer ", "") ||
+    req.headers.Authorization?.replace("Bearer ", "");
 
   if (!token) {
     console.log("❌ [authUser] No token found in request headers");
-    return res.json({
+    return res.status(401).json({
       success: false,
       message: "Not Authorized - Token Missing",
     });
@@ -19,25 +22,15 @@ const authUser = async (req, res, next) => {
   try {
     console.log("🔐 [authUser] Verifying Token...");
     const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
+    req.userId = tokenDecode.id;
 
-    console.log("✅ [authUser] Token Decoded:", tokenDecode);
-
-    // ⭐ Your structure:
-    req.userId = tokenDecode.id; // instead of req.user = { id: tokenDecode.id }
-
-
-    console.log("👤 [authUser] User attached to req:", req.user);
-
+    console.log("👤 [authUser] User ID:", req.userId);
     next();
   } catch (error) {
     console.log("🔥 [authUser ERROR]", error);
-    res.json({
+    res.status(401).json({
       success: false,
-      message: error.message,
+      message: "Invalid Token",
     });
   }
 };
-
-export default authUser;
-
-
