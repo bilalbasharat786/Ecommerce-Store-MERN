@@ -36,7 +36,12 @@ const WishlistContextProvider = ({ children, backendUrl, token }) => {
       }
     } catch (error) {
       console.log("🔥 [addToWishlist ERROR]", error);
-      toast.error(error.response?.data?.message || "Error adding wishlist");
+      if (error.response?.status === 409) {
+    toast.info("Already in wishlist");
+} else {
+    toast.error(error.response?.data?.message || "Error adding wishlist");
+}
+
     }
   };
 
