@@ -1,38 +1,44 @@
 import jwt from "jsonwebtoken";
 
-console.log("📌 [authUser] Middleware Loaded");
-
 const authUser = async (req, res, next) => {
-  console.log("➡️ [authUser] Checking token in headers...");
-  console.log("📨 Headers Received:", req.headers);
+  console.log("➡️ [authUser] Checking token...");
 
-  const token =
-    req.headers.token ||
-    req.headers.authorization?.replace("Bearer ", "") ||
-    req.headers.Authorization?.replace("Bearer ", "");
+  const rawAuth = req.headers.authorization; // ALWAYS lowercase
+  const rawToken = req.headers.token;
+
+  console.log("📨 Headers:", req.headers);
+
+  let token = null;
+
+  // If Authorization header exists
+  if (rawAuth && rawAuth.startsWith("Bearer ")) {
+    token = rawAuth.split(" ")[1];
+  }
+
+  // Fallback for old method
+  if (!token && rawToken) {
+    token = rawToken;
+  }
 
   if (!token) {
-    console.log("❌ [authUser] No token found in request headers");
-    return res.status(401).json({
-      success: false,
-      message: "Not Authorized - Token Missing",
-    });
+    console.log("❌ No token found");
+    return res.status(401).json({ success: false, message: "Token Missing" });
   }
 
   try {
-    console.log("🔐 [authUser] Verifying Token...");
-    const tokenDecode = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = tokenDecode.id;
+    console.log("🔐 Verifying token...");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log("👤 [authUser] User ID:", req.userId);
+    console.log("👤 User ID:", decoded.id);
+
+    req.userId = decoded.id;
+
     next();
   } catch (error) {
-    console.log("🔥 [authUser ERROR]", error);
-    res.status(401).json({
-      success: false,
-      message: "Invalid Token",
-    });
+    console.log("🔥 Token Error:", error);
+    return res.status(401).json({ success: false, message: "Invalid Token" });
   }
 };
 
 export default authUser;
+

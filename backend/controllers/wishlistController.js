@@ -40,19 +40,27 @@ export const addToWishlist = async (req, res) => {
 };
 
 export const getWishlist = async (req, res) => {
-  console.log("➡️ [getWishlist] User ID:", req.userId);
+  console.log("🔥 [getWishlist] START");
+
+  console.log("➡️ req.userId:", req.userId);
+
+  if (!req.userId) {
+    console.log("❌ ERROR: req.userId missing");
+    return res.status(401).json({ message: "User not authorized" });
+  }
 
   try {
     const list = await Wishlist.find({ userId: req.userId }).populate("productId");
 
-    console.log("📦 [getWishlist] Wishlist Data:", list);
+    console.log("📦 Wishlist Found:", list);
 
-    res.status(200).json(list);
+    return res.json(list);
   } catch (error) {
     console.log("🔥 [getWishlist ERROR]", error);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ message: "Server Error", error });
   }
 };
+
 
 export const removeFromWishlist = async (req, res) => {
   console.log("➡️ [removeFromWishlist] Params:", req.params);
