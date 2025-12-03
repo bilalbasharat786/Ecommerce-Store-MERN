@@ -21,12 +21,12 @@ const WishlistContextProvider = ({ children, backendUrl, token }) => {
     }
 
     try {
-      const response = await axios.post(
-        backendUrl + "/api/wishlist/add",
-        { productId },
-        {headers: { Authorization: `Bearer ${token}` }
-  }
-      );
+    const response = await axios.post(
+  backendUrl + "/api/wishlist/add",
+  { productId },
+  { headers: { token } }
+);
+
 
       console.log("✅ [addToWishlist] Response:", response.data);
 
@@ -54,9 +54,10 @@ const WishlistContextProvider = ({ children, backendUrl, token }) => {
     if (!token) return;
 
     try {
-      const response = await axios.get(backendUrl + "/api/wishlist/get", {
-  headers: { Authorization: `Bearer ${token}` },
-});
+     const response = await axios.get(
+  backendUrl + "/api/wishlist/get",
+  { headers: { token } }
+);
 
 
       console.log("📦 [getWishlist] Response:", response.data);
@@ -74,10 +75,11 @@ const WishlistContextProvider = ({ children, backendUrl, token }) => {
     console.log("➡️ [removeFromWishlist] productId:", productId);
 
     try {
-      const response = await axios.delete(
+  await axios.delete(
   backendUrl + "/api/wishlist/remove/" + productId,
-  { headers: { Authorization: `Bearer ${token}` } }
+  { headers: { token } }
 );
+
 
 
       console.log("🗑 [removeFromWishlist] Response:", response.data);
