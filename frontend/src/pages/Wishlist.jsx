@@ -11,7 +11,7 @@ const Wishlist = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/wishlist`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/wishlist/get`,
         {
           headers: { token },
         }
@@ -33,7 +33,7 @@ const Wishlist = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/api/wishlist/${productId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/wishlist/remove/${productId}`,
         { headers: { token } }
       );
 
