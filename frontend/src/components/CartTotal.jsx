@@ -14,8 +14,7 @@ const CartTotal = () => {
         <div className="flex justify-between">
           <p>Subtotal</p>
           <p>
-            {currency}
-            {getCartAmount()}.00
+            {currency}{getCartAmount().toLocaleString("en-PK")}
           </p>
         </div>
         <hr />
@@ -23,8 +22,7 @@ const CartTotal = () => {
           <div className="flex justify-between">
             <p>Shipping Fee</p>
             <p>
-              {currency}
-              {deliveryFee}.00
+             {currency}{deliveryFee.toLocaleString("en-PK")}
             </p>
           </div>
         </div>

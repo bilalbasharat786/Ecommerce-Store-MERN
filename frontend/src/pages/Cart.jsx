@@ -63,10 +63,25 @@ if (!productData) {
                     {productData.name}
                   </p>
                   <div className="flex items-center gap-5 mt-2">
-                    <p>
-                      {currency}
-                      {productData.price}
-                    </p>
+                    <p className="flex items-center gap-2">
+  {/* Discount Price Logic */}
+  {productData.discountPrice > 0 &&
+  productData.discountPrice < productData.price ? (
+    <>
+      <span className="font-medium">
+        {currency}{Number(productData.discountPrice).toLocaleString("en-PK")}
+      </span>
+      <span className="line-through text-gray-500 text-sm">
+        {currency}{Number(productData.price).toLocaleString("en-PK")}
+      </span>
+    </>
+  ) : (
+    <span className="font-medium">
+      {currency}{Number(productData.price).toLocaleString("en-PK")}
+    </span>
+  )}
+</p>
+
                     <p className="px-2 sm:px-3 sm:py-1 border bg-slate-50">
                       {item.size}
                     </p>
