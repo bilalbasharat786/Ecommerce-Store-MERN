@@ -98,24 +98,18 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
   };
 
   const getCartAmount = () => {
-  let totalAmount = 0;
-for (const items in cartItems) {
-  for (const item in cartItems[items]) {
-    if (cartItems[items][item] > 0) {
-      let product = products.find((p) => p._id === items);
-
-      const finalPrice =
-        product.discountPrice > 0 &&
-        product.discountPrice < product.price
-          ? product.discountPrice
-          : product.price;
-
-      totalAmount += finalPrice * cartItems[items][item];
+    let totalAmount = 0;
+    for (const items in cartItems) {
+      let itemInfo = products.find((product) => product._id === items);
+      for (const item in cartItems[items]) {
+        if (cartItems[items][item] > 0) {
+          try {
+            totalAmount += itemInfo.price * cartItems[items][item];
+          } catch (error) {}
+        }
+      }
     }
-  }
-}
-return totalAmount;
-
+    return totalAmount;
   };
 
 const getProductsData = async () => {

@@ -37,7 +37,7 @@ const placeOrder = async (req, res) => {
         color: color,
       };
     });
-
+    
     const orderData = {
       userId,
       items: processedItems, // ⭐ Updated

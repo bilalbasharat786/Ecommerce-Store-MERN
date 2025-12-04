@@ -73,7 +73,6 @@ const PlaceOrder = () => {
       }
 
       let orderData = {
-        userId: token,
         address: formData,
         items: orderItems,
         amount: getCartAmount() + deliveryFee,
