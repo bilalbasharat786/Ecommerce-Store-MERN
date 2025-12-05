@@ -8,12 +8,7 @@ import WishlistContextProvider from "./contexts/WishlistContext.jsx";
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
   <ShopContextProvider>
-  <WishlistContextProvider
-    backendUrl={import.meta.env.VITE_BACKEND_URL}
-    token={localStorage.getItem("token")}
-  >
-    <App />
-  </WishlistContextProvider>
+  <App />
 </ShopContextProvider>
 
 
