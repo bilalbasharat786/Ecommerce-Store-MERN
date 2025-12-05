@@ -21,29 +21,7 @@ const Product = () => {
 
 
 
-const addToWishlist = async () => {
-  console.log("📌 Adding to wishlist... Product:", productData._id);
 
-  try {
-    const token = localStorage.getItem("token");
-
-    const response = await axios.post(
-      `${backendUrl}/api/wishlist/add`,
-      { productId: productData._id },
-      { headers: { token } }
-    );
-
-    console.log("📌 Wishlist Add Response:", response.data);
-
-    if (response.data.success) {
-      alert("Added to Wishlist ❤️");
-    } else {
-      alert(response.data.message);
-    }
-  } catch (error) {
-    console.log("❌ Wishlist Add Error:", error);
-  }
-};
 
   const fetchProductData = async () => {
     products.map((item) => {
