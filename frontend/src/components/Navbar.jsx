@@ -167,13 +167,7 @@ const Navbar = () => {
           >
             CONTACT
           </NavLink>
-          <NavLink
-  onClick={() => setVisible(false)}
-  className="py-2 pl-4 sm:pl-6 border text-xs sm:text-sm"
-  to="/wishlist"
->
-  WISHLIST ❤️
-</NavLink>
+          
 
         </div>
       </div>
