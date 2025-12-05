@@ -144,12 +144,7 @@ const Product = () => {
               ))}
             </div>
           </div>
-<button
-  onClick={addToWishlist}
-  className="mt-3 bg-red-500 text-white px-6 sm:px-8 py-3 text-sm sm:text-base border border-transparent hover:bg-white hover:text-red-500 hover:border-red-500 transition-all duration-500 rounded-md"
->
-  ❤️ ADD TO WISHLIST
-</button>
+
 
           {/* Add to Cart */}
          <button
