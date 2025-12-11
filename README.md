@@ -79,7 +79,6 @@ The user-facing frontend allows customers to browse products, manage their cart,
 - CORS (for Cross-Origin Resource Sharing)
 - Dotenv (for environment variables)
 - Stripe (payment gateway integration)
-- Razorpay (payment gateway integration - *Note: Implementation is present but not fully utilized in the provided code*)
 
 ## Setup Instructions
 
