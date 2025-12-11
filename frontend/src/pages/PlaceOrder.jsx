@@ -224,7 +224,7 @@ const PlaceOrder = () => {
           <Title text1={"PAYMENT"} text2={"METHOD"} />
           {/* Payment method selection */}
           <div className="flex gap-3 flex-col lg:flex-row">
-            {/* <div
+            <div
               onClick={() => setMethod("stripe")}
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
             >
@@ -234,7 +234,7 @@ const PlaceOrder = () => {
                 }`}
               ></p>
               <img className="h-5 mx-4" src={assets.stripe_logo} />
-            </div> */}
+            </div>
             
             <div
               onClick={() => setMethod("cod")}
