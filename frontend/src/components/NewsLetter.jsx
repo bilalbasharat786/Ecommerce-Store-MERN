@@ -12,10 +12,7 @@ const NewsLetter = () => {
         Subscribe now &amp; get 20% off
       </p>
 
-      {/* Description */}
-      <p className="text-gray-400 mt-2 text-xs sm:text-sm md:text-base leading-snug">
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-      </p>
+    
 
       {/* Form */}
       <form
