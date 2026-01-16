@@ -101,7 +101,6 @@ const Hero = () => {
             w={1500}
             h={625}
             alt="slider"
-            priority={true}
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
