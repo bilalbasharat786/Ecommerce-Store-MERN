@@ -1,32 +1,17 @@
 import React from "react";
 
-const LazyImage = ({
-  src,
-  alt = "",
-  w = 80,
-  h = 80,
-  className = "",
-  priority = false, // 🔥 NEW
-  onClick = () => {},
-}) => {
+const LazyImage = ({ src, alt = "", w = 80, h = 80, className = "", onClick = () => {} }) => {
   return (
     <img
       src={src}
       alt={alt}
       width={w}
       height={h}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
-      fetchpriority={priority ? "high" : "low"}
+      loading="lazy"
       className={className}
-      style={{
-        objectFit: "cover",
-        backgroundColor: "#f3f4f6", // skeleton effect
-      }}
-      onClick={onClick}
+      style={{ objectFit: "cover" }}
     />
   );
 };
 
 export default LazyImage;
-
