@@ -88,25 +88,23 @@ const Hero = () => {
         `}
       </style>
 
-    {slides.length === 0 && (
-    <div className="w-full aspect-[12/5] bg-gray-200 animate-pulse" />
-  )}
+      <Slider {...settings}>
+        {slides.map((slide) => (
+          <div
+            key={slide._id}
+            className="relative w-full flex justify-center items-center min-h-[300px] sm:min-h-[450px]"
+          >
+            <LazyImage
+  src={slide.image}
+  w={1500}
+  h={625}
+  className="w-full h-auto max-h-[100vh] object-cover"
+  alt="slider"
+/>
 
-  {slides.length > 0 && (
-    <Slider {...settings}>
-      {slides.map((slide) => (
-        <div key={slide._id} className="relative w-full aspect-[12/5]">
-          <LazyImage
-            src={slide.image}
-            w={1500}
-            h={625}
-            alt="slider"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </div>
-      ))}
-    </Slider>
-    )}
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };
