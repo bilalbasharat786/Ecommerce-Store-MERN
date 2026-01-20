@@ -1,53 +1,22 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Collection from "./pages/Collection";
-// import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Product from "./pages/Product";
-import Cart from "./pages/Cart";
-import Login from "./pages/Login";
-import PlaceOrder from "./pages/PlaceOrder";
 import Navbar from "./components/Navbar";
-import Orders from "./pages/Orders";
-import Footer from "./components/Footer";
-import PrivacyPolicy from "./components/PrivacyPolicy";
-import TermsConditions from "./components/TermsConditions";
-import ShippingPolicy from "./components/Shippingpolicy";
-import ReturnRefundPolicy from "./components/ReturnRefundPolicy";
-import SearchBar from "./components/SearchBar";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/ReactToastify.css";
-import Verify from "./pages/Verify";
+import Hero from "./components/Hero";
+import Features from "./components/Features";
+import AboutUs from "./components/AboutUs";
+import Team from "./components/Team";
+import Gallery from "./components/Gallery";
 
-
-export const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
-const App = () => {
+function App() {
   return (
-    <div className="px-2 sm:px-[4vw] md:px-[6vw] lg:px-[8vw]">
-      <ToastContainer />
+    <>
       <Navbar />
-      <SearchBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/collection" element={<Collection />} />
-        {/* <Route path="/about" element={<About />} /> */}
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/product/:productId" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/place-order" element={<PlaceOrder />} />
-        <Route path="/shipping-policy" element={<ShippingPolicy />} />
-        <Route path="/return-refund-policy" element={<ReturnRefundPolicy />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-and-conditions" element={<TermsConditions />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/verify" element={<Verify />} />
-      </Routes>
-      <Footer />
-    </div>
+      <Hero />
+      <Features />
+      <AboutUs />
+      <Team />
+      <Gallery />
+    </>
   );
-};
+}
 
 export default App;
+

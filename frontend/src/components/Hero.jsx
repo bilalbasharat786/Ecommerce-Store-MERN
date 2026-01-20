@@ -1,129 +1,38 @@
-import React, { useEffect, useState } from "react";
-import Slider from "react-slick";
-import axios from "axios";
-import { backendUrl } from "../App.jsx";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import LazyImage from "../components/LazyImage";
-
-
-// ===========================
-// Custom White Round Arrows (Show on Hover)
-// ===========================
-const NextArrow = ({ onClick }) => {
-  return (
-    <div
-      onClick={onClick}
-      className="absolute hidden group-hover:flex right-5 top-1/2 -translate-y-1/2
-      bg-white shadow-xl w-10 h-10 rounded-full items-center justify-center
-      cursor-pointer z-10 transition-opacity duration-300"
-    >
-      <span className="text-black text-xl">{">"}</span>
-    </div>
-  );
-};
-
-const PrevArrow = ({ onClick }) => {
-  return (
-    <div
-      onClick={onClick}
-      className="absolute hidden group-hover:flex left-5 top-1/2 -translate-y-1/2
-      bg-white shadow-xl w-10 h-10 rounded-full items-center justify-center
-      cursor-pointer z-10 transition-opacity duration-300"
-    >
-      <span className="text-black text-xl">{"<"}</span>
-    </div>
-  );
-};
+import heroImage from "../assets/hero_2.jpg";
 
 const Hero = () => {
-  const [slides, setSlides] = useState([]);
-
-  const fetchSliderImages = async () => {
-    try {
-      const { data } = await axios.get(`${backendUrl}/api/slider/list`);
-      setSlides(data);
-    } catch (error) {
-      console.error("Slider fetch error:", error);
+  const scrollToFeatures = () => {
+    const nextSection = document.getElementById("features-section");
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  useEffect(() => {
-    fetchSliderImages();
-  }, []);
-
-  // ===========================
-  // Slick Slider Settings
-  // ===========================
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    pauseOnHover: true,
-    arrows: true,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    dotsClass: "slick-dots custom-dots",
-  };
-
+  
   return (
-    <div className="w-full overflow-hidden relative z-0 pb-10 group">
+    <section className="h-screen bg-cover bg-center relative font-sans" style={{ backgroundImage: `url(${heroImage})` }}>
+      <div className="absolute inset-0 bg-black/30 backdrop-contrast-125 flex flex-col items-center justify-center text-center px-4 text-white">
+        
+        <h1 className="text-5xl md:text-[85px] font-bold tracking-[0.1em] leading-none mb-4 uppercase">
+          Banking Solutions
+        </h1>
 
-      {/* Custom dots styling */}
-      <style>
-        {`
-          .custom-dots li button:before {
-            font-size: 12px;
-            color: black !important;
-            opacity: 0.7;
-          }
-          .custom-dots li.slick-active button:before {
-            color: black !important;
-            opacity: 1;
-          }
-        `}
-      </style>
+        <p className="max-w-3xl mt-4 text-lg md:text-xl font-normal opacity-90 leading-snug">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident cupiditate suscipit...
+        </p>
 
-    {slides.length === 0 && (
-    <div className="w-full aspect-[12/5] bg-gray-200 animate-pulse" />
-  )}
-
-  {slides.length > 0 && (
-    <Slider {...settings}>
-      {slides.map((slide) => (
-        <div key={slide._id} className="relative w-full aspect-[12/5]">
-          <LazyImage
-            src={slide.image}
-            w={1500}
-            h={625}
-            alt="slider"
-            priority={true}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+        {/* Mouse Scroll Icon - Ab ye clickable hai */}
+        <div 
+          onClick={scrollToFeatures}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer hover:scale-110 transition-all"
+        >
+          <div className="w-[24px] h-[40px] border-2 border-white rounded-full flex justify-center p-1 opacity-80">
+            <div className="w-1 h-1.5 bg-white rounded-full animate-bounce mt-1"></div>
+          </div>
         </div>
-      ))}
-    </Slider>
-    )}
-    </div>
+
+      </div>
+    </section>
   );
 };
 
 export default Hero;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
