@@ -19,7 +19,7 @@ const Navbar = () => {
     { name: "Pricing", id: "pricing" },
     { name: "FAQ", id: "faq" },
     { name: "Gallery", id: "gallery" },
-    { name: "Services", id: "features-section" },
+    { name: "Services", id: "services-section" },
     { name: "Testimonials", id: "testimonials" },
     { name: "More Links", id: "more", hasSub: true },
   ];
