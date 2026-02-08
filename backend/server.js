@@ -30,6 +30,10 @@ app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/slider", sliderRouter);
 
+// --- YE HAI WO NAYA CODE (Isay yahan add karo) ---
+app.get("/api/health", (req, res) => {
+  res.send("Server is Awake!");
+});
 
 app.get("/", (req, res) => {
   res.send("API WORKING");
