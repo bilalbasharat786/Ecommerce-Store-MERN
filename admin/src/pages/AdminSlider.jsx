@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { backendUrl } from "../App";
+import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
 
 
 
@@ -84,7 +85,11 @@ const handleDelete = async (id) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
         {sliderImages.map((img) => (
           <div key={img._id} className="relative">
-            <img src={img.image} alt="" className="w-full h-40 object-cover rounded" />
+            <img 
+  src={optimizeImage(img.image, 400)}  // <-- 400px width set ki (Preview ke liye kaafi hai)
+  alt="slider-preview" 
+  className="w-full h-40 object-cover rounded" 
+/>
             <button
               onClick={() => handleDelete(img._id)}
               className="absolute top-2 right-2 bg-red-600 text-white px-2 py-1 text-xs rounded"
