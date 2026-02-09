@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 import LazyImage from "../components/LazyImage";
+import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
 
 
 const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
@@ -36,7 +37,7 @@ const finalPrice =
         )}
   {/* 🖼️ First image */}
     <LazyImage
-  src={image[0]}
+  src={optimizeImage(image[0], 450)}
   w={300}
   h={300}
   className="w-full h-48 sm:h-64 transition-opacity duration-500 ease-in-out group-hover:opacity-0"
@@ -48,7 +49,7 @@ const finalPrice =
         {/* 🖼️ Second image (appears on hover) */}
         {image[1] && (
    <LazyImage
-  src={image[1]}
+  src={optimizeImage(image[1], 450)}
   w={300}
   h={300}
   className="w-full h-48 sm:h-64 absolute top-0 left-0 opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"

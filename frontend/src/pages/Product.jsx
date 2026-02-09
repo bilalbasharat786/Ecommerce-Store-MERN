@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import LazyImage from "../components/LazyImage"
 import axios from "axios";
 import { backendUrl } from "../App";
+import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
 
 
 
@@ -50,7 +51,7 @@ const Product = () => {
   <img
     key={index}
     className="w-[22%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer rounded-md hover:opacity-80 transition-all duration-300"
-    src={item}
+    src={optimizeImage(item, 200)}
     alt="product_image"
     onClick={() => setImage(item)}
   />
@@ -62,7 +63,7 @@ const Product = () => {
           <div className="w-full sm:w-[80%]">
           <img
   className="w-full h-auto rounded-lg shadow-sm object-contain"
-  src={image}
+  src={optimizeImage(image, 1000)}
   alt={productData.name}
 />
 

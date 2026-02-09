@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
+import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
 
 const List = ({ token }) => {
   const [list, setList] = useState([]);
@@ -94,11 +95,12 @@ const List = ({ token }) => {
 
             {/* Image */}
             <div className="flex items-center justify-center sm:justify-start">
-              <img
-                className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded"
-                src={item.image[0]}
-                alt="product"
-              />
+            <img
+  className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded"
+  src={optimizeImage(item.image[0], 100)} // <-- 100px size kafi hai list ke liye
+  alt="product"
+  loading="lazy"
+/>
             </div>
 
             {/* Editable name */}
