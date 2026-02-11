@@ -19,7 +19,7 @@ import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
 import heart_icon from './heart_icon.png'
-import heart_filled from './heart_filled.jpg'
+import heart_filled from './heart_filled.png'
 
 export const assets = {
     logo,
