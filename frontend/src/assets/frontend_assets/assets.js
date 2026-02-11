@@ -1,6 +1,3 @@
-
-
-
 import logo from './logo.png'
 import cart_icon from './cart_icon.png'
 import bin_icon from './bin_icon.png'

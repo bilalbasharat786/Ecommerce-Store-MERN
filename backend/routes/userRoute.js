@@ -2,6 +2,7 @@ import express from "express";
 import { loginUser, registerUser, adminLogin, googleLogin ,addToWishlist, getUserWishlist} from "../controllers/userController.js";
 // ⭐ Auth middleware (name aapka hoga authUser ya verifyUser)
 
+
 const userRouter = express.Router();
 
 userRouter.post("/register", registerUser);
