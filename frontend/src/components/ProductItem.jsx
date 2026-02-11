@@ -3,12 +3,11 @@ import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 import LazyImage from "../components/LazyImage";
 import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
-import { ShopContext } from '../contexts/ShopContext';
 import { assets } from "../assets/frontend_assets/assets";
 
 
 const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
-  const { currency, addToWishlist, getUserWishlist, } = useContext(ShopContext);
+  const { currency,wishlist, addToWishlist, getUserWishlist, } = useContext(ShopContext);
 
 
 console.log("", discountPrice ?? "❌ Missing");
