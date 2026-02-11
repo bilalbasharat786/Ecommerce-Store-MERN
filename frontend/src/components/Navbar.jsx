@@ -15,6 +15,8 @@ const Navbar = () => {
     token,
     setToken,
     setCartItems,
+    wishlist, addToWishlist,
+    
   } = useContext(ShopContext);
 
   const logout = async () => {
