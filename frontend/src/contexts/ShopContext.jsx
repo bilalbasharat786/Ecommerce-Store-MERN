@@ -15,6 +15,7 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
   const [products, setProducts] = useState([]);
+  const [wishlist, setWishlist] = useState({});
   const [token, setToken] = useState(
     localStorage.getItem("token") ? localStorage.getItem("token") : ""
   );
@@ -167,11 +168,60 @@ const getProductsData = async () => {
     await getProductsData();
     if (token) {
       await getUserCart(token);
+      await getUserWishlist(token);
     }
     console.log("", products);
   };
   loadData();
 }, [token]);
+
+// 1. Wishlist Add/Remove Function
+  const addToWishlist = async (itemId) => {
+    let wishlistData = structuredClone(wishlist);
+
+    if (wishlistData[itemId]) {
+      // Agar pehle se hai to remove karo
+      delete wishlistData[itemId];
+      toast.info("Removed from Wishlist");
+    } else {
+      // Agar nahi hai to add karo
+      wishlistData[itemId] = true;
+      toast.success("Added to Wishlist");
+    }
+    setWishlist(wishlistData);
+
+    // Backend API Call
+    if (token) {
+      try {
+        await axios.post(
+          backendUrl + "/api/user/add-to-wishlist",
+          { itemId },
+          { headers: { token } }
+        );
+      } catch (error) {
+        console.log(error);
+        toast.error(error.message);
+      }
+    }
+  };
+
+  // 2. Get User Wishlist Function
+  const getUserWishlist = async (token) => {
+    try {
+      const response = await axios.post(
+        backendUrl + "/api/user/get-wishlist",
+        {},
+        { headers: { token } }
+      );
+      if (response.data.success) {
+        setWishlist(response.data.wishlistData);
+        console.log("💜 Wishlist Loaded:", response.data.wishlistData);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
 
   const value = {
     products,
@@ -192,6 +242,9 @@ const getProductsData = async () => {
     navigate,
     backendUrl,
     token,
+    wishlist,
+    addToWishlist,
+    getUserWishlist,
     setToken,
   };
 

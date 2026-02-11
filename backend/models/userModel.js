@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
     cartData: { type: Object, default: {} },
 
     // ⭐ WISHLIST FIELD (NEW)
- 
+ wishlist: { type: Object, default: {} },
   },
   { minimize: false }
 );

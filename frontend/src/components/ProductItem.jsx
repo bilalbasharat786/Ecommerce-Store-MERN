@@ -3,10 +3,12 @@ import { ShopContext } from "../contexts/ShopContext";
 import { Link } from "react-router-dom";
 import LazyImage from "../components/LazyImage";
 import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
+import { ShopContext } from '../contexts/ShopContext';
+import { assets } from "../assets/frontend_assets/assets";
 
 
 const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
-  const { currency } = useContext(ShopContext);
+  const { currency, addToWishlist, getUserWishlist, } = useContext(ShopContext);
 
 
 console.log("", discountPrice ?? "❌ Missing");
@@ -22,10 +24,21 @@ const finalPrice =
       ? Math.round(((price - discountPrice) / price) * 100)
       : null;
   return (
-    <Link
-      className="text-gray-700 cursor-pointer group w-full max-w-xs sm:max-w-sm mx-auto block"
-      to={`/product/${id}`}
+    <div
+      className="text-gray-700 cursor-pointer group w-full max-w-xs sm:max-w-sm mx-auto block relative"
     >
+      {/* ❤️ Wishlist Heart Button (Added Here) */}
+      <button 
+        onClick={() => addToWishlist(id)}
+        className="absolute top-2 right-2 z-20 hover:scale-110 transition-all"
+      >
+        <img 
+          src={wishlist[id] ? assets.heart_filled : assets.heart_icon} 
+          alt="wishlist" 
+          className="w-5 drop-shadow-md"
+        />
+      </button>
+      <Link to={`/product/${id}`}>
       {/* Image Container */}
       <div className="overflow-hidden relative rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
 
@@ -88,8 +101,8 @@ const finalPrice =
 
         </div>
       </div>
-
-    </Link>
+</Link>
+    </div>
   );
 };
 

@@ -18,7 +18,8 @@ import contact_img from './contact_img.png'
 import razorpay_logo from './razorpay_logo.png'
 import stripe_logo from './stripe_logo.png'
 import cross_icon from './cross_icon.png'
-import wishlist_icon from './wishlist_icon.png'
+import heart_icon from './heart_icon.jpg'
+import heart_filled from './heart_filled.jpg'
 
 export const assets = {
     logo,
@@ -38,6 +39,7 @@ export const assets = {
     razorpay_logo,
     stripe_logo,
     cross_icon,
-    wishlist_icon
+    heart_icon,
+    heart_filled
 }
 

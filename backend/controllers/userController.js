@@ -158,6 +158,36 @@ const adminLogin = async (req, res) => {
     });
   }
 };
+const addToWishlist = async (req, res) => {
+    try {
+        let userData = await userModel.findById(req.body.userId);
+        let wishlistData = userData.wishlist || {};
 
-export { loginUser, registerUser, adminLogin, googleLogin };
+        if (wishlistData[req.body.itemId]) {
+            delete wishlistData[req.body.itemId]; // Agar pehle se hai to remove kardo
+        } else {
+            wishlistData[req.body.itemId] = true; // Agar nahi hai to add kardo
+        }
+
+        await userModel.findByIdAndUpdate(req.body.userId, { wishlist: wishlistData });
+        res.json({ success: true, message: "Wishlist Updated" });
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+
+// Get User Wishlist
+const getUserWishlist = async (req, res) => {
+    try {
+        const userData = await userModel.findById(req.body.userId);
+        let wishlistData = userData.wishlist || {};
+        res.json({ success: true, wishlistData });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+export { loginUser, registerUser, adminLogin, googleLogin, addToWishlist, getUserWishlist };
 
