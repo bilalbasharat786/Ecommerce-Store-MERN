@@ -1,7 +1,7 @@
 import express from "express";
 import { loginUser, registerUser, adminLogin, googleLogin ,addToWishlist, getUserWishlist} from "../controllers/userController.js";
 // ⭐ Auth middleware (name aapka hoga authUser ya verifyUser)
-import { authUser } from "../middlewares/auth.js";
+import  authUser  from "../middlewares/auth.js";
 
 const userRouter = express.Router();
 
