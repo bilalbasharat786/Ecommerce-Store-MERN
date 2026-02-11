@@ -19,7 +19,7 @@ import SearchBar from "./components/SearchBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import Verify from "./pages/Verify";
-import Wishlist from "./pages/wishlist";
+import Wishlist from "./pages/Wishlist";
 
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
