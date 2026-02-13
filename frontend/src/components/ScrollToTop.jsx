@@ -42,7 +42,7 @@ const ScrollToTop = () => {
     >
       <div
         onClick={scrollToTop}
-        className="relative w-12 h-12 rounded-full  overflow-hidden cursor-pointer shadow-lg bg-[#fafafa]"
+        className="relative w-12 h-12 rounded-full  overflow-hidden cursor-pointer shadow-lg bg-[#ffffff]"
       >
         
         {/* ⚫ SOLID BLACK FILL (Seedha Uper Jayega) */}
@@ -63,9 +63,9 @@ const ScrollToTop = () => {
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            strokeWidth={2.5} // Thoda mota kiya taake clear nazar aye
+            strokeWidth={2} // Thoda mota kiya taake clear nazar aye
             stroke="currentColor"
-            className="w-4 h-4"
+            className="w-3 h-3"
           >
             {/* Arrow 1 (Upar wala) */}
             <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75 12 5.25l7.5 7.5" />
