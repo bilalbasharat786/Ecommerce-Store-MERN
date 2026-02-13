@@ -72,19 +72,6 @@ const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
               />
             </button>
 
-            {/* 2. 🛒 Add to Cart Button */}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                // Note: Agar size select karna zaroori hai, to ye "Select Size" ka toast dega.
-                // Agar bina size ke add karna hai to yahan default size pass kar sakte ho like: addToCart(id, 'M')
-                addToCart(id); 
-              }}
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-black hover:text-white group/cart transition-all hover:scale-110"
-              title="Add to Cart"
-            >
-              <img src={assets.cart_icon} className="w-4 group-hover/cart:invert" alt="cart" />
-            </button>
 
             {/* 3. 👁️ View Button (Optional - Jaisa pic mein hai) */}
             <Link
