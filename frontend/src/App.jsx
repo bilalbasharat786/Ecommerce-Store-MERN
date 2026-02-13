@@ -16,6 +16,7 @@ import TermsConditions from "./components/TermsConditions";
 import ShippingPolicy from "./components/Shippingpolicy";
 import ReturnRefundPolicy from "./components/ReturnRefundPolicy";
 import SearchBar from "./components/SearchBar";
+import ScrollToTop from "./components/ScrollToTop";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import Verify from "./pages/Verify";
@@ -29,6 +30,7 @@ const App = () => {
       <ToastContainer />
       <Navbar />
       <SearchBar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/collection" element={<Collection />} />
