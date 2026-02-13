@@ -115,14 +115,7 @@ const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
               <span>{`PKR ${price}`}</span>
             )}
           </div>
-          {/* Colors */}
-          {colors && colors.length > 0 && (
-              <div className="flex justify-center sm:justify-start gap-2 px-2 mt-2">
-                {colors.map((clr, index) => (
-                  <span key={index} style={{ backgroundColor: clr }} className="w-3 h-3 rounded-full border border-gray-300"></span>
-                ))}
-              </div>
-            )}
+
         </div>
       </Link>
     </div>
