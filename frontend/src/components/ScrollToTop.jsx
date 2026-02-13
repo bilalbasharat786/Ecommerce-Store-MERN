@@ -1,7 +1,5 @@
-// frontend/src/components/ScrollToTop.jsx
-
 import React, { useEffect, useState } from "react";
-import { assets } from "../assets/frontend_assets/assets"; // Arrow icon agar assets ma ha to use kro, warna nechy SVG hai
+import { assets } from "../assets/frontend_assets/assets"; // Arrow icon agar assets ma ha
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,7 +7,6 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 1. Calculate Scroll Progress
       const totalHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       const currentScroll = window.scrollY;
@@ -17,7 +14,6 @@ const ScrollToTop = () => {
       const scrollValue = totalHeight > 0 ? (currentScroll / totalHeight) * 100 : 0;
       setScrollProgress(scrollValue);
 
-      // 2. Show/Hide Button
       if (currentScroll > 100) {
         setIsVisible(true);
       } else {
@@ -36,54 +32,53 @@ const ScrollToTop = () => {
     });
   };
 
-  // Circle properties for SVG
-  const radius = 20;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (scrollProgress / 100) * circumference;
-
   return (
     <div
-      className={`fixed bottom-5 right-5 z-50 transition-all duration-300 ${
+      className={`fixed bottom-5 right-5 z-50 transition-all duration-500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
+      {/* Main Circle Container */}
       <div
         onClick={scrollToTop}
-        className="relative w-12 h-12 flex items-center justify-center cursor-pointer group"
+        className="relative w-12 h-12 rounded-full border-2 border-black overflow-hidden cursor-pointer shadow-lg bg-white group"
       >
-        {/* Progress Circle (SVG) */}
-        <svg className="w-full h-full -rotate-90 transform" width="100" height="100">
-          {/* Grey Background Circle */}
-          <circle
-            cx="24"
-            cy="24"
-            r={radius}
-            className="stroke-gray-200"
-            strokeWidth="3"
-            fill="none"
-          />
-          {/* Filling Circle (Black) */}
-          <circle
-            cx="24"
-            cy="24"
-            r={radius}
-            className="stroke-black transition-all duration-100 ease-out"
-            strokeWidth="3"
-            fill="none"
-            style={{
-              strokeDasharray: circumference,
-              strokeDashoffset: strokeDashoffset,
-            }}
-          />
-        </svg>
+        
+        {/* 🌊 The WAVE (Liquid Fill) */}
+        <div
+          className="absolute left-0 w-full bg-black transition-all duration-100 ease-linear"
+          style={{
+            bottom: `${scrollProgress}%`, // Jitna scroll, utna neechay se start hoga
+            height: "150%", // Thoda lamba taake wave ghoome
+            borderRadius: "40%", // Ye shape wave banati hai jab ghoomti hai
+            animation: "spin 4s linear infinite", // Wave animation
+            transform: "translateY(50%)", // Position adjust
+          }}
+        ></div>
 
-        {/* Arrow Icon in Center */}
-        <div className="absolute text-lg font-bold text-black">
-          ↑
-          {/* Agar tumhare paas arrow image hai to <img> tag use krlo */}
-          {/* <img src={assets.arrow_icon} className="w-4" /> */}
+        {/* ⬆️ Arrow Icon */}
+        <div 
+            className="absolute inset-0 flex items-center justify-center font-bold text-xl pointer-events-none"
+            style={{ mixBlendMode: "difference", color: "white" }} 
+        >
+          {/* Arrow Symbol */}
+           ↑
+           {/* Agar image use karni hai to neeche wali line uncomment karo aur uper wala arrow hata do */}
+           {/* <img src={assets.arrow_icon} className="w-4 invert" alt="arrow" /> */}
         </div>
       </div>
+
+      {/* CSS Animation for Wave */}
+      <style jsx>{`
+        @keyframes spin {
+          0% {
+            transform: translateY(50%) rotate(0deg);
+          }
+          100% {
+            transform: translateY(50%) rotate(360deg);
+          }
+        }
+      `}</style>
     </div>
   );
 };
