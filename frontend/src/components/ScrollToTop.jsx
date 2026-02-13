@@ -53,15 +53,25 @@ const ScrollToTop = () => {
           }}
         ></div>
 
-        {/* ⬆️ Arrow Icon (Color auto change hoga) */}
-        <div 
-            className="absolute inset-0 flex items-center justify-center font-bold text-xl pointer-events-none"
-            style={{ mixBlendMode: "difference", color: "white" }} 
+       {/* ⬆️ Double Arrow Icon (SVG) */}
+        <div
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{ mixBlendMode: "difference", color: "white" }}
         >
-           {/* Arrow Symbol */}
-           ↑
-           {/* Agar image use karni hai to neeche wali line uncomment karo aur uper wala arrow hata do */}
-           {/* <img src={assets.arrow_icon} className="w-4 invert" alt="arrow" /> */}
+          {/* Ye SVG wo 2 Arrows banayega jo tumne mangi hain */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2.5} // Thoda mota kiya taake clear nazar aye
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            {/* Arrow 1 (Upar wala) */}
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75 12 5.25l7.5 7.5" />
+            {/* Arrow 2 (Neeche wala) */}
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 18.75 12 11.25l7.5 7.5" />
+          </svg>
         </div>
       </div>
     </div>
