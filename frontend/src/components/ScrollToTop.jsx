@@ -42,7 +42,7 @@ const ScrollToTop = () => {
     >
       <div
         onClick={scrollToTop}
-        className="relative w-12 h-12 rounded-full  overflow-hidden cursor-pointer shadow-lg bg-[#ffffff]"
+        className="relative w-12 h-12 rounded-full  overflow-hidden cursor-pointer shadow-lg bg-[#f1f1f1]"
       >
         
         {/* ⚫ SOLID BLACK FILL (Seedha Uper Jayega) */}
