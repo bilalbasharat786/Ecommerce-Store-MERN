@@ -74,7 +74,7 @@ const Cart = () => {
           return (
             <div
               key={index}
-              className="relative py-4 px-4 border border-gray-200 bg-white shadow-sm grid grid-cols-1 md:grid-cols-[1.5fr_2fr_1fr_1fr_1fr_0.5fr] items-center gap-4"
+              className="relative py-4 px-4 border border-gray-900 bg-white shadow-sm grid grid-cols-1 md:grid-cols-[1.5fr_2fr_1fr_1fr_1fr_0.5fr] items-center gap-4"
             >
               {/* 🖼️ Product Image */}
               <div className="flex items-center gap-4">
