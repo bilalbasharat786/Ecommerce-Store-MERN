@@ -168,11 +168,11 @@ const Cart = () => {
         {/* Left Side: Buttons */}
         <div className="flex flex-col gap-4 w-full md:w-1/3">
            <button 
-             onClick={() => {
-                // Agar 'setCartItems' context me available nahi hai to ye line hata dena
-                if(setCartItems) setCartItems({}); 
-                else navigate('/collection');
-             }}
+            onClick={() => {
+              Object.keys(cartItems).forEach((key) => {
+                updateQuantity(key, cartItems[key].size + "-" + cartItems[key].color, 0);
+              });
+            }}
              className="w-full sm:w-auto py-3 px-6 bg-black text-white font-semibold text-sm uppercase hover:bg-gray-800 transition shadow-md"
            >
              Clear Cart
