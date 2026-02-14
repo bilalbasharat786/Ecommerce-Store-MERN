@@ -204,7 +204,7 @@ const Cart = () => {
             {/* CHECKOUT BUTTON (Black) */}
             <button
               onClick={() => navigate("/place-order")}
-              className="w-full bg-black text-white py-3 text-sm font-bold uppercase tracking-wide hover:text-black hover:border-black transition-all duration-500 "
+              className="w-full bg-black text-white py-3 text-sm font-bold uppercase tracking-wide hover:bg-white hover:text-black hover:border-black transition-all duration-500 "
             >
               Proceed to Checkout
             </button>
