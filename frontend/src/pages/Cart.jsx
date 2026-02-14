@@ -154,7 +154,7 @@ const Cart = () => {
                   className="w-8 h-8 sm:w-9 sm:h-9 bg-red-600 text-white rounded hover:bg-red-700 transition flex items-center justify-center shadow-sm"
                   title="Remove Item"
                 >
-                  <img src={assets.bin_icon} className="w-4 h-4 invert filter brightness-0 invert-0" alt="delete" />
+                  <img src={assets.bin_icon} className=" w-4 h-4  filter brightness-0 invert-0" alt="delete" />
                 </button>
               </div>
             </div>
