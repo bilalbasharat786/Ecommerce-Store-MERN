@@ -173,7 +173,7 @@ const Cart = () => {
                 if(setCartItems) setCartItems({}); 
                 else navigate('/collection');
              }}
-             className="w-full sm:w-auto py-3 px-6 bg-black text-white font-semibold text-sm uppercase hover:bg-gray-800 transition shadow-md"
+             className="w-full sm:w-auto py-3 px-6 bg-black text-white font-semibold text-sm uppercase hover:bg-white hover:text-black hover:border-black transition-all duration-500 "
            >
              Clear Cart
            </button>
@@ -204,7 +204,7 @@ const Cart = () => {
             {/* CHECKOUT BUTTON (Black) */}
             <button
               onClick={() => navigate("/place-order")}
-              className="w-full bg-black text-white py-3 text-sm font-bold uppercase tracking-wide hover:bg-gray-800 transition-all mb-3 shadow-md"
+              className="w-full bg-black text-white py-3 text-sm font-bold uppercase tracking-wide hover:bg-white hover:text-black hover:border-black transition-all duration-500 "
             >
               Proceed to Checkout
             </button>
