@@ -154,7 +154,8 @@ const Cart = () => {
                   className="w-8 h-8 sm:w-9 sm:h-9 bg-red-600 text-white rounded hover:bg-red-700 transition flex items-center justify-center shadow-sm"
                   title="Remove Item"
                 >
-                  <img src={assets.bin_icon} className=" w-4 h-4  filter brightness-0 invert-0" alt="delete" />
+                  {/* 👇 'invert-0' ko 'invert' kar diya hai */}
+                 <img src={assets.bin_icon} className="w-4 h-4 filter brightness-0 invert" alt="delete" />
                 </button>
               </div>
             </div>
@@ -168,11 +169,11 @@ const Cart = () => {
         {/* Left Side: Buttons */}
         <div className="flex flex-col gap-4 w-full md:w-1/3">
            <button 
-            onClick={() => {
-              Object.keys(cartItems).forEach((key) => {
-                updateQuantity(key, cartItems[key].size + "-" + cartItems[key].color, 0);
-              });
-            }}
+             onClick={() => {
+                // Agar 'setCartItems' context me available nahi hai to ye line hata dena
+                if(setCartItems) setCartItems({}); 
+                else navigate('/collection');
+             }}
              className="w-full sm:w-auto py-3 px-6 bg-black text-white font-semibold text-sm uppercase hover:bg-gray-800 transition shadow-md"
            >
              Clear Cart
