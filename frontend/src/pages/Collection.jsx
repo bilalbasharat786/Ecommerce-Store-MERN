@@ -129,7 +129,7 @@ const Collection = () => {
             {/* 👇 Checkbox ko 'checked' prop diya taake wo auto-tick ho jaye */}
             <p className="flex gap-2">
               <input
-                className="w-3"
+                className="w-3 accent-black"
                 type="checkbox"
                 value={"Men"}
                 onChange={toggleCategory}
@@ -137,7 +137,7 @@ const Collection = () => {
               />{" "}
               Men
             </p>
-            <p className="flex gap-2">
+            <p className="flex gap-2 accent-black">
               <input
                 className="w-3"
                 type="checkbox"
@@ -147,7 +147,7 @@ const Collection = () => {
               />{" "}
               Women
             </p>
-            <p className="flex gap-2">
+            <p className="flex gap-2 accent-black">
               <input
                 className="w-3"
                 type="checkbox"
