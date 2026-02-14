@@ -1,13 +1,9 @@
-import React, { useContext, useState , useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Title from "../components/Title";
-import CartTotal from "../components/CartTotal";
 import { assets } from "../assets/frontend_assets/assets";
 import { ShopContext } from "../contexts/ShopContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-
-
-
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
@@ -22,11 +18,12 @@ const PlaceOrder = () => {
     products,
   } = useContext(ShopContext);
 
-    useEffect(() => {
+  useEffect(() => {
     if (!token) {
       navigate("/login");
     }
   }, [token]);
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -46,14 +43,13 @@ const PlaceOrder = () => {
     setFormData((data) => ({ ...data, [name]: value }));
   };
 
- const onSubmitHandler = async (e) => {
-  e.preventDefault();
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
 
-  // 🔥 ADD THIS
-  if (!token) {
-    navigate("/login");
-    return;
-  }
+    if (!token) {
+      navigate("/login");
+      return;
+    }
 
     try {
       let orderItems = [];
@@ -92,8 +88,8 @@ const PlaceOrder = () => {
           } else {
             toast.error(response.data.message);
           }
-
           break;
+
         case "stripe":
           const responseStripe = await axios.post(
             backendUrl + "/api/order/stripe",
@@ -120,17 +116,18 @@ const PlaceOrder = () => {
   return (
     <form
       onSubmit={onSubmitHandler}
-      className="flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t"
+      className="flex flex-col sm:flex-row justify-between gap-4 pt-5 sm:pt-14 min-h-[80vh] border-t px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]"
     >
+      {/* ---------------- LEFT SIDE: DELIVERY INFO ---------------- */}
       <div className="flex flex-col gap-4 w-full sm:max-w-[480px]">
         <div className="text-xl sm:text-2xl my-3">
           <Title text1={"DELIVERY"} text2={"INFORMATION"} />
         </div>
-        {/* left side */}
+        
         <div className="flex gap-3">
           <input
             required
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
             type="text"
             placeholder="First Name"
             onChange={onChangeHandler}
@@ -139,7 +136,7 @@ const PlaceOrder = () => {
           />
           <input
             required
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
             type="text"
             placeholder="Last Name"
             onChange={onChangeHandler}
@@ -147,28 +144,31 @@ const PlaceOrder = () => {
             value={formData.lastName}
           />
         </div>
+        
         <input
           required
-          className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+          className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
           type="email"
           placeholder="Email Address"
           onChange={onChangeHandler}
           name="email"
           value={formData.email}
         />
+        
         <input
           required
-          className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+          className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
           type="text"
           placeholder="Street"
           onChange={onChangeHandler}
           name="street"
           value={formData.street}
         />
+        
         <div className="flex gap-3">
           <input
             required
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
             type="text"
             placeholder="City"
             onChange={onChangeHandler}
@@ -177,7 +177,7 @@ const PlaceOrder = () => {
           />
           <input
             required
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
             type="text"
             placeholder="State"
             onChange={onChangeHandler}
@@ -185,10 +185,11 @@ const PlaceOrder = () => {
             value={formData.state}
           />
         </div>
+        
         <div className="flex gap-3">
           <input
             required
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
             type="number"
             placeholder="Zipcode"
             onChange={onChangeHandler}
@@ -197,7 +198,7 @@ const PlaceOrder = () => {
           />
           <input
             required
-            className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+            className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
             type="text"
             placeholder="Country"
             onChange={onChangeHandler}
@@ -205,9 +206,10 @@ const PlaceOrder = () => {
             value={formData.country}
           />
         </div>
+        
         <input
           required
-          className="border border-gray-300 rounded py-1.5 px-3.5 w-full"
+          className="border border-gray-300 rounded py-2 px-3.5 w-full focus:outline-none focus:border-black transition-colors"
           type="number"
           placeholder="Phone"
           onChange={onChangeHandler}
@@ -215,45 +217,65 @@ const PlaceOrder = () => {
           value={formData.phone}
         />
       </div>
-      {/* Right Side */}
-      <div className="mt-8">
+
+      {/* ---------------- RIGHT SIDE: CART TOTALS & PAYMENT ---------------- */}
+      <div className="mt-8 sm:mt-0 w-full sm:max-w-[400px]">
+        
+        {/* Cart Totals Box (Custom Styled like Reference) */}
         <div className="mt-8 min-w-80">
-          <CartTotal />
+          <div className="text-2xl mb-3">
+             <Title text1={"CART"} text2={"TOTALS"} />
+          </div>
+          <div className="flex flex-col gap-2 text-sm">
+             <div className="flex justify-between border-b py-2">
+                <p>Subtotal</p>
+                <p className="font-medium">PKR {getCartAmount()}.00</p>
+             </div>
+             <div className="flex justify-between border-b py-2">
+                <p>Shipping Fee</p>
+                <p className="font-medium">PKR {deliveryFee}.00</p>
+             </div>
+             <div className="flex justify-between py-2 text-lg font-bold">
+                <p>Total</p>
+                <p>PKR {getCartAmount() === 0 ? 0 : getCartAmount() + deliveryFee}.00</p>
+             </div>
+          </div>
         </div>
+
+        {/* Payment Methods */}
         <div className="mt-12">
           <Title text1={"PAYMENT"} text2={"METHOD"} />
-          {/* Payment method selection */}
-          <div className="flex gap-3 flex-col lg:flex-row">
+          
+          <div className="flex flex-col lg:flex-row gap-3 mt-4">
+            
+            {/* Stripe Option */}
             <div
               onClick={() => setMethod("stripe")}
-              className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
+              className={`flex items-center gap-3 border p-3 cursor-pointer rounded-sm hover:bg-gray-50 transition-colors ${method === "stripe" ? "border-green-400 bg-green-50" : "border-gray-200"}`}
             >
-              <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "stripe" ? "bg-green-400" : ""
-                }`}
-              ></p>
-              <img className="h-5 mx-4" src={assets.stripe_logo} />
+              <span className={`w-3.5 h-3.5 border rounded-full flex items-center justify-center ${method === "stripe" ? "border-green-400" : "border-gray-300"}`}>
+                 {method === "stripe" && <span className="w-2 h-2 bg-green-400 rounded-full"></span>}
+              </span>
+              <img className="h-5" src={assets.stripe_logo} alt="Stripe" />
             </div>
             
+            {/* COD Option */}
             <div
               onClick={() => setMethod("cod")}
-              className="flex items-center gap-3 border p-2 px-3 cursor-pointer"
+              className={`flex items-center gap-3 border p-3 cursor-pointer rounded-sm hover:bg-gray-50 transition-colors ${method === "cod" ? "border-green-400 bg-green-50" : "border-gray-200"}`}
             >
-              <p
-                className={`min-w-3.5 h-3.5 border rounded-full ${
-                  method === "cod" ? "bg-green-400" : ""
-                }`}
-              ></p>
-              <p className="text-gray-500 text-sm font-medium mx-4">
-                CASH ON DELIVERY
-              </p>
+              <span className={`w-3.5 h-3.5 border rounded-full flex items-center justify-center ${method === "cod" ? "border-green-400" : "border-gray-300"}`}>
+                 {method === "cod" && <span className="w-2 h-2 bg-green-400 rounded-full"></span>}
+              </span>
+              <p className="text-gray-700 text-sm font-medium">CASH ON DELIVERY</p>
             </div>
           </div>
+
+          {/* Place Order Button */}
           <div className="w-full text-end mt-8">
             <button
               type="submit"
-              className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500"
+              className="bg-black text-white w-full sm:w-auto px-10 py-3 text-sm font-semibold uppercase tracking-widest hover:bg-gray-800 transition-all shadow-md active:scale-95"
             >
               PLACE ORDER
             </button>
