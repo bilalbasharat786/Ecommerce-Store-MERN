@@ -74,18 +74,24 @@ const Collection = () => {
   };
 
   // 👇 3. URL check karne ke liye naya useEffect
+// 👇 URL check karne ke liye naya useEffect (UPDATED)
   useEffect(() => {
-    // Agar URL main 'men', 'women' ya 'kids' hai to filter set karo
-    if (location.pathname.includes("men")) {
-        setCategory(["Men"]);
-    } else if (location.pathname.includes("women")) {
+    
+    // ⚠️ PEHLE WOMEN CHECK KARO (Kyunki 'women' mein bhi 'men' aata hai)
+    if (location.pathname.includes("women")) {
         setCategory(["Women"]);
-    } else if (location.pathname.includes("kids")) {
+    } 
+    // Phir Men check karo
+    else if (location.pathname.includes("men")) {
+        setCategory(["Men"]);
+    } 
+    else if (location.pathname.includes("kids")) {
         setCategory(["Kids"]);
-    } else {
-        // Agar simple '/collection' hai to sab dikhao (Category empty kardo)
+    } 
+    else {
         setCategory([]); 
     }
+    
   }, [location.pathname]); // URL change hone par ye chalega
 
   useEffect(() => {
