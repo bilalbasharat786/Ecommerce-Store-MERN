@@ -151,8 +151,7 @@ const Cart = () => {
               <div className="flex justify-end md:justify-center mt-2 md:mt-0 absolute top-2 right-2 md:static">
                 <button
                   onClick={() => updateQuantity(item._id, `${item.size}-${item.color}`, 0)}
-                  className="w-8 h-8 sm:w-9 sm:h-9 bg-[#ff0000] text-white hover:bg-[#ff0000] transition flex items-center justify-center shadow-sm"
-                  title="Remove Item"
+                  className="w-8 h-8 sm:w-9 sm:h-9 bg-[#ff2626] text-white hover:bg-[#ff0000] transition flex items-center justify-center shadow-sm"
                 >
                   {/* 👇 'invert-0' ko 'invert' kar diya hai */}
                  <img src={assets.bin_icon} className="w-4 h-4 filter brightness-0 invert" alt="delete" />
