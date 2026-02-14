@@ -39,11 +39,19 @@ const Navbar = () => {
           <p>HOME</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
-        <NavLink
-          to="/collection"
-          className="flex flex-col items-center gap-0.5 sm:gap-1"
-        >
-          <p>COLLECTION</p>
+       {/* 👇 COLLECTION HATA KAR YE 3 ADD KIYE */}
+        <NavLink to="/men" className="flex flex-col items-center gap-0.5 sm:gap-1">
+          <p>MEN</p>
+          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
+        
+        <NavLink to="/women" className="flex flex-col items-center gap-0.5 sm:gap-1">
+          <p>WOMEN</p>
+          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
+
+        <NavLink to="/kids" className="flex flex-col items-center gap-0.5 sm:gap-1">
+          <p>KIDS</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
         {/* <NavLink to="/about" className="flex flex-col items-center gap-0.5 sm:gap-1">
@@ -107,7 +115,6 @@ const Navbar = () => {
          </p>
     
 </Link>
-
         {/* Cart */}
         <Link to="/cart" className="relative">
           <img
@@ -155,13 +162,21 @@ const Navbar = () => {
           >
             HOME
           </NavLink>
-          <NavLink
-            onClick={() => setVisible(false)}
-            className="py-2 pl-4 sm:pl-6 border text-xs sm:text-sm"
-            to="/collection"
-          >
-            COLLECTION
-          </NavLink>
+         {/* 👇 COLLECTION HATA KAR YE 3 ADD KIYE */}
+        <NavLink to="/men" className="flex flex-col items-center gap-0.5 sm:gap-1">
+          <p>MEN</p>
+          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
+        
+        <NavLink to="/women" className="flex flex-col items-center gap-0.5 sm:gap-1">
+          <p>WOMEN</p>
+          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
+
+        <NavLink to="/kids" className="flex flex-col items-center gap-0.5 sm:gap-1">
+          <p>KIDS</p>
+          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+        </NavLink>
           {/* <NavLink
             onClick={() => setVisible(false)}
             className="py-2 pl-4 sm:pl-6 border text-xs sm:text-sm"
@@ -176,8 +191,6 @@ const Navbar = () => {
           >
             CONTACT
           </NavLink>
-          
-
         </div>
       </div>
     </div>

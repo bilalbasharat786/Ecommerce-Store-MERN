@@ -4,6 +4,8 @@ import { assets } from "../assets/frontend_assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
 import LazyImage from "../components/LazyImage";
+// 👇 1. useLocation import kiya
+import { useLocation } from "react-router-dom"; 
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -12,6 +14,9 @@ const Collection = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState("relevant");
+  
+  // 👇 2. Location hook
+  const location = useLocation(); 
 
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
@@ -68,6 +73,21 @@ const Collection = () => {
     }
   };
 
+  // 👇 3. URL check karne ke liye naya useEffect
+  useEffect(() => {
+    // Agar URL main 'men', 'women' ya 'kids' hai to filter set karo
+    if (location.pathname.includes("men")) {
+        setCategory(["Men"]);
+    } else if (location.pathname.includes("women")) {
+        setCategory(["Women"]);
+    } else if (location.pathname.includes("kids")) {
+        setCategory(["Kids"]);
+    } else {
+        // Agar simple '/collection' hai to sab dikhao (Category empty kardo)
+        setCategory([]); 
+    }
+  }, [location.pathname]); // URL change hone par ye chalega
+
   useEffect(() => {
     applyFilter();
   }, [category, subCategory, search, showSearch, products]);
@@ -100,36 +120,41 @@ const Collection = () => {
         >
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
+            {/* 👇 Checkbox ko 'checked' prop diya taake wo auto-tick ho jaye */}
             <p className="flex gap-2">
               <input
-                onChange={toggleCategory}
                 className="w-3"
                 type="checkbox"
                 value={"Men"}
+                onChange={toggleCategory}
+                checked={category.includes("Men")} 
               />{" "}
               Men
             </p>
             <p className="flex gap-2">
               <input
-                onChange={toggleCategory}
                 className="w-3"
                 type="checkbox"
                 value={"Women"}
+                onChange={toggleCategory}
+                checked={category.includes("Women")}
               />{" "}
               Women
             </p>
             <p className="flex gap-2">
               <input
-                onChange={toggleCategory}
                 className="w-3"
                 type="checkbox"
                 value={"Kids"}
+                onChange={toggleCategory}
+                checked={category.includes("Kids")}
               />{" "}
               Kids
             </p>
           </div>
         </div>
-        {/* Sub-Category Filter */}
+        
+        {/* Sub-Category Filter (Ye same rahega) */}
         <div
           className={`border border-gray-300 pl-5 py-3 my-5 sm:block ${
             showFilter ? "" : "hidden"
@@ -137,61 +162,38 @@ const Collection = () => {
         >
           <p className="mb-3 text-sm font-medium">TYPE</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
+             {/* Sub categories code same... */}
             <p className="flex gap-2">
-              <input
-                onChange={toggleSubCategory}
-                className="w-3"
-                type="checkbox"
-                value={"Topwear"}
-              />{" "}
-              Topwear
+              <input onChange={toggleSubCategory} className="w-3" type="checkbox" value={"Topwear"} /> Topwear
             </p>
             <p className="flex gap-2">
-              <input
-                onChange={toggleSubCategory}
-                className="w-3"
-                type="checkbox"
-                value={"Bottomwear"}
-              />{" "}
-              Bottomwear
+              <input onChange={toggleSubCategory} className="w-3" type="checkbox" value={"Bottomwear"} /> Bottomwear
             </p>
             <p className="flex gap-2">
-              <input
-                onChange={toggleSubCategory}
-                className="w-3"
-                type="checkbox"
-                value={"Winterwear"}
-              />{" "}
-              Winterwear
+              <input onChange={toggleSubCategory} className="w-3" type="checkbox" value={"Winterwear"} /> Winterwear
             </p>
              <p className="flex gap-2">
-              <input
-                onChange={toggleSubCategory}
-                className="w-3"
-                type="checkbox"
-                value={"Summerwear"}
-              />{" "}
-              Summerwear
+              <input onChange={toggleSubCategory} className="w-3" type="checkbox" value={"Summerwear"} /> Summerwear
             </p>
           </div>
         </div>
       </div>
+
       {/* Right side */}
       <div className="flex-1">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between text-sm sm:text-lg md:text-xl lg:text-2xl gap-2 sm:gap-0 mb-4 px-2">
-  {/* Title Component */}
-  <Title text1={"ALL"} text2={"COLLECTIONS"} />
-
-  {/* Products Sorter */}
-  <select
-    onChange={(e) => setSortType(e.target.value)}
-    className="border-2 border-gray-300 text-xs sm:text-sm md:text-base px-2 py-1 rounded-md"
-  >
-    <option value="relevant">Sort by: Relevant</option>
-    <option value="low-high">Sort by: Low to High</option>
-    <option value="high-low">Sort by: High to Low</option>
-  </select>
-</div>
+          {/* 👇 Title Dynamically Change hoga */}
+          <Title text1={category.length === 1 ? category[0].toUpperCase() : "ALL"} text2={"COLLECTIONS"} />
+          
+          <select
+            onChange={(e) => setSortType(e.target.value)}
+            className="border-2 border-gray-300 text-xs sm:text-sm md:text-base px-2 py-1 rounded-md"
+          >
+            <option value="relevant">Sort by: Relevant</option>
+            <option value="low-high">Sort by: Low to High</option>
+            <option value="high-low">Sort by: High to Low</option>
+          </select>
+        </div>
 
         {/* Mapping Products */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
