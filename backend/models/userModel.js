@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
 
     // ⭐ WISHLIST FIELD (NEW)
  wishlist: { type: Object, default: {} },
+ 
   },
   { minimize: false }
 );

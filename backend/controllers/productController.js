@@ -63,6 +63,7 @@ const addProduct = async (req, res) => {
       sizes: JSON.parse(sizes.replace(/'/g, '"')),
       colors: colors,                 // ⭐ NEW FIELD
       image: imagesUrl,
+      reviews: [],                   // ⭐ NEW FIELD
       date: Date.now(),
     };
 
@@ -126,6 +127,7 @@ export const updateProduct = async (req, res) => {
     if (discountPrice) updatedData.discountPrice = discountPrice;
     if (category) updatedData.category = category;
 
+
     const product = await productModel.findByIdAndUpdate(
       id,
       updatedData,
@@ -164,5 +166,47 @@ const singleProduct = async (req, res) => {
     });
   }
 };
+const addProductReview = async (req, res) => {
+    try {
+        const { rating, comment, productId } = req.body;
+        
+        // Product dhoondo
+        const product = await productModel.findById(productId);
+        
+        // Check karo user ne pehle review to nahi diya?
+        const alreadyReviewed = product.reviews.find(
+            (r) => r.user.toString() === req.body.userId.toString()
+        );
 
-export { listProducts, addProduct, removeProduct, singleProduct };
+        if (alreadyReviewed) {
+            return res.json({ success: false, message: "Product already reviewed" });
+        }
+
+        // Naya Review Object
+        const review = {
+            name: req.body.userName, // Middleware se naam ayega (ya database se fetch krna pdega)
+            rating: Number(rating),
+            comment,
+            user: req.body.userId,
+        };
+
+        // Review array mein push karo
+        product.reviews.push(review);
+        product.numReviews = product.reviews.length;
+
+        // ⭐ Average Rating Calculation Logic
+        // Total stars ko number of reviews se divide karo
+        product.rating =
+            product.reviews.reduce((acc, item) => item.rating + acc, 0) /
+            product.reviews.length;
+
+        await product.save();
+        res.json({ success: true, message: "Review Added" });
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+}
+
+export { listProducts, addProduct, removeProduct, singleProduct, addProductReview, updateProduct };
