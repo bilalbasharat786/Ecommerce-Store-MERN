@@ -8,6 +8,7 @@ import LazyImage from "../components/LazyImage"
 import axios from "axios";
 import { backendUrl } from "../App";
 import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
+import LiveView from "../components/LiveView"; // ⭐ LiveView component import kiya
 
 
 
@@ -146,7 +147,7 @@ const Product = () => {
             </div>
           </div>
 
-
+<LiveView />
           {/* Add to Cart */}
          <button
   onClick={() => {
