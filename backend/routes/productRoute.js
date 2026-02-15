@@ -9,7 +9,6 @@ import {
 } from "../controllers/productController.js";
 import upload from "../middlewares/multer.js";
 import adminAuth from "../middlewares/adminAuth.js";
-import authUser from "../middlewares/auth.js";
 
 const productRouter = express.Router();
 
@@ -28,6 +27,5 @@ productRouter.post("/remove", adminAuth, removeProduct);
 productRouter.post("/single", adminAuth, singleProduct);
 productRouter.post("/update", adminAuth, updateProduct);
 productRouter.get("/list", listProducts);
-productRouter.post('/review', authUser, addProductReview);
 
 export default productRouter;
