@@ -1,44 +1,88 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // useNavigate yahan se import kiya
 import { ShopContext } from "../contexts/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
-import { useNavigate } from "react-router-dom";
-import LazyImage from "../components/LazyImage"
+import LazyImage from "../components/LazyImage";
 import axios from "axios";
 import { backendUrl } from "../App";
-import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
-import LiveView from "../components/LiveView"; // ⭐ LiveView component import kiya
-
-
+import { optimizeImage } from "../utils/imageConfig";
+import LiveView from "../components/LiveView";
+import { toast } from "react-toastify"; // Toast notification ke liye
 
 const Product = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const { products, currency, addToCart } = useContext(ShopContext);
+  const { products, currency, addToCart, token } = useContext(ShopContext); // Token bhi chahiye review ke liye
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
 
-
-
-
+  // ⭐ Review States
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchProductData = async () => {
-    products.map((item) => {
-      if (item._id === productId) {
-        setProductData(item);
-        setImage(item.image[0]);
-        return null;
-      }
-      return null;
-    });
+    // Pehle products array se data dhoondo
+    const localProduct = products.find(item => item._id === productId);
+    if (localProduct) {
+      setProductData(localProduct);
+      setImage(localProduct.image[0]);
+    }
+    
+    // ⭐ Fresh data (Reviews samet) backend se mangwao
+    try {
+        const response = await axios.post(backendUrl + '/api/product/single', { productId });
+        if (response.data.success) {
+            setProductData(response.data.product); // Isme reviews honge
+            if(!image) setImage(response.data.product.image[0]);
+        }
+    } catch (error) {
+        console.error(error);
+    }
   };
 
   useEffect(() => {
     fetchProductData();
   }, [productId, products]);
+
+  // ⭐ Review Submit Handler
+  const submitReview = async (e) => {
+    e.preventDefault();
+    if (!token) {
+        toast.error("Please login to write a review");
+        return;
+    }
+    if (rating === 0) {
+        toast.error("Please select a star rating");
+        return;
+    }
+
+    try {
+        setIsSubmitting(true);
+        const response = await axios.post(
+            backendUrl + "/api/product/review",
+            { productId, rating, comment },
+            { headers: { token } }
+        );
+
+        if (response.data.success) {
+            toast.success("Review Added Successfully");
+            setRating(0);
+            setComment("");
+            fetchProductData(); // Refresh data to show new review
+        } else {
+            toast.error(response.data.message);
+        }
+    } catch (error) {
+        console.error(error);
+        toast.error(error.message);
+    } finally {
+        setIsSubmitting(false);
+    }
+  };
 
   return productData ? (
     <div className="border-t-2 pt-8 transition-opacity ease-in duration-500 opacity-100 px-4 sm:px-8 md:px-16">
@@ -57,7 +101,6 @@ const Product = () => {
                 onClick={() => setImage(item)}
               />
             ))}
-
           </div>
 
           {/* Main Image */}
@@ -67,7 +110,6 @@ const Product = () => {
               src={optimizeImage(image, 1000)}
               alt={productData.name}
             />
-
           </div>
         </div>
 
@@ -77,20 +119,27 @@ const Product = () => {
             {productData.name}
           </h1>
 
-          {/* Ratings */}
+          {/* Ratings Display */}
           <div className="flex items-center gap-1 mt-2">
-            {[...Array(4)].map((_, i) => (
-              <img key={i} className="w-3.5" src={assets.star_icon} alt="star" />
+             {/* Dynamic Stars based on average rating */}
+            {[...Array(5)].map((_, i) => (
+              <img 
+                key={i} 
+                className="w-3.5" 
+                src={i < Math.round(productData.rating || 0) ? assets.star_icon : assets.star_dull_icon} 
+                alt="star" 
+              />
             ))}
-            <img className="w-3.5" src={assets.star_dull_icon} alt="star_dull" />
-            <p className="pl-2 text-sm">122 reviews</p>
+            <p className="pl-2 text-sm">
+                ({productData.reviews ? productData.reviews.length : 0} reviews)
+            </p>
           </div>
 
           {/* Price */}
           <p className="mt-4 text-2xl sm:text-3xl font-medium text-gray-900">
             {currency}
             {productData.discountPrice > 0 &&
-              productData.discountPrice < productData.price ? (
+            productData.discountPrice < productData.price ? (
               <>
                 {Number(productData.discountPrice).toLocaleString("en-PK")}
                 <span className="line-through text-gray-500 text-lg sm:text-xl ml-4">
@@ -107,6 +156,7 @@ const Product = () => {
           <p className="mt-4 text-gray-500 text-sm sm:text-base leading-relaxed md:w-4/5">
             {productData.description}
           </p>
+
           {/* ⭐ Color Selector */}
           {productData.colors && productData.colors.length > 0 && (
             <div className="flex flex-col gap-3 my-6">
@@ -118,8 +168,9 @@ const Product = () => {
                     key={index}
                     onClick={() => setColor(clr)}
                     style={{ backgroundColor: clr }}
-                    className={`w-6 h-6 rounded-full border-2 ${color === clr ? "border-black scale-110" : "border-gray-300"
-                      } transition-all`}
+                    className={`w-6 h-6 rounded-full border-2 ${
+                      color === clr ? "border-black scale-110" : "border-gray-300"
+                    } transition-all`}
                   ></button>
                 ))}
               </div>
@@ -134,10 +185,11 @@ const Product = () => {
                 <button
                   onClick={() => setSize(item)}
                   key={index}
-                  className={`border py-2 px-4 rounded-md text-sm sm:text-base transition-all ${item === size
-                    ? "border-black bg-gray-200"
-                    : "border-gray-300 bg-gray-100 hover:bg-gray-200"
-                    }`}
+                  className={`border py-2 px-4 rounded-md text-sm sm:text-base transition-all ${
+                    item === size
+                      ? "border-black bg-gray-200"
+                      : "border-gray-300 bg-gray-100 hover:bg-gray-200"
+                  }`}
                 >
                   {item}
                 </button>
@@ -146,20 +198,20 @@ const Product = () => {
           </div>
 
           <LiveView />
+          
           {/* Add to Cart */}
           <button
             onClick={() => {
               if (!size) return alert("Please select size");
-              if (!color) return alert("Please select color");
+              if (!color && productData.colors.length > 0) return alert("Please select color");
 
-              addToCart(productData._id, size + "-" + color);  // ⭐ size + color
+              addToCart(productData._id, size + "-" + color);
               navigate("/cart");
             }}
             className="bg-black text-white px-6 sm:px-8 py-3 text-sm sm:text-base border border-transparent hover:bg-white hover:text-black hover:border-black transition-all duration-500 rounded-md"
           >
             ADD TO CART
           </button>
-
 
           {/* Extra Info */}
           <hr className="mt-8 sm:w-4/5" />
@@ -175,26 +227,85 @@ const Product = () => {
       <div className="mt-16 sm:mt-20">
         <div className="flex flex-col sm:flex-row">
           <b className="border px-5 py-3 text-sm sm:text-base bg-gray-100">
-            Description
+            Reviews ({productData.reviews ? productData.reviews.length : 0})
           </b>
-          <p className="border px-5 py-3 text-sm sm:text-base">
-            Reviews (122)
+          <p className="border px-5 py-3 text-sm sm:text-base text-gray-500">
+            Description
           </p>
         </div>
 
         <div className="flex flex-col gap-4 border px-4 sm:px-6 py-6 text-sm sm:text-base text-gray-500 leading-relaxed">
-          <p>
-            Our online store offers a wide selection of premium-quality products
-            that combine functionality, style, and durability. Whether you’re
-            shopping for yourself or a loved one, every product is designed to
-            meet your lifestyle needs.
-          </p>
-          <p>
-            We’re committed to ensuring your satisfaction — from exploring our
-            catalog to enjoying your purchase at home. Shop confidently knowing
-            that every order is backed by our reliable service and quality
-            guarantee.
-          </p>
+           
+           {/* ⭐ WRITE A REVIEW SECTION */}
+           <div className="mb-6">
+                <h3 className="font-semibold text-lg text-black mb-4">Write a Review</h3>
+                <form onSubmit={submitReview} className="flex flex-col gap-4">
+                    {/* Star Rating Input */}
+                    <div className="flex gap-1">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                            <button 
+                                key={star} 
+                                type="button" 
+                                onClick={() => setRating(star)}
+                                className="focus:outline-none transition-transform active:scale-90"
+                            >
+                                <img 
+                                    src={star <= rating ? assets.star_icon : assets.star_dull_icon} 
+                                    alt={`${star} stars`} 
+                                    className="w-6 h-6 cursor-pointer"
+                                />
+                            </button>
+                        ))}
+                    </div>
+
+                    <textarea
+                        className="w-full sm:w-1/2 border border-gray-300 p-3 rounded outline-none focus:border-black"
+                        placeholder="Write your experience..."
+                        rows={4}
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        required
+                    ></textarea>
+
+                    <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="w-full sm:w-40 bg-black text-white py-3 px-4 text-sm font-medium hover:bg-gray-800 transition disabled:bg-gray-400"
+                    >
+                        {isSubmitting ? "Submitting..." : "Submit Review"}
+                    </button>
+                </form>
+           </div>
+
+           <hr className="my-4" />
+
+           {/* ⭐ DISPLAY REVIEWS */}
+           <div className="flex flex-col gap-6">
+                {productData.reviews && productData.reviews.length > 0 ? (
+                    productData.reviews.map((item, index) => (
+                        <div key={index} className="flex flex-col gap-1">
+                            <div className="flex items-center gap-2 mb-1">
+                                <p className="font-semibold text-black">{item.name}</p>
+                                <div className="flex gap-0.5">
+                                    {[...Array(5)].map((_, i) => (
+                                        <img 
+                                            key={i} 
+                                            className="w-3" 
+                                            src={i < item.rating ? assets.star_icon : assets.star_dull_icon} 
+                                            alt="" 
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                            <p className="text-gray-600">{item.comment}</p>
+                            <p className="text-xs text-gray-400 mt-1">{new Date(item.date).toDateString()}</p>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-gray-400 italic">No reviews yet. Be the first to review!</p>
+                )}
+           </div>
+
         </div>
       </div>
 

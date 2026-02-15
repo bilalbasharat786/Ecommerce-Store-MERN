@@ -26,7 +26,19 @@ const productSchema = new mongoose.Schema({
     //   Red: ["red1.jpg", "red2.jpg"]
     // }
   },
-});
+  reviews: [
+        {
+            user: { type: mongoose.Schema.Types.ObjectId, ref: "user", required: true }, // Kisne review diya
+            name: { type: String, required: true }, // User ka naam
+            rating: { type: Number, required: true }, // 1 se 5 stars
+            comment: { type: String, required: true }, // Review text
+            date: { type: Date, default: Date.now } // Kab diya
+        }
+    ],
+    rating: { type: Number, required: true, default: 0 }, // Average Rating (e.g. 4.5)
+    numReviews: { type: Number, required: true, default: 0 }, // Total kitne logo ne review diya
+    
+}, { minimize: false });
 
 const productModel =
   mongoose.models.product || mongoose.model("product", productSchema);
