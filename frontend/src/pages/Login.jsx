@@ -51,20 +51,29 @@ const Login = () => {
   }, [currentState]); // currentState add kiya taake DOM change hone par dobara render ho
 
   // ---------------- MAIN SUBMIT HANDLER ----------------
+ // ---------------- MAIN SUBMIT HANDLER ----------------
   const onSumbitHandler = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       if (currentState === "Sign Up") {
+        
+        // ⭐ THE FIX: OTP bhejne se pehle password ki length check karo!
+        if (password.length < 8) {
+            toast.error("Password must be at least 8 characters long");
+            setLoading(false);
+            return; // Function ko yahin rok do, aage mat jao
+        }
+
         // ⭐ STEP 1: SEND OTP
         const response = await axios.post(backendUrl + "/api/user/send-otp", {
           email,
         });
         
         if (response.data.success) {
-          toast.success(response.data.message); // "OTP sent successfully!"
-          setCurrentState("Verify OTP"); // Form ko OTP mode mein change kar diya
+          toast.success(response.data.message); 
+          setCurrentState("Verify OTP"); 
         } else {
           toast.error(response.data.message);
         }
@@ -81,7 +90,6 @@ const Login = () => {
 
         if (response.data.success) {
           toast.success("Account created successfully!");
-          // Account bante hi direct login karwa diya
           setToken(response.data.token);
           localStorage.setItem("token", response.data.token);
           navigate("/");
