@@ -8,4 +8,5 @@ const connectDB = async () => {
   await mongoose.connect(`${process.env.MONGODB_URI}/ecom`);
 };
 
+
 export default connectDB;

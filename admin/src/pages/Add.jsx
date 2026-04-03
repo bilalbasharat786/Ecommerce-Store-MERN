@@ -10,7 +10,6 @@ const Add = ({ token }) => {
   const [image2, setImage2] = useState(false);
   const [image4, setImage4] = useState(false);
   const [image3, setImage3] = useState(false);
-
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -26,7 +25,6 @@ const Add = ({ token }) => {
     try {
       e.preventDefault();
 
-      console.log("📌 SUBMIT STARTED");
       const formData = new FormData();
       formData.append("name", name);
       formData.append("description", description);
@@ -36,11 +34,6 @@ const Add = ({ token }) => {
       formData.append("subCategory", subCategory);
       formData.append("bestseller", bestseller);
       formData.append("sizes", JSON.stringify(sizes));
-
-        // ⭐ DEBUG colors
-      console.log("🎨 Colors sent from Admin:", colors);
-
-      // ⭐ ADDING COLORS INTO FORMDATA
       formData.append("colors", JSON.stringify(colors));
 
       image1 && formData.append("image1", image1);
@@ -48,14 +41,13 @@ const Add = ({ token }) => {
       image3 && formData.append("image3", image3);
       image4 && formData.append("image4", image4);
 
-        console.log("🚀 Sending FormData to backend...");
 
       const response = await axios.post(
         backendUrl + "/api/product/add",
         formData,
         { headers: { token } }
       );
-        console.log("📩 Response from backend:", response.data);
+      console.log("📩 Response from backend:", response.data);
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -199,67 +191,67 @@ const Add = ({ token }) => {
             required
           />
         </div>
-<div>
-  <label htmlFor="discountPrice" className="block text-sm font-medium mb-1">Discount Price</label>
-  <input
-    type="number"
-    id="discountPrice"
-    placeholder="Enter discount price (optional)"
-    value={discountPrice}
-    onChange={(e) => {
-      setDiscountPrice(e.target.value);
-      console.log("Admin Discount Price Input:", e.target.value); // ✅ Debug
-    }}
-    className="border rounded-md p-2 w-full"
-  />
-</div>
+        <div>
+          <label htmlFor="discountPrice" className="block text-sm font-medium mb-1">Discount Price</label>
+          <input
+            type="number"
+            id="discountPrice"
+            placeholder="Enter discount price (optional)"
+            value={discountPrice}
+            onChange={(e) => {
+              setDiscountPrice(e.target.value);
+              console.log("Admin Discount Price Input:", e.target.value); // ✅ Debug
+            }}
+            className="border rounded-md p-2 w-full"
+          />
+        </div>
 
-  <div className="w-full">
-  <p className="mb-2 font-medium">Product Colors</p>
+        <div className="w-full">
+          <p className="mb-2 font-medium">Product Colors</p>
 
-  <select
-    multiple
-    className="w-full max-w-[500px] px-3 py-2 border rounded"
-    value={colors}
-    onChange={(e) => {
-      const selected = Array.from(e.target.selectedOptions).map(opt => opt.value);
-      setColors(selected);
-      console.log("🎨 Selected Colors:", selected);
-    }}
-  >
-    <option value="Black">Black</option>
-    <option value="White">White</option>
-    <option value="Red">Red</option>
-    <option value="Blue">Blue</option>
-    <option value="Green">Green</option>
-    <option value="Yellow">Yellow</option>
-    <option value="Pink">Pink</option>
-    <option value="Purple">Purple</option>
-    <option value="Brown">Brown</option>
-    <option value="Beige">Beige</option>
-    <option value="Gold">Gold</option>
-    <option value="Silver">Silver</option>
-    <option value="Gray">Gray</option>
-    <option value="Orange">Orange</option>
-    <option value="Maroon">Maroon</option>
-    <option value="Navy">Navy</option>
-    <option value="Sky Blue">Sky Blue</option>
-    <option value="Olive">Olive</option>
-    <option value="Teal">Teal</option>
-    <option value="Lavender">Lavender</option>
-    <option value="Mint">Mint</option>
-    <option value="Cream">Cream</option>
-    <option value="Khaki">Khaki</option>
-    <option value="Mustard">Mustard</option>
-    <option value="Rose Gold">Rose Gold</option>
-    <option value="Charcoal">Charcoal</option>
-    <option value="Off White">Off White</option>
-  </select>
+          <select
+            multiple
+            className="w-full max-w-[500px] px-3 py-2 border rounded"
+            value={colors}
+            onChange={(e) => {
+              const selected = Array.from(e.target.selectedOptions).map(opt => opt.value);
+              setColors(selected);
+              console.log("🎨 Selected Colors:", selected);
+            }}
+          >
+            <option value="Black">Black</option>
+            <option value="White">White</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Pink">Pink</option>
+            <option value="Purple">Purple</option>
+            <option value="Brown">Brown</option>
+            <option value="Beige">Beige</option>
+            <option value="Gold">Gold</option>
+            <option value="Silver">Silver</option>
+            <option value="Gray">Gray</option>
+            <option value="Orange">Orange</option>
+            <option value="Maroon">Maroon</option>
+            <option value="Navy">Navy</option>
+            <option value="Sky Blue">Sky Blue</option>
+            <option value="Olive">Olive</option>
+            <option value="Teal">Teal</option>
+            <option value="Lavender">Lavender</option>
+            <option value="Mint">Mint</option>
+            <option value="Cream">Cream</option>
+            <option value="Khaki">Khaki</option>
+            <option value="Mustard">Mustard</option>
+            <option value="Rose Gold">Rose Gold</option>
+            <option value="Charcoal">Charcoal</option>
+            <option value="Off White">Off White</option>
+          </select>
 
-  <p className="text-xs text-gray-500 mt-1">
-    You can select multiple colors (Ctrl + Click)
-  </p>
-</div>
+          <p className="text-xs text-gray-500 mt-1">
+            You can select multiple colors (Ctrl + Click)
+          </p>
+        </div>
 
       </div>
       <div>
@@ -275,9 +267,8 @@ const Add = ({ token }) => {
             }
           >
             <p
-              className={`${
-                sizes.includes("S") ? "bg-pink-100" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+              className={`${sizes.includes("S") ? "bg-pink-100" : "bg-slate-200"
+                } px-3 py-1 cursor-pointer`}
             >
               S
             </p>
@@ -292,9 +283,8 @@ const Add = ({ token }) => {
             }
           >
             <p
-              className={`${
-                sizes.includes("M") ? "bg-pink-100" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+              className={`${sizes.includes("M") ? "bg-pink-100" : "bg-slate-200"
+                } px-3 py-1 cursor-pointer`}
             >
               M
             </p>
@@ -309,9 +299,8 @@ const Add = ({ token }) => {
             }
           >
             <p
-              className={`${
-                sizes.includes("L") ? "bg-pink-100" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+              className={`${sizes.includes("L") ? "bg-pink-100" : "bg-slate-200"
+                } px-3 py-1 cursor-pointer`}
             >
               L
             </p>
@@ -326,9 +315,8 @@ const Add = ({ token }) => {
             }
           >
             <p
-              className={`${
-                sizes.includes("XL") ? "bg-pink-100" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+              className={`${sizes.includes("XL") ? "bg-pink-100" : "bg-slate-200"
+                } px-3 py-1 cursor-pointer`}
             >
               XL
             </p>
@@ -343,9 +331,8 @@ const Add = ({ token }) => {
             }
           >
             <p
-              className={`${
-                sizes.includes("XXL") ? "bg-pink-100" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+              className={`${sizes.includes("XXL") ? "bg-pink-100" : "bg-slate-200"
+                } px-3 py-1 cursor-pointer`}
             >
               XXL
             </p>

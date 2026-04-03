@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
-import { optimizeImage } from "../utils/imageConfig"; // <-- Ye new line add karo
+import { optimizeImage } from "../utils/imageConfig";
 
 const List = ({ token }) => {
   const [list, setList] = useState([]);
@@ -74,9 +74,7 @@ const List = ({ token }) => {
   return (
     <>
       <p className="mb-2 font-semibold text-lg text-center md:text-left">All Products List</p>
-
       <div className="flex flex-col gap-3 overflow-y-auto max-h-[80vh] px-2">
-        {/* List Header */}
         <div className="hidden sm:grid grid-cols-[1fr_2fr_2fr_1fr_1fr] items-center py-2 px-3 border bg-gray-100 text-xs sm:text-sm font-semibold min-w-[500px]">
           <b>Image</b>
           <b>Name</b>
@@ -85,25 +83,20 @@ const List = ({ token }) => {
           <b>Discount</b>
           <b className="text-center">Action</b>
         </div>
-
-        {/* Product Rows */}
         {list.map((item, index) => (
-        <div
-  key={index}
-  className="grid grid-cols-1 sm:grid-cols-[1fr_2fr_2fr_1fr_1fr] items-start gap-3 py-3 px-3 border rounded-md shadow-sm text-sm"
->
+          <div
+            key={index}
+            className="grid grid-cols-1 sm:grid-cols-[1fr_2fr_2fr_1fr_1fr] items-start gap-3 py-3 px-3 border rounded-md shadow-sm text-sm"
+          >
 
-            {/* Image */}
             <div className="flex items-center justify-center sm:justify-start">
-            <img
-  className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded"
-  src={optimizeImage(item.image[0], 100)} // <-- 100px size kafi hai list ke liye
-  alt="product"
-  loading="lazy"
-/>
+              <img
+                className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded"
+                src={optimizeImage(item.image[0], 100)} // <-- 100px size kafi hai list ke liye
+                alt="product"
+                loading="lazy"
+              />
             </div>
-
-            {/* Editable name */}
             <input
               type="text"
               className="border px-2 py-1 rounded w-full"
@@ -114,8 +107,6 @@ const List = ({ token }) => {
                 setList(newList);
               }}
             />
-
-            {/* Editable category */}
             <input
               type="text"
               className="border px-2 py-1 rounded w-full"
@@ -126,8 +117,6 @@ const List = ({ token }) => {
                 setList(newList);
               }}
             />
-
-            {/* Editable price */}
             <input
               type="number"
               className="border px-2 py-1 w-16 sm:w-20 text-center rounded"
@@ -138,21 +127,18 @@ const List = ({ token }) => {
                 setList(newList);
               }}
             />
-             {/* Editable Discount Price */}
-<input
-  type="number"
-  className="border px-2 py-1 w-16 sm:w-20 text-center rounded"
-  value={item.discountPrice}
-  onChange={(e) => {
-    const newList = [...list];
-    newList[index].discountPrice = e.target.value;
-    setList(newList);
-  }}
-/>
+            <input
+              type="number"
+              className="border px-2 py-1 w-16 sm:w-20 text-center rounded"
+              value={item.discountPrice}
+              onChange={(e) => {
+                const newList = [...list];
+                newList[index].discountPrice = e.target.value;
+                setList(newList);
+              }}
+            />
 
-            {/* Save + Delete buttons */}
             <div className="flex items-center justify-between sm:justify-end gap-3 mt-2">
-
               <button
                 onClick={() => updateProduct(item)}
                 className="bg-green-600 text-white px-2 py-1 rounded text-[10px] sm:text-xs hover:bg-green-700 transition"

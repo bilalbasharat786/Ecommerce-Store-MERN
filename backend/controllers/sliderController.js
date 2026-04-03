@@ -1,7 +1,6 @@
 import cloudinary from "../configs/cloudinary.js";
 import Slider from "../models/sliderModel.js";
 
-// Add Slider Image
 export const addSliderImage = async (req, res) => {
   try {
     const result = await cloudinary.uploader.upload(req.file.path, {
@@ -15,7 +14,6 @@ export const addSliderImage = async (req, res) => {
   }
 };
 
-// Get All Slider Images
 export const getSliderImages = async (req, res) => {
   try {
     const images = await Slider.find();
@@ -25,7 +23,6 @@ export const getSliderImages = async (req, res) => {
   }
 };
 
-// Delete Slider Image
 export const deleteSliderImage = async (req, res) => {
   try {
     const { id } = req.params;

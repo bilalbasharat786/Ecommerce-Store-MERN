@@ -3,20 +3,15 @@ import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 import SibApiV3Sdk from "sib-api-v3-sdk";
 
-
-// Global variables
 const currency = "usd";
 const deliveryCharges = 10;
 
-// gateway initialize
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Placing order using COD
 const placeOrder = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
 
-    // ⭐ FIX FOR COLOR SUPPORT
     let processedItems = items.map((item) => {
       let realSize = item.size;
       let color = null;
@@ -40,7 +35,7 @@ const placeOrder = async (req, res) => {
 
     const orderData = {
       userId,
-      items: processedItems, // ⭐ Updated
+      items: processedItems,
       amount,
       address,
       paymentMethod: "COD",
@@ -67,8 +62,6 @@ const placeOrder = async (req, res) => {
   }
 };
 
-
-// Placing order using Stripe
 const placeOrderStripe = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
@@ -129,7 +122,6 @@ const placeOrderStripe = async (req, res) => {
   }
 };
 
-// verify stripe
 const verifyStripe = async (req, res) => {
   const { orderId, success, userId } = req.body;
   try {
@@ -155,10 +147,6 @@ const verifyStripe = async (req, res) => {
   }
 };
 
-// Placing order using Razorpay
-const placeOrderRazorpay = async (req, res) => {};
-
-// All orders data for admin panel
 const allOrders = async (req, res) => {
   try {
     const orders = await orderModel.find({});
@@ -175,7 +163,6 @@ const allOrders = async (req, res) => {
   }
 };
 
-// User Order data for frontend
 const userOrders = async (req, res) => {
   try {
     const { userId } = req.body;
@@ -193,7 +180,6 @@ const userOrders = async (req, res) => {
   }
 };
 
-// Update order status from admin panel
 const updateStatus = async (req, res) => {
   try {
     const { orderId, status } = req.body;
@@ -210,7 +196,7 @@ const updateStatus = async (req, res) => {
     });
   }
 };
-// delete order by admin
+
 const deleteOrder = async (req, res) => {
   try {
     const { orderId } = req.body;
@@ -226,7 +212,7 @@ const deleteOrder = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
-// 🟢 Get Unread Orders Count
+
 export const getUnreadOrdersCount = async (req, res) => {
   try {
     const count = await orderModel.countDocuments({ isRead: false });
@@ -237,7 +223,6 @@ export const getUnreadOrdersCount = async (req, res) => {
   }
 };
 
-// 🟢 Mark Order as Read
 export const markOrderAsRead = async (req, res) => {
   try {
     const { orderId } = req.params;
@@ -248,7 +233,7 @@ export const markOrderAsRead = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
-// Mark all orders as read
+
 export const markAllOrdersAsRead = async (req, res) => {
   try {
     await orderModel.updateMany({ isRead: false }, { isRead: true });
@@ -260,8 +245,6 @@ export const markAllOrdersAsRead = async (req, res) => {
 };
 console.log("KEY:", process.env.SMTP_API_KEY ? "FOUND" : "MISSING");
 
-
-// 🟢 Email sending helper using Brevo
 const sendOrderEmail = async (order) => {
   try {
     const defaultClient = SibApiV3Sdk.ApiClient.instance;
@@ -279,7 +262,7 @@ const sendOrderEmail = async (order) => {
             (item) =>
               `<li>${item.name} x ${item.quantity} ${
                 item.size ? `(${item.size})` : ""
-              }</li>`
+              }</li>`,
           )
           .join("")}
       </ul>
@@ -287,8 +270,8 @@ const sendOrderEmail = async (order) => {
         order.address.firstName || ""
       } ${order.address.lastName || ""}</p>
       <p><strong>Address:</strong> ${order.address.street}, ${
-      order.address.city
-    }, ${order.address.zipCode}, ${order.address.country}</p>
+        order.address.city
+      }, ${order.address.zipCode}, ${order.address.country}</p>
       <p><strong>Phone:</strong> ${order.address.phone}</p>
       <p><strong>Items Count:</strong> ${order.items.length}</p>
       <p><strong>Method:</strong> ${order.paymentMethod}</p>
@@ -298,30 +281,30 @@ const sendOrderEmail = async (order) => {
     `;
 
     const sendSmtpEmail = {
-      sender: { email: process.env.STORE_ADMIN_EMAIL, name: "Jamal Collection" },
+      sender: {
+        email: process.env.STORE_ADMIN_EMAIL,
+        name: "Jamal Collection",
+      },
       to: [{ email: process.env.STORE_ADMIN_EMAIL, name: "Admin" }],
       subject: `🛒 New Order Received - Jamal Collection`,
       htmlContent: emailHTML,
     };
 
     await apiInstance.sendTransacEmail(sendSmtpEmail);
-    console.log("✅ Order email sent successfully to admin!");
+    console.log(" Order email sent successfully to admin!");
   } catch (error) {
-    console.error("❌ Error sending order email:", error);
+    console.error(" Error sending order email:", error);
   }
 };
 
-console.log("✅ sendOrderEmail() completed successfully!");
-
+console.log(" sendOrderEmail() completed successfully!");
 
 export {
   placeOrder,
   placeOrderStripe,
-  placeOrderRazorpay,
   deleteOrder,
   allOrders,
   userOrders,
   updateStatus,
   verifyStripe,
 };
-

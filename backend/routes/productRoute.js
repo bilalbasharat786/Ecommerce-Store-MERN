@@ -30,4 +30,5 @@ productRouter.post("/update", adminAuth, updateProduct);
 productRouter.get("/list", listProducts);
 productRouter.post('/review', authUser, addProductReview);
 
+
 export default productRouter;

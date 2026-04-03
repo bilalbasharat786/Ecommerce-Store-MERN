@@ -17,7 +17,7 @@ const BestSeller = () => {
       <div className="text-center py-6 text-xl sm:text-2xl md:text-3xl">
         <Title text1={"BEST"} text2={"SELLERS"} />
         <p className="w-[90%] sm:w-3/4 m-auto text-[10px] sm:text-sm md:text-base text-gray-600 leading-relaxed">
-         Discover our most popular picks — loved by customers for their style,
+          Discover our most popular picks — loved by customers for their style,
           comfort, and unbeatable quality. Don’t miss out on the favorites
           everyone’s talking about!
         </p>
@@ -31,7 +31,7 @@ const BestSeller = () => {
             name={item.name}
             price={item.price}
             discountPrice={item.discountPrice}
-            colors={item.colors} 
+            colors={item.colors}
           />
         ))}
       </div>

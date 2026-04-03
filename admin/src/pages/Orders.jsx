@@ -48,44 +48,44 @@ const Orders = ({ token, setRefreshUnread }) => {
   };
 
   const deleteOrder = async (orderId) => {
-  try {
-    const response = await axios.post(
-      backendUrl + "/api/order/delete",
-      { orderId },
-      { headers: { token } }
-    );
-
-    if (response.data.success) {
-      toast.success(response.data.message);
-      fetchAllOrders();
-    } else {
-      toast.error(response.data.message);
-    }
-  } catch (error) {
-    console.log(error);
-    toast.error(error.message);
-  }
-};
-
-
-useEffect(() => {
-  const markAllAsRead = async () => {
     try {
-      await axios.put(
-        backendUrl + "/api/order/mark-all-read",
-        {},
+      const response = await axios.post(
+        backendUrl + "/api/order/delete",
+        { orderId },
         { headers: { token } }
       );
-        
-    setRefreshUnread(true);
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        fetchAllOrders();
+      } else {
+        toast.error(response.data.message);
+      }
     } catch (error) {
-      console.error("Error marking orders as read:", error);
+      console.log(error);
+      toast.error(error.message);
     }
   };
 
-  fetchAllOrders();
-  markAllAsRead();
-}, []);
+
+  useEffect(() => {
+    const markAllAsRead = async () => {
+      try {
+        await axios.put(
+          backendUrl + "/api/order/mark-all-read",
+          {},
+          { headers: { token } }
+        );
+
+        setRefreshUnread(true);
+      } catch (error) {
+        console.error("Error marking orders as read:", error);
+      }
+    };
+
+    fetchAllOrders();
+    markAllAsRead();
+  }, []);
 
 
   return (
@@ -104,16 +104,16 @@ useEffect(() => {
                   if (index === order.items.length - 1) {
                     return (
                       <p className="py-0.5" key={index}>
-                        {item.name} x {item.quantity} <span>{item.size} {/* ⭐ Show Color Dot */}
-{item.color && (
-  <span
-    style={{ backgroundColor: item.color }}
-    className="inline-block w-4 h-4 ml-2 rounded-full border"
-  ></span>
-)}
+                        {item.name} x {item.quantity} <span>{item.size}
+                          {item.color && (
+                            <span
+                              style={{ backgroundColor: item.color }}
+                              className="inline-block w-4 h-4 ml-2 rounded-full border"
+                            ></span>
+                          )}
                         </span>
                       </p>
-                      
+
                     );
                   } else {
                     return (
@@ -159,7 +159,7 @@ useEffect(() => {
               value={order.status}
               className="p-2 font-semibold"
             >
-        
+
 
               <option value="Order Placed">Order Placed</option>
               <option value="Packing">Packing</option>
@@ -167,12 +167,12 @@ useEffect(() => {
               <option value="Out For Delivery">Out For Delivery</option>
               <option value="Delivered">Delivered</option>
             </select>
-                <button
-  onClick={() => deleteOrder(order._id)}
-  className="bg-red-600 text-white px-3 py-1 mt-2 rounded hover:bg-red-700 transition"
->
-  Delete
-</button>
+            <button
+              onClick={() => deleteOrder(order._id)}
+              className="bg-red-600 text-white px-3 py-1 mt-2 rounded hover:bg-red-700 transition"
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>

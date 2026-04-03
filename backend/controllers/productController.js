@@ -2,10 +2,9 @@ import { v2 as cloudinary } from "cloudinary";
 import productModel from "../models/productModel.js";
 import userModel from "../models/userModel.js";
 
-// function for adding product
 const addProduct = async (req, res) => {
   try {
-    console.log("📩 Incoming product data:", req.body);
+    console.log(" Incoming product data:", req.body);
 
     const {
       name,
@@ -18,25 +17,23 @@ const addProduct = async (req, res) => {
       sizes,
     } = req.body;
 
-    // ⭐ NEW — COLORS PARSE
     let colors = [];
     if (req.body.colors) {
       try {
         colors = JSON.parse(req.body.colors);
-        console.log("🎨 Colors received:", colors);
+        console.log(" Colors received:", colors);
       } catch (err) {
-        console.log("❌ Colors JSON parse error:", err);
+        console.log(" Colors JSON parse error:", err);
       }
     }
 
-    // IMAGES
     const image1 = req.files.image1 && req.files.image1[0];
     const image2 = req.files.image2 && req.files.image2[0];
     const image3 = req.files.image3 && req.files.image3[0];
     const image4 = req.files.image4 && req.files.image4[0];
 
     const images = [image1, image2, image3, image4].filter(
-      (item) => item !== undefined
+      (item) => item !== undefined,
     );
 
     let imagesUrl = await Promise.all(
@@ -45,13 +42,12 @@ const addProduct = async (req, res) => {
           resource_type: "image",
         });
         return result.secure_url;
-      })
+      }),
     );
 
-    console.log("🖼 Uploaded Images:", imagesUrl);
-    console.log("💰 Discount Price Received:", discountPrice);
+    console.log(" Uploaded Images:", imagesUrl);
+    console.log(" Discount Price Received:", discountPrice);
 
-    // SAVE TO DATABASE
     const productData = {
       name,
       description,
@@ -62,16 +58,16 @@ const addProduct = async (req, res) => {
       subCategory,
       bestseller: bestseller === "true" ? true : false,
       sizes: JSON.parse(sizes.replace(/'/g, '"')),
-      colors: colors,                 // ⭐ NEW FIELD
+      colors: colors,
       image: imagesUrl,
-      reviews: [],                   // ⭐ NEW FIELD
+      reviews: [],
       date: Date.now(),
     };
 
     const product = new productModel(productData);
     await product.save();
 
-    console.log("✅ Product Added Successfully:", product);
+    console.log(" Product Added Successfully:", product);
 
     res.json({ success: true, message: "Product Added" });
   } catch (error) {
@@ -83,7 +79,6 @@ const addProduct = async (req, res) => {
   }
 };
 
-// function for listing product
 const listProducts = async (req, res) => {
   try {
     const products = await productModel.find({});
@@ -97,7 +92,6 @@ const listProducts = async (req, res) => {
   }
 };
 
-// function for removing product
 const removeProduct = async (req, res) => {
   try {
     await productModel.findByIdAndDelete(req.body.id);
@@ -114,26 +108,19 @@ const removeProduct = async (req, res) => {
   }
 };
 
-
-// Update product price
-// Update product details (name, price, category, etc.)
 export const updateProduct = async (req, res) => {
   try {
     const { id, name, price, category, discountPrice, colors } = req.body;
 
-    // Optional fields ko filter karlo
     const updatedData = {};
     if (name) updatedData.name = name;
     if (price) updatedData.price = price;
     if (discountPrice) updatedData.discountPrice = discountPrice;
     if (category) updatedData.category = category;
 
-
-    const product = await productModel.findByIdAndUpdate(
-      id,
-      updatedData,
-      { new: true }
-    );
+    const product = await productModel.findByIdAndUpdate(id, updatedData, {
+      new: true,
+    });
 
     if (!product)
       return res.json({ success: false, message: "Product not found" });
@@ -149,7 +136,6 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-// function for getting single product info
 const singleProduct = async (req, res) => {
   try {
     const { productId } = req.body;
@@ -171,26 +157,24 @@ const addProductReview = async (req, res) => {
   try {
     const { userId, productId, rating, comment } = req.body;
 
-    // 1. User ka naam Database se nikalo
     const user = await userModel.findById(userId);
-    
+
     if (!user) {
-        return res.json({ success: false, message: "User not found" });
+      return res.json({ success: false, message: "User not found" });
     }
 
     const product = await productModel.findById(productId);
 
-    // Check karo user ne pehle review to nahi diya?
     if (product.reviews.find((x) => x.user.toString() === userId.toString())) {
       return res.json({ success: false, message: "Product Already Reviewed" });
     }
 
     const review = {
-      name: user.name, // 👈 AB HUM REAL NAME DATABASE SE LE RAHE HAIN
+      name: user.name,
       rating: Number(rating),
       comment,
       user: userId,
-      date: Date.now() // Date bhi abhi ki daal do
+      date: Date.now(),
     };
 
     product.reviews.push(review);
@@ -203,11 +187,16 @@ const addProductReview = async (req, res) => {
 
     await product.save();
     res.json({ success: true, message: "Review Added" });
-
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
 
-export { listProducts, addProduct, removeProduct, singleProduct, addProductReview};
+export {
+  listProducts,
+  addProduct,
+  removeProduct,
+  singleProduct,
+  addProductReview,
+};

@@ -22,7 +22,7 @@ const CartTotal = () => {
           <div className="flex justify-between">
             <p>Shipping Fee</p>
             <p>
-             {currency}{deliveryFee.toLocaleString("en-PK")}
+              {currency}{deliveryFee.toLocaleString("en-PK")}
             </p>
           </div>
         </div>
