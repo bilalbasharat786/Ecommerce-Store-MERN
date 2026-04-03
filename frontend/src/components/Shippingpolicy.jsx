@@ -1,5 +1,3 @@
-import React from "react";
-
 const ShippingPolicy = () => {
   return (
     <div className="px-4 sm:px-8 md:px-16 py-10 text-gray-700 leading-relaxed">

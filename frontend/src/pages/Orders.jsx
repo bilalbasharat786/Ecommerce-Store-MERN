@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import Title from "../components/Title";
 import axios from "axios";
-import { optimizeImage } from "../utils/imageConfig"; 
+import { optimizeImage } from "../utils/imageConfig";
 
 const Orders = () => {
   const { currency, backendUrl, token } = useContext(ShopContext);
@@ -35,7 +35,7 @@ const Orders = () => {
 
         setOrderData(allOrdersItem.reverse());
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -54,12 +54,12 @@ const Orders = () => {
             className="py-4 border-t border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
           >
             <div className="flex items-start gap-6 text-sm min-h-[80px]">
-              <img 
-  src={optimizeImage(item.image[0], 200)} // <-- 200px size set kiya
-  className="w-16 sm:w-20 object-cover"   // <-- object-cover lagaya taake image stretch na ho
-  alt={item.name}                         // <-- Alt tag zaroori hai
-  loading="lazy"                          // <-- Lazy loading speed ke liye
-/>
+              <img
+                src={optimizeImage(item.image[0], 200)}
+                className="w-16 sm:w-20 object-cover"
+                alt={item.name}
+                loading="lazy"
+              />
               <div>
                 <p className="sm:text-base font-medium">{item.name}</p>
                 <div className="flex items-center gap-3 mt-2 text-base text-gray-700">
@@ -87,12 +87,6 @@ const Orders = () => {
                 <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
                 <p className="text-sm md:text-base">{item.status}</p>
               </div>
-              {/* <button
-                onClick={loadOrderData}
-                className="border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500"
-              >
-                Track Order
-              </button> */}
             </div>
           </div>
         ))}

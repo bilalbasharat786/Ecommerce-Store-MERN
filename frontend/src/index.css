@@ -32,10 +32,9 @@ a.active hr {
     color: white;
   }
 }
-/* 📱 Global Responsive Scaling */
 @media (max-width: 768px) {
   html {
-    font-size: 85%; /* sab text, buttons, icons 15% chhote ho jayenge */
+    font-size: 85%;
   }
 }
 
@@ -43,6 +42,6 @@ a.active hr {
 
 @media (min-width: 1024px) {
   html {
-    font-size: 100%; /* desktop ke liye normal size */
+    font-size: 100%;
   }
 }

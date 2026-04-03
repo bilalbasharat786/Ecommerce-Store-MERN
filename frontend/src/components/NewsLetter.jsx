@@ -1,5 +1,3 @@
-import React from "react";
-
 const NewsLetter = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -7,14 +5,9 @@ const NewsLetter = () => {
 
   return (
     <div className="text-center px-4 py-10 sm:py-16">
-      {/* Heading */}
       <p className="text-lg sm:text-2xl font-medium text-gray-800">
         Subscribe now &amp; get 20% off
       </p>
-
-    
-
-      {/* Form */}
       <form
         onSubmit={onSubmitHandler}
         className="w-full sm:w-3/4 md:w-1/2 flex flex-col sm:flex-row items-center gap-3 mx-auto my-6 border rounded-md overflow-hidden"

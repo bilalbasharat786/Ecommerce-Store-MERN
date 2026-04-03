@@ -16,7 +16,7 @@ const Navbar = () => {
     setToken,
     setCartItems,
     wishlist, addToWishlist,
-    
+
   } = useContext(ShopContext);
 
   const logout = async () => {
@@ -28,36 +28,26 @@ const Navbar = () => {
 
   return (
     <div className="flex items-center justify-between py-3 sm:py-5 px-3 sm:px-0 font-medium text-xs sm:text-sm md:text-base  min-h-[60px]">
-      {/* Logo */}
       <Link to="/">
-       <img src={assets.logo} alt="forever_logo" className="w-24 sm:w-36 md:w-40" />
+        <img src={assets.logo} alt="forever_logo" className="w-24 sm:w-36 md:w-40" />
       </Link>
-
-      {/* Desktop Menu */}
       <ul className="hidden sm:flex gap-3 md:gap-5 text-[10px] sm:text-sm md:text-base text-gray-700">
         <NavLink to="/" className="flex flex-col items-center gap-0.5 sm:gap-1">
           <p>HOME</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
-       {/* 👇 COLLECTION HATA KAR YE 3 ADD KIYE */}
         <NavLink to="/men" className="flex flex-col items-center gap-0.5 sm:gap-1">
           <p>MEN</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
-        
         <NavLink to="/women" className="flex flex-col items-center gap-0.5 sm:gap-1">
           <p>WOMEN</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
-
         <NavLink to="/kids" className="flex flex-col items-center gap-0.5 sm:gap-1">
           <p>KIDS</p>
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
-        {/* <NavLink to="/about" className="flex flex-col items-center gap-0.5 sm:gap-1">
-          <p>ABOUT</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-        </NavLink> */}
         <NavLink
           to="/contact"
           className="flex flex-col items-center gap-0.5 sm:gap-1"
@@ -66,18 +56,13 @@ const Navbar = () => {
           <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
         </NavLink>
       </ul>
-
-      {/* Right Section (Icons) */}
       <div className="flex items-center gap-3 sm:gap-6">
-        {/* Search */}
         <img
           onClick={() => setShowSearch(true)}
           src={assets.search_icon}
           className="w-4 sm:w-5 cursor-pointer"
           alt="search_icon"
         />
-
-        {/* Profile */}
         <div className="group relative">
           <img
             onClick={() => (token ? null : navigate("/login"))}
@@ -85,8 +70,6 @@ const Navbar = () => {
             className="w-4 sm:w-5 cursor-pointer"
             alt="profile_icon"
           />
-
-          {/* Dropdown menu */}
           {token && (
             <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-2 sm:pt-4 z-50">
               <div className="flex flex-col gap-2 w-28 sm:w-36 py-2 sm:py-3 px-3 sm:px-5 bg-slate-100 text-gray-500 rounded text-[10px] sm:text-sm">
@@ -106,16 +89,13 @@ const Navbar = () => {
             </div>
           )}
         </div>
-{/* Wishlist */}
-       <Link to='/wishlist' className='relative'>
-    <img src={assets.heart_icon} className='w-5 min-w-5' alt="" /> {/* Make sure assets mein heart icon ho */}
-    {/* Count Badge */}
-         <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>
-             {Object.keys(wishlist).length}
-         </p>
-    
-</Link>
-        {/* Cart */}
+        <Link to='/wishlist' className='relative'>
+          <img src={assets.heart_icon} className='w-5 min-w-5' alt="" /> {/* Make sure assets mein heart icon ho */}
+          <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>
+            {Object.keys(wishlist).length}
+          </p>
+
+        </Link>
         <Link to="/cart" className="relative">
           <img
             src={assets.cart_icon}
@@ -126,9 +106,6 @@ const Navbar = () => {
             {getCartCount()}
           </p>
         </Link>
-
-
-        {/* Menu Icon (Mobile) */}
         <img
           onClick={() => setVisible(true)}
           src={assets.menu_icon}
@@ -136,12 +113,9 @@ const Navbar = () => {
           alt="menu_icon"
         />
       </div>
-
-      {/* Sidebar menu for small screens */}
       <div
-        className={`absolute top-0 right-0 bottom-0 overflow-hidden z-50 bg-white transition-all duration-500 ${
-          visible ? "w-full" : "w-0"
-        }`}
+        className={`absolute top-0 right-0 bottom-0 overflow-hidden z-50 bg-white transition-all duration-500 ${visible ? "w-full" : "w-0"
+          }`}
       >
         <div className="flex flex-col text-gray-600 text-sm sm:text-base">
           <div
@@ -162,28 +136,18 @@ const Navbar = () => {
           >
             HOME
           </NavLink>
-         {/* 👇 COLLECTION HATA KAR YE 3 ADD KIYE */}
-        <NavLink to="/men" className="flex flex-col items-center gap-0.5 sm:gap-1">
-          <p>MEN</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-        </NavLink>
-        
-        <NavLink to="/women" className="flex flex-col items-center gap-0.5 sm:gap-1">
-          <p>WOMEN</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-        </NavLink>
-
-        <NavLink to="/kids" className="flex flex-col items-center gap-0.5 sm:gap-1">
-          <p>KIDS</p>
-          <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
-        </NavLink>
-          {/* <NavLink
-            onClick={() => setVisible(false)}
-            className="py-2 pl-4 sm:pl-6 border text-xs sm:text-sm"
-            to="/about"
-          >
-            ABOUT
-          </NavLink> */}
+          <NavLink to="/men" className="flex flex-col items-center gap-0.5 sm:gap-1">
+            <p>MEN</p>
+            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          </NavLink>
+          <NavLink to="/women" className="flex flex-col items-center gap-0.5 sm:gap-1">
+            <p>WOMEN</p>
+            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          </NavLink>
+          <NavLink to="/kids" className="flex flex-col items-center gap-0.5 sm:gap-1">
+            <p>KIDS</p>
+            <hr className="w-2/4 border-none h-[1.5px] bg-gray-700 hidden" />
+          </NavLink>
           <NavLink
             onClick={() => setVisible(false)}
             className="py-2 pl-4 sm:pl-6 border text-xs sm:text-sm"

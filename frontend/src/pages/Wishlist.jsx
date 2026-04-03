@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../contexts/ShopContext';
 import Title from '../components/Title';
 import ProductItem from '../components/ProductItem';
@@ -31,9 +31,9 @@ const Wishlist = () => {
           />
         ))}
       </div>
-      
+
       {wishlistProducts.length === 0 && (
-          <p className='text-center text-gray-500 mt-10'>Your wishlist is empty.</p>
+        <p className='text-center text-gray-500 mt-10'>Your wishlist is empty.</p>
       )}
     </div>
   );

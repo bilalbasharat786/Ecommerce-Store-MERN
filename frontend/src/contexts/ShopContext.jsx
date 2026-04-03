@@ -8,7 +8,7 @@ export const ShopContext = createContext();
 const ShopContextProvider = ({ children }) => {
   const currency = "PKR ";
   const deliveryFee = 100;
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const [search, setSearch] = useState("");
   const [discountPrice, setDiscountPrice] = useState(0);
@@ -72,17 +72,15 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const updateQuantity = async (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
-    
-  if (quantity === 0) {
-    delete cartData[itemId][size];
 
-    // product ke ander koi size nahi bacha
-    if (Object.keys(cartData[itemId]).length === 0) {
-      delete cartData[itemId];
+    if (quantity === 0) {
+      delete cartData[itemId][size];
+      if (Object.keys(cartData[itemId]).length === 0) {
+        delete cartData[itemId];
+      }
+    } else {
+      cartData[itemId][size] = quantity;
     }
-  } else {
-    cartData[itemId][size] = quantity;
-  }
     setCartItems(cartData);
 
     if (token) {
@@ -100,45 +98,44 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
   };
 
   const getCartAmount = () => {
-  let totalAmount = 0;
-for (const items in cartItems) {
-  for (const item in cartItems[items]) {
-    if (cartItems[items][item] > 0) {
-      let product = products.find((p) => p._id === items);
+    let totalAmount = 0;
+    for (const items in cartItems) {
+      for (const item in cartItems[items]) {
+        if (cartItems[items][item] > 0) {
+          let product = products.find((p) => p._id === items);
 
-      const finalPrice =
-        product.discountPrice > 0 &&
-        product.discountPrice < product.price
-          ? product.discountPrice
-          : product.price;
+          const finalPrice =
+            product.discountPrice > 0 &&
+              product.discountPrice < product.price
+              ? product.discountPrice
+              : product.price;
 
-      totalAmount += finalPrice * cartItems[items][item];
+          totalAmount += finalPrice * cartItems[items][item];
+        }
+      }
     }
-  }
-}
-return totalAmount;
+    return totalAmount;
 
   };
 
-const getProductsData = async () => {
-  try {
-    const response = await axios.get(backendUrl + "/api/product/list");// ✅ step 1
+  const getProductsData = async () => {
+    try {
+      const response = await axios.get(backendUrl + "/api/product/list");
 
-    if (response.data.success) {// ✅ step 2
-      // ek example product print karo
-      if (response.data.products.length > 0) {
-        console.log("", response.data.products[0].discountPrice);
+      if (response.data.success) {
+        if (response.data.products.length > 0) {
+          console.log("", response.data.products[0].discountPrice);
+        }
+
+        setProducts(response.data.products);
+      } else {
+        toast.error(response.data.message);
       }
-
-      setProducts(response.data.products);
-    } else {
-      toast.error(response.data.message);
+    } catch (error) {
+      console.log("❌ getProductsData Error:", error);
+      toast.error(error.message);
     }
-  } catch (error) {
-    console.log("❌ getProductsData Error:", error);
-    toast.error(error.message);
-  }
-};
+  };
 
 
 
@@ -163,34 +160,29 @@ const getProductsData = async () => {
     localStorage.setItem("token", token);
   }, [token]);
 
- useEffect(() => {
-  const loadData = async () => {
-    await getProductsData();
-    if (token) {
-      await getUserCart(token);
-      await getUserWishlist(token);
-    }
-    console.log("", products);
-  };
-  loadData();
-}, [token]);
+  useEffect(() => {
+    const loadData = async () => {
+      await getProductsData();
+      if (token) {
+        await getUserCart(token);
+        await getUserWishlist(token);
+      }
+      console.log("", products);
+    };
+    loadData();
+  }, [token]);
 
-// 1. Wishlist Add/Remove Function
   const addToWishlist = async (itemId) => {
     let wishlistData = structuredClone(wishlist);
 
     if (wishlistData[itemId]) {
-      // Agar pehle se hai to remove karo
       delete wishlistData[itemId];
       toast.info("Removed from Wishlist");
     } else {
-      // Agar nahi hai to add karo
       wishlistData[itemId] = true;
       toast.success("Added to Wishlist");
     }
     setWishlist(wishlistData);
-
-    // Backend API Call
     if (token) {
       try {
         await axios.post(
@@ -204,8 +196,6 @@ const getProductsData = async () => {
       }
     }
   };
-
-  // 2. Get User Wishlist Function
   const getUserWishlist = async (token) => {
     try {
       const response = await axios.post(

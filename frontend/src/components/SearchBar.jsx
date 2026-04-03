@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../contexts/ShopContext";
 import { assets } from "../assets/frontend_assets/assets";
 import { useLocation } from "react-router-dom";
@@ -27,7 +27,7 @@ const SearchBar = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-       <img src={assets.search_icon} alt="search_icon" className="w-4" />
+        <img src={assets.search_icon} alt="search_icon" className="w-4" />
       </div>
       <img
         className="inline w-3 cursor-pointer"

@@ -1,5 +1,3 @@
-import React from "react";
-
 const PrivacyPolicy = () => {
   return (
     <div className="px-4 sm:px-8 md:px-16 py-10 text-gray-700 leading-relaxed">
@@ -54,15 +52,12 @@ const PrivacyPolicy = () => {
         <li>To disclose your data to fraud prevention agencies</li>
         <li>To validate your legal age for online shopping</li>
       </ul>
-
       <p className="mb-4">
         Your data is retained only as long as necessary to fulfill services or
         as required by law. After this, personal data is deleted unless a legal
         requirement exists to retain it. JamalCollection does not sell your
         information to third-party marketing companies.
       </p>
-
-      {/* ✅ NEW SECTION for JazzCash Compliance */}
       <h2 className="text-xl font-semibold mt-6 mb-3">Payment Information Security</h2>
       <p className="mb-4">
         All online payments made on <strong>JamalCollection.com</strong> are processed
@@ -79,7 +74,6 @@ const PrivacyPolicy = () => {
         activity related to your payment card will be handled according to the
         bank and JazzCash dispute resolution policies.
       </p>
-
       <h2 className="text-xl font-semibold mt-6 mb-3">Third-Party Payment Processor</h2>
       <p className="mb-4">
         For your convenience, <strong>JamalCollection</strong> integrates with{" "}
@@ -89,7 +83,6 @@ const PrivacyPolicy = () => {
         the payment. JazzCash follows strict security and privacy standards to
         ensure your information remains protected.
       </p>
-
       <h2 className="text-xl font-semibold mt-6 mb-3">Marketing Updates</h2>
       <p className="mb-4">
         We communicate with subscribed users via email for notifications, order
@@ -108,7 +101,6 @@ const PrivacyPolicy = () => {
         texts. Standard carrier rates may apply. To stop receiving such
         messages, contact us via the same email address above.
       </p>
-
       <h2 className="text-xl font-semibold mt-6 mb-3">Your Rights</h2>
       <p className="mb-4">
         You have the right to request information about the personal data we
@@ -122,7 +114,6 @@ const PrivacyPolicy = () => {
         </a>
         .
       </p>
-
       <h2 className="text-xl font-semibold mt-6 mb-3">
         Facebook Application Privacy Statement
       </h2>
@@ -133,7 +124,6 @@ const PrivacyPolicy = () => {
         by JamalCollection Retail. By using the application, you accept the practices
         and policies outlined in this privacy statement.
       </p>
-
       <h2 className="text-xl font-semibold mt-6 mb-3">
         Changes to This Privacy Statement
       </h2>
@@ -149,7 +139,6 @@ const PrivacyPolicy = () => {
         </a>
         .
       </p>
-
       <p className="mt-10 text-center text-gray-500 text-sm">
         © {new Date().getFullYear()} JamalCollection. All rights reserved.
       </p>
