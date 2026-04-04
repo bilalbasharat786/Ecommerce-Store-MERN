@@ -6,20 +6,22 @@ import { optimizeImage } from "../utils/imageConfig";
 import { assets } from "../assets/frontend_assets/assets";
 
 const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
-  const { currency, wishlist, addToWishlist, addToCart } = useContext(ShopContext);
-
-  const finalPrice = discountPrice && discountPrice < price ? discountPrice : price;
+  const { wishlist, addToWishlist } = useContext(ShopContext);
 
   const discountPercent =
     discountPrice > 0 && discountPrice < price
       ? Math.round(((price - discountPrice) / price) * 100)
       : null;
 
+  // ES6 checks to prevent crashes if image is undefined or empty
+  const primaryImage = image?.[0] ? optimizeImage(image[0], 450) : "";
+  const hoverImage = image?.[1] ? optimizeImage(image[1], 450) : null;
+
   return (
-    <div className="group block relative w-full max-w-xs sm:max-w-sm mx-auto cursor-pointer">
+    <div className="group block relative w-full max-w-xs sm:max-w-sm mx-auto cursor-pointer animate-fade-in">
       
       {/* Image Container with Premium Hover Effects */}
-      <div className="relative overflow-hidden bg-[#F9F9F9] mb-4 aspect-[3/4] shadow-sm transition-shadow duration-300 group-hover:shadow-md">
+      <div className="relative overflow-hidden bg-white mb-4 aspect-[3/4] shadow-sm transition-shadow duration-300 group-hover:shadow-md">
         
         {/* Luxury Sale Badge */}
         {discountPercent && (
@@ -30,18 +32,20 @@ const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
 
         <Link to={`/product/${id}`} className="block w-full h-full">
           {/* Primary Image */}
-          <LazyImage
-            src={optimizeImage(image[0], 450)}
-            w={300}
-            h={400}
-            className="w-full h-full object-cover object-top transition-all duration-1000 ease-in-out group-hover:scale-105 group-hover:opacity-0"
-            alt={`${name} product`}
-          />
+          {primaryImage && (
+            <LazyImage
+              src={primaryImage}
+              w={300}
+              h={400}
+              className="w-full h-full object-cover object-top transition-all duration-1000 ease-in-out group-hover:scale-105 group-hover:opacity-0"
+              alt={`${name} product`}
+            />
+          )}
 
           {/* Secondary Image (Hover Swap) */}
-          {image[1] && (
+          {hoverImage && (
             <LazyImage
-              src={optimizeImage(image[1], 450)}
+              src={hoverImage}
               w={300}
               h={400}
               className="w-full h-full object-cover object-top absolute top-0 left-0 opacity-0 transition-all duration-1000 ease-in-out group-hover:scale-105 group-hover:opacity-100"
@@ -53,7 +57,6 @@ const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
         {/* Quick Actions Overlay (Slides up on Hover) */}
         <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-6 group-hover:translate-y-0 z-20 pointer-events-none">
           
-          {/* Wishlist Button */}
           <button
             onClick={(e) => {
               e.preventDefault();
@@ -63,13 +66,12 @@ const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
             title="Add to Wishlist"
           >
             <img
-              src={wishlist[id] ? assets.heart_filled : assets.heart_icon}
+              src={wishlist?.[id] ? assets.heart_filled : assets.heart_icon}
               alt="wishlist"
-              className={`w-4 h-4 transition-all duration-300 ${wishlist[id] ? 'brightness-0 invert-0' : ''}`}
+              className={`w-4 h-4 transition-all duration-300 ${wishlist?.[id] ? 'brightness-0 invert-0' : ''}`}
             />
           </button>
 
-          {/* Quick View Button */}
           <Link
             to={`/product/${id}`}
             className="pointer-events-auto w-10 h-10 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center text-gray-800 hover:bg-[#C5A059] hover:text-white border border-gray-100 hover:border-[#C5A059] transition-all duration-300 shadow-lg hover:-translate-y-1"
@@ -102,8 +104,8 @@ const ProductItem = ({ id, image, name, price, discountPrice, colors }) => {
           )}
         </div>
 
-        {/* Dynamic Color Dots (Matches the premium vibe) */}
-        {colors && colors.length > 0 && (
+        {/* Dynamic Color Dots */}
+        {colors?.length > 0 && (
           <div className="flex gap-1.5 mt-2.5 justify-center">
             {colors.map((color, index) => (
               <div
