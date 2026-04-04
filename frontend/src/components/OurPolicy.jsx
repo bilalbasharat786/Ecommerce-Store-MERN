@@ -3,7 +3,6 @@ import { assets } from "../assets/frontend_assets/assets";
 import { motion } from "framer-motion";
 
 const OurPolicy = () => {
-  // Policy data array ko alag kar liya taake map() lagane mein asani ho aur code clean rahay
   const policies = [
     {
       id: 1,
@@ -25,12 +24,12 @@ const OurPolicy = () => {
     },
   ];
 
-  // Framer Motion Variants (For Smooth Scrolling Animation)
+  // Framer Motion Variants
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 }, // Har card 0.2s ke waqfay se aayega
+      transition: { staggerChildren: 0.2 },
     },
   };
 
@@ -40,10 +39,10 @@ const OurPolicy = () => {
   };
 
   return (
-    <section className="w-full py-16 sm:py-24 bg-white border-y border-gray-100 overflow-hidden relative">
+    <section className="w-full py-16 sm:py-24 bg-[#FAFAFA] border-y border-gray-100 overflow-hidden relative">
       
       {/* Background Subtle Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-[#C5A059]/20 to-transparent"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[1px] bg-gradient-to-r from-transparent via-[#C5A059]/30 to-transparent"></div>
 
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -59,27 +58,28 @@ const OurPolicy = () => {
               variants={itemVariants}
               className="group flex flex-col items-center text-center cursor-default"
             >
-              {/* Premium Icon Wrapper with Hover Effect */}
+              {/* Premium Icon Wrapper */}
               <div className="relative mb-6 sm:mb-8">
-                {/* Background glow circle that appears on hover */}
-                <div className="absolute inset-0 bg-[#C5A059]/5 rounded-full scale-50 opacity-0 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500 ease-out"></div>
+                {/* Charcoal Background glow circle that appears on hover */}
+                <div className="absolute inset-0 bg-[#121212]/5 rounded-full scale-50 opacity-0 group-hover:scale-110 group-hover:opacity-100 transition-all duration-500 ease-out"></div>
                 
                 {/* Main Icon Ring */}
                 <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border border-gray-200 flex items-center justify-center bg-white group-hover:border-[#C5A059] group-hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-500 z-10">
                   <img
                     src={policy.icon}
                     alt={policy.title}
-                    className="w-7 sm:w-8 md:w-10 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+                    className="w-7 sm:w-8 md:w-10 opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
                   />
                 </div>
               </div>
 
-              {/* Typography Styling */}
-              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-gray-900 tracking-widest uppercase mb-2 group-hover:text-[#C5A059] transition-colors duration-300">
+              {/* Typography Styling with Animated Gold Underline */}
+              <h3 className="font-semibold text-xs sm:text-sm md:text-base text-[#121212] tracking-widest uppercase mb-3 transition-colors duration-300 relative inline-block">
                 {policy.title}
+                <span className="absolute -bottom-1 left-1/2 w-0 h-[2px] bg-[#C5A059] transition-all duration-300 group-hover:w-1/2 group-hover:-translate-x-1/2"></span>
               </h3>
               
-              <p className="text-gray-500 text-[11px] sm:text-xs md:text-sm leading-relaxed max-w-[250px]">
+              <p className="text-gray-500 text-[11px] sm:text-xs md:text-sm leading-relaxed max-w-[250px] mt-1">
                 {policy.desc}
               </p>
               
