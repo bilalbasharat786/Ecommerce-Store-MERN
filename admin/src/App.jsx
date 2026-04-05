@@ -26,7 +26,20 @@ const App = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      <ToastContainer />
+     <ToastContainer 
+       position="top-right"
+       autoClose={3000}
+       hideProgressBar={false}
+       newestOnTop={true}
+       closeOnClick
+       rtl={false}
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover
+       theme="dark" // Dark theme base set kar di
+       toastClassName="premium-toast" // Custom class
+       bodyClassName="premium-toast-body"
+     />
       {token === "" ? (
         <Login setToken={setToken} />
       ) : (

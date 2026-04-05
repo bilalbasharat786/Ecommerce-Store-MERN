@@ -18,3 +18,49 @@ textarea {
   background-color: #ffebf5;
   border-color: #c586a5;
 }
+/* =========================================
+   PREMIUM TOAST NOTIFICATION STYLING
+   ========================================= */
+
+/* Main Toast Box */
+.premium-toast {
+  background-color: #121212 !important; /* Charcoal Dark */
+  color: #ffffff !important;
+  border-left: 4px solid #C5A059 !important; /* Gold Accent Line */
+  border-radius: 4px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  padding: 16px !important;
+}
+
+/* Toast Text */
+.premium-toast-body {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  margin-left: 8px !important;
+}
+
+/* Gold Progress Bar */
+.Toastify__progress-bar {
+  background: #C5A059 !important; 
+  height: 3px !important;
+}
+
+/* Change Default Green/Blue Icons to Gold */
+.Toastify__toast-icon svg {
+  fill: #C5A059 !important;
+}
+
+/* Close Button Hover Effect */
+.Toastify__close-button {
+  color: #ffffff !important;
+  opacity: 0.5 !important;
+  transition: all 0.3s ease !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1 !important;
+  color: #C5A059 !important;
+  transform: scale(1.1);
+}
