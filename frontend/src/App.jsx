@@ -26,9 +26,7 @@ export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 const App = () => {
   return (
     <div className="px-2 sm:px-[4vw] md:px-[6vw] lg:px-[8vw]">
-      // App.jsx ke andar jahan ToastContainer hai, usko is se replace karein:
-
-<ToastContainer 
+      <ToastContainer 
   position="top-right"
   autoClose={3000}
   hideProgressBar={false}
