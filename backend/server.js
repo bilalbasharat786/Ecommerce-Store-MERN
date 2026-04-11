@@ -56,6 +56,10 @@ app.get("/api/health", (req, res) => {
   res.send("Server is Awake!");
 });
 
+app.get('/api/keep-alive', (req, res) => {
+    res.status(200).send("Backend is awake!");
+});
+
 app.get("/", (req, res) => {
   res.send("API WORKING");
 });
