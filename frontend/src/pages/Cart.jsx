@@ -55,7 +55,7 @@ const Cart = () => {
   return (
     <div className="bg-[#FAFAFA] min-h-screen py-10 sm:py-16">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Premium Header */}
         <div className="flex flex-col items-center sm:items-start mb-10 sm:mb-14">
           <span className="text-[#C5A059] text-[10px] sm:text-xs font-bold tracking-[0.3em] uppercase mb-2">
@@ -66,7 +66,7 @@ const Cart = () => {
 
         {cartData.length === 0 ? (
           // Empty Cart State
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col items-center justify-center py-20 bg-white border border-gray-100 shadow-sm"
@@ -85,10 +85,10 @@ const Cart = () => {
           </motion.div>
         ) : (
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
-            
+
             {/* Left Side: Cart Items List */}
             <div className="w-full lg:w-[65%]">
-              
+
               {/* Desktop Header Row */}
               <div className="hidden sm:grid grid-cols-[3fr_1fr_1fr_auto] gap-4 pb-4 border-b border-gray-200 text-xs font-bold tracking-widest uppercase text-gray-400">
                 <p>Product Details</p>
@@ -98,7 +98,7 @@ const Cart = () => {
               </div>
 
               {/* Animated Cart Items */}
-              <motion.div 
+              <motion.div
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
@@ -108,7 +108,7 @@ const Cart = () => {
                   {cartData.map((item, index) => {
                     const productData = products.find((product) => product._id === item._id);
                     if (!productData) return null;
-                    
+
                     const currentPrice = productData.discountPrice > 0 && productData.discountPrice < productData.price
                       ? productData.discountPrice
                       : productData.price;
@@ -179,7 +179,7 @@ const Cart = () => {
                             title="Remove item"
                           >
                             <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                             </svg>
                           </button>
                         </div>
@@ -206,16 +206,16 @@ const Cart = () => {
             <div className="w-full lg:w-[35%] lg:sticky lg:top-24">
               <div className="bg-white p-6 sm:p-8 border border-gray-100 shadow-sm">
                 <h3 className="text-lg font-serif text-[#121212] mb-6">Order Summary</h3>
-                
+
                 <div className="flex flex-col gap-4 text-sm text-gray-600 mb-6">
                   <div className="flex justify-between items-center">
                     <p>Subtotal</p>
                     <p className="font-medium text-[#121212]">{currency}{getCartAmount().toLocaleString("en-PK")}</p>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <p>Estimated Shipping</p>
-                    <p className="font-medium text-[#121212]">{currency}{deliveryFee.toLocaleString("en-PK")}</p>
-                  </div>
+                 <div className="flex justify-between items-center">
+  <p>Estimated Shipping</p>
+  <p className="font-medium text-[#121212]">{currency}Free</p> {/* Yahan 0 ya Free likh dein */}
+</div>
                 </div>
 
                 <div className="border-t border-gray-200 pt-4 mb-8 flex justify-between items-end">
@@ -224,7 +224,7 @@ const Cart = () => {
                     <p className="text-[10px] text-gray-400 uppercase tracking-widest">Including VAT</p>
                   </div>
                   <p className="text-xl sm:text-2xl font-bold text-[#C5A059]">
-                    {currency}{(getCartAmount() === 0 ? 0 : getCartAmount() + deliveryFee).toLocaleString("en-PK")}
+                    {currency}{getCartAmount().toLocaleString("en-PK")}
                   </p>
                 </div>
 
@@ -249,8 +249,8 @@ const Cart = () => {
               {/* Trust Badges under Summary */}
               <div className="mt-6 flex justify-center gap-6">
                 <div className="flex flex-col items-center gap-1 opacity-60 grayscale">
-                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z"/></svg>
-                   <span className="text-[9px] font-bold uppercase tracking-widest">Secure Checkout</span>
+                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-5-5 1.41-1.41L11 14.17l7.59-7.59L20 8l-9 9z" /></svg>
+                  <span className="text-[9px] font-bold uppercase tracking-widest">Secure Checkout</span>
                 </div>
               </div>
 
