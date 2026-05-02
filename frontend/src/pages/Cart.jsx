@@ -214,7 +214,7 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <p>Estimated Shipping</p>
-                    <p className="font-medium text-[#121212]">FREE</p>
+                    <p className="font-medium text-[#121212]">{currency}{deliveryFee.toLocaleString("en-PK")}</p>
                   </div>
                 </div>
 
