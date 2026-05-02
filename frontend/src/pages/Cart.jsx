@@ -212,10 +212,10 @@ const Cart = () => {
                     <p>Subtotal</p>
                     <p className="font-medium text-[#121212]">{currency}{getCartAmount().toLocaleString("en-PK")}</p>
                   </div>
-                 <div className="flex justify-between items-center">
-  <p>Estimated Shipping</p>
-  <p className="font-medium text-[#121212]">{currency}Free</p> {/* Yahan 0 ya Free likh dein */}
-</div>
+                  <div className="flex justify-between items-center">
+                    <p>Estimated Shipping</p>
+                    <p className="font-medium text-[#121212]">{currency}0</p>
+                  </div>
                 </div>
 
                 <div className="border-t border-gray-200 pt-4 mb-8 flex justify-between items-end">
