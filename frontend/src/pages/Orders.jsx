@@ -5,7 +5,8 @@ import axios from "axios";
 import { optimizeImage } from "../utils/imageConfig";
 
 const Orders = () => {
-  const { currency, backendUrl, token } = useContext(ShopContext);
+  // 1. Yahan 'products' ko ShopContext se nikal liya hai
+  const { products, currency, backendUrl, token } = useContext(ShopContext);
 
   const [orderData, setOrderData] = useState([]);
 
@@ -35,7 +36,7 @@ const Orders = () => {
 
         setOrderData(allOrdersItem.reverse());
       }
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -48,48 +49,61 @@ const Orders = () => {
         <Title text1={"MY"} text2={"ORDERS"} />
       </div>
       <div>
-        {orderData.slice(0, 3).map((item, index) => (
-          <div
-            key={index}
-            className="py-4 border-t border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
-          >
-            <div className="flex items-start gap-6 text-sm min-h-[80px]">
-              <img
-                src={optimizeImage(item.image[0], 200)}
-                className="w-16 sm:w-20 object-cover"
-                alt={item.name}
-                loading="lazy"
-              />
-              <div>
-                <p className="sm:text-base font-medium">{item.name}</p>
-                <div className="flex items-center gap-3 mt-2 text-base text-gray-700">
-                  <p>
-                    {currency}
-                    {item.price}
+        {orderData.slice(0, 3).map((item, index) => {
+          
+          // 2. Yahan Live Product find kar rahay hain item._id ke zariye
+          const productData = products.find((product) => product._id === item._id);
+          
+          // 3. Discount Price ki logic (Same Cart wali)
+          // Agar product milta hai aur discount hai toh discount price dikhao, 
+          // warna database wali item.price dikhao
+          const displayPrice = productData && productData.discountPrice > 0 && productData.discountPrice < productData.price
+            ? productData.discountPrice
+            : item.price;
+
+          return (
+            <div
+              key={index}
+              className="py-4 border-t border-b text-gray-700 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+            >
+              <div className="flex items-start gap-6 text-sm min-h-[80px]">
+                <img
+                  src={optimizeImage(item.image[0], 200)}
+                  className="w-16 sm:w-20 object-cover"
+                  alt={item.name}
+                  loading="lazy"
+                />
+                <div>
+                  <p className="sm:text-base font-medium">{item.name}</p>
+                  <div className="flex items-center gap-3 mt-2 text-base text-gray-700">
+                    <p>
+                      {currency}
+                      {displayPrice} {/* 4. Yahan normal price ki jagha updated displayPrice call ki hai */}
+                    </p>
+                    <p>Quantity: {item.quantity}</p>
+                    <p>Size: {item.size}</p>
+                  </div>
+                  <p className="mt-2">
+                    Date:{" "}
+                    <span className="text-gray-400">
+                      {new Date(item.date).toDateString()}
+                    </span>
                   </p>
-                  <p>Quantity: {item.quantity}</p>
-                  <p>Size: {item.size}</p>
+                  <p className="mt-2">
+                    Payment:{" "}
+                    <span className="text-gray-400">{item.paymentMethod}</span>
+                  </p>
                 </div>
-                <p className="mt-2">
-                  Date:{" "}
-                  <span className="text-gray-400">
-                    {new Date(item.date).toDateString()}
-                  </span>
-                </p>
-                <p className="mt-2">
-                  Payment:{" "}
-                  <span className="text-gray-400">{item.paymentMethod}</span>
-                </p>
+              </div>
+              <div className="md:w-1/2 flex justify-between">
+                <div className="flex items-center gap-2">
+                  <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
+                  <p className="text-sm md:text-base">{item.status}</p>
+                </div>
               </div>
             </div>
-            <div className="md:w-1/2 flex justify-between">
-              <div className="flex items-center gap-2">
-                <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
-                <p className="text-sm md:text-base">{item.status}</p>
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
